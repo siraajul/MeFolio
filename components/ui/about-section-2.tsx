@@ -36,7 +36,7 @@ export default function AboutSection2() {
     },
   };
   return (
-    <section className="py-32 px-4 bg-background min-h-screen transition-colors duration-300">
+    <section className="py-32 px-4 bg-background min-h-screen transition-colors duration-300 flex flex-col justify-center">
       <div className="max-w-6xl mx-auto" ref={heroRef}>
         <div className="flex flex-col lg:flex-row items-start gap-8">
           {/* Right side - Content */}

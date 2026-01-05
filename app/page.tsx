@@ -216,9 +216,7 @@ export default function Home() {
         </section>
 
         {/* Contact Section */}
-        <section className="min-h-screen w-full flex flex-col justify-center bg-white dark:bg-neutral-950">
-           <Contact2 />
-        </section>
+        <Contact2 />
       </div>
     </>
   );

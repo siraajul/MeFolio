@@ -503,7 +503,7 @@ export default function ProjectsSection() {
   const toggleTheme = () => setIsDark(!isDark);
 
   return (
-    <main className="min-h-screen bg-background text-foreground transition-colors duration-500 selection:bg-accent/30 selection:text-accent-foreground">
+    <section className="min-h-screen bg-background text-foreground transition-colors duration-500 selection:bg-accent/30 selection:text-accent-foreground">
       {/* 
       Header is commented out to avoid conflict with PortfolioHero header.
       If standalone usage is preferred, uncomment below.
@@ -548,6 +548,6 @@ export default function ProjectsSection() {
           ))}
         </div>
       </section>
-    </main>
+    </section>
   );
 }
