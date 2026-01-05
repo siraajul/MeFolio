@@ -422,68 +422,29 @@ const AnimatedFolder: React.FC<AnimatedFolderProps> = ({ title, projects, classN
   );
 };
 
-// --- Portfolio Data & Main App ---
+// ... (interfaces)
+export interface Project {
+  id: string;
+  image: string; // URL from Sanity
+  title: string;
+  link?: string;
+  description?: string;
+}
 
-const portfolioData = [
-  {
-    title: "Web Automation",
-    gradient: "linear-gradient(135deg, #C3E41D, #9BC53D)",
-    projects: [
-      { id: "wa1", image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800", title: "Selenium Suite" },
-      { id: "wa2", image: "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=800", title: "Cypress E2E" },
-      { id: "wa3", image: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&q=80&w=800", title: "Playwright Tests" },
-      { id: "wa4", image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=800", title: "Regression Suite" },
-    ] as Project[]
-  },
-  {
-    title: "API Testing",
-    gradient: "linear-gradient(to right, #22d3ee, #06b6d4)",
-    projects: [
-      { id: "at1", image: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&q=80&w=800", title: "Postman Collections" },
-      { id: "at2", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800", title: "REST Assured" },
-      { id: "at3", image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=800", title: "GraphQL Tests" },
-      { id: "at4", image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800", title: "Karate Framework" },
-    ] as Project[]
-  },
-  {
-    title: "Performance",
-    gradient: "linear-gradient(135deg, #60a5fa, #3b82f6)",
-    projects: [
-      { id: "pt1", image: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?auto=format&fit=crop&q=80&w=800", title: "JMeter Load Tests" },
-      { id: "pt2", image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=800", title: "K6 Stress Tests" },
-      { id: "pt3", image: "https://images.unsplash.com/photo-1522542550221-31fd19fe4af0?auto=format&fit=crop&q=80&w=800", title: "Gatling Sims" },
-    ] as Project[]
-  },
-  {
-    title: "Mobile Testing",
-    gradient: "linear-gradient(to right, #a78bfa, #8b5cf6)",
-    projects: [
-      { id: "mt1", image: "https://images.unsplash.com/photo-1493863641943-9b68992a8d07?auto=format&fit=crop&q=80&w=800", title: "Appium iOS" },
-      { id: "mt2", image: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&q=80&w=800", title: "Espresso Android" },
-      { id: "mt3", image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=800", title: "XCUITest" },
-    ] as Project[]
-  },
-  {
-    title: "CI/CD",
-    gradient: "linear-gradient(135deg, #94a3b8, #64748b)",
-    projects: [
-      { id: "ci1", image: "https://images.unsplash.com/photo-1618335829737-2228915674e0?auto=format&fit=crop&q=80&w=800", title: "Jenkins Pipelines" },
-      { id: "ci2", image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=800", title: "GitHub Actions" },
-      { id: "ci3", image: "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&q=80&w=800", title: "Dockerized Tests" },
-    ] as Project[]
-  },
-  {
-    title: "Manual Testing",
-    gradient: "linear-gradient(135deg, #fbbf24, #f59e0b)",
-    projects: [
-      { id: "mn1", image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800", title: "Test Plans" },
-      { id: "mn2", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800", title: "Bug Reports" },
-      { id: "mn3", image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&q=80&w=800", title: "Jira Workflows" },
-    ] as Project[]
-  }
-];
+export interface ProjectCategory {
+  _id: string;
+  title: string;
+  gradient?: string;
+  projects: Project[];
+}
 
-export default function ProjectsSection() {
+// ... (internal components remain mostly same)
+
+interface ProjectsSectionProps {
+  categories?: ProjectCategory[];
+}
+
+export default function ProjectsSection({ categories = [] }: ProjectsSectionProps) {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
@@ -504,23 +465,6 @@ export default function ProjectsSection() {
 
   return (
     <section className="bg-background text-foreground transition-colors duration-500 selection:bg-accent/30 selection:text-accent-foreground">
-      {/* 
-      Header is commented out to avoid conflict with PortfolioHero header.
-      If standalone usage is preferred, uncomment below.
-      
-      <header className="sticky top-0 z-40 w-full bg-background/80 backdrop-blur-xl border-b border-border transition-colors duration-500">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-end">
-          <button 
-            onClick={toggleTheme}
-            className="w-10 h-10 flex items-center justify-center rounded-xl bg-muted/50 hover:bg-muted transition-colors border border-border"
-            aria-label="Toggle Theme"
-          >
-            {isDark ? <Sun className="w-5 h-5 text-yellow-500" /> : <Moon className="w-5 h-5 text-indigo-600" />}
-          </button>
-        </div>
-      </header>
-      */}
-
       <div className="max-w-7xl mx-auto pt-12 px-4 md:px-6 text-center">
         <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
           QA <span className="text-brand italic">Projects</span>
@@ -531,22 +475,28 @@ export default function ProjectsSection() {
       </div>
 
       <section className="max-w-7xl mx-auto px-4 md:px-6 pt-12 pb-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 justify-items-center">
-          {portfolioData.map((folder, index) => (
-            <div 
-              key={folder.title} 
-              className="w-full animate-in fade-in slide-in-from-bottom-8 duration-700" 
-              style={{ animationDelay: `${200 + index * 100}ms` }}
-            >
-              <AnimatedFolder 
-                title={folder.title} 
-                projects={folder.projects} 
-                gradient={folder.gradient}
-                className="w-full"
-              />
-            </div>
-          ))}
-        </div>
+        {categories.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 justify-items-center">
+            {categories.map((folder, index) => (
+              <div 
+                key={folder._id || folder.title} 
+                className="w-full animate-in fade-in slide-in-from-bottom-8 duration-700" 
+                style={{ animationDelay: `${200 + index * 100}ms` }}
+              >
+                <AnimatedFolder 
+                  title={folder.title} 
+                  projects={folder.projects} 
+                  gradient={folder.gradient}
+                  className="w-full"
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+             <div className="text-center py-20 text-muted-foreground">
+                <p>No projects found. Please add content in Sanity Studio.</p>
+             </div>
+        )}
       </section>
     </section>
   );

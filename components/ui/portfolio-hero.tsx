@@ -87,7 +87,26 @@ const BlurText: React.FC<BlurTextProps> = ({
   );
 };
 
-export default function Component() {
+interface SocialLink {
+  platform: string;
+  url: string;
+}
+
+interface PortfolioHeroProps {
+  firstName: string;
+  lastName: string;
+  tagline: string;
+  profileImageUrl: string;
+  socialLinks: SocialLink[];
+}
+
+export default function PortfolioHero({
+  firstName = "SIRAJUL",
+  lastName = "ISLAM",
+  tagline = "Ensuring software reliability and quality through automation.",
+  profileImageUrl,
+  socialLinks = [],
+}: PortfolioHeroProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -109,20 +128,25 @@ export default function Component() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isMenuOpen]);
 
+  const getSocialIcon = (platform: string) => {
+    const p = platform.toLowerCase();
+    if (p.includes("github")) return <Github className="w-6 h-6 md:w-7 md:h-7" />;
+    if (p.includes("linkedin")) return <Linkedin className="w-6 h-6 md:w-7 md:h-7" />;
+    if (p.includes("mail") || p.includes("email")) return <Mail className="w-6 h-6 md:w-7 md:h-7" />;
+    return <FileText className="w-6 h-6 md:w-7 md:h-7" />;
+  };
+
   return (
     <div 
       className="min-h-screen text-foreground transition-colors bg-[#FAFAFA] dark:bg-black text-[#1a1a1a] dark:text-white"
     >
-      {/* Header Removed - Replaced by AnimeNavBar */}
-
-      {/* Hero Section */}
       <main className="relative min-h-screen flex flex-col">
-        {/* Centered Main Name - Always Perfectly Centered */}
+        {/* Centered Main Name */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-4">
           <div className="relative text-center">
             <div>
               <BlurText
-                text="SIRAJUL"
+                text={firstName}
                 delay={100}
                 animateBy="letters"
                 direction="top"
@@ -132,7 +156,7 @@ export default function Component() {
             </div>
             <div>
               <BlurText
-                text="ISLAM"
+                text={lastName}
                 delay={100}
                 animateBy="letters"
                 direction="top"
@@ -145,7 +169,7 @@ export default function Component() {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
               <div className="w-[65px] h-[110px] sm:w-[90px] sm:h-[152px] md:w-[110px] md:h-[185px] lg:w-[129px] lg:h-[218px] rounded-full overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer">
                 <img
-                  src="https://i.postimg.cc/y8DnKLyK/albert-dera-ILip77-Sbm-OE-unsplash.jpg"
+                  src={profileImageUrl || "https://i.postimg.cc/y8DnKLyK/albert-dera-ILip77-Sbm-OE-unsplash.jpg"}
                   alt="Profile"
                   className="w-full h-full object-cover"
                 />
@@ -154,11 +178,11 @@ export default function Component() {
           </div>
         </div>
 
-        {/* Tagline - Proper Distance Below Hero */}
+        {/* Tagline */}
         <div className="absolute bottom-16 sm:bottom-20 md:bottom-24 lg:bottom-32 xl:bottom-36 left-1/2 -translate-x-1/2 w-full px-6">
           <div className="flex justify-center">
             <BlurText
-              text="Ensuring software reliability and quality through automation."
+              text={tagline}
               delay={150}
               animateBy="words"
               direction="top"
@@ -168,46 +192,23 @@ export default function Component() {
             </div>
             {/* Social Icons */}
             <div className="flex justify-center items-center gap-6 mt-6 md:mt-8">
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-neutral-500 hover:text-black dark:text-white/60 dark:hover:text-white transition-colors duration-300 transform hover:scale-110"
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "var(--brand)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = ""; // Reset inline style to let CSS take over
-                }}
-              >
-                <Github className="w-6 h-6 md:w-7 md:h-7" />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-neutral-500 hover:text-black dark:text-white/60 dark:hover:text-white transition-colors duration-300 transform hover:scale-110"
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "var(--brand)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = "";
-                }}
-              >
-                <Linkedin className="w-6 h-6 md:w-7 md:h-7" />
-              </a>
-              <a
-                href="mailto:contact@example.com"
-                className="text-neutral-500 hover:text-black dark:text-white/60 dark:hover:text-white transition-colors duration-300 transform hover:scale-110"
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "var(--brand)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = "";
-                }}
-              >
-                <Mail className="w-6 h-6 md:w-7 md:h-7" />
-              </a>
+              {socialLinks.map((link, idx) => (
+                <a
+                  key={idx}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-neutral-500 hover:text-black dark:text-white/60 dark:hover:text-white transition-colors duration-300 transform hover:scale-110"
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = "var(--brand)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = "";
+                  }}
+                >
+                  {getSocialIcon(link.platform)}
+                </a>
+              ))}
             </div>
         </div>
 
