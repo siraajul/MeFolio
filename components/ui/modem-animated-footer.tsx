@@ -44,8 +44,8 @@ export const Footer = ({
 }: FooterProps) => {
   return (
     <section className={cn("relative w-full mt-0 overflow-hidden", className)}>
-      <footer className="border-t bg-background mt-20 relative">
-        <div className="max-w-7xl flex flex-col justify-end mx-auto min-h-[30rem] sm:min-h-[35rem] md:min-h-[40rem] relative p-4 py-10 pt-32">
+      <footer className="border-t bg-background mt-0 relative">
+        <div className="max-w-7xl flex flex-col justify-end mx-auto min-h-[15rem] sm:min-h-[20rem] md:min-h-[25rem] relative p-4 pb-10 pt-20">
           <div className="flex flex-col mb-12 sm:mb-20 md:mb-0 w-full">
             <div className="w-full flex flex-col items-center">
               <div className="space-y-2 flex flex-col items-center flex-1">
@@ -126,10 +126,10 @@ export const Footer = ({
         )}
 
         {/* Bottom line */}
-        <div className="absolute bottom-32 sm:bottom-34 backdrop-blur-sm h-1 bg-gradient-to-r from-transparent via-border to-transparent w-full left-1/2 -translate-x-1/2"></div>
+        <div className="absolute bottom-16 sm:bottom-20 backdrop-blur-sm h-1 bg-gradient-to-r from-transparent via-border to-transparent w-full left-1/2 -translate-x-1/2"></div>
 
         {/* Bottom shadow */}
-        <div className="bg-gradient-to-t from-background via-background/80 blur-[1em] to-background/40 absolute bottom-28 w-full h-24"></div>
+        <div className="bg-gradient-to-t from-background via-background/80 blur-[1em] to-background/40 absolute bottom-12 w-full h-24"></div>
       </footer>
     </section>
   );
