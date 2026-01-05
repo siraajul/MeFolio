@@ -85,6 +85,7 @@ const SKILL_CATEGORIES = [
 
 import { Timeline } from "@/components/ui/timeline";
 import { Blog, BlogPost } from "@/components/ui/blog-section";
+import { Contact2 } from "@/components/ui/contact-2";
 
 const EDUCATION_DATA = [
   {
@@ -212,6 +213,11 @@ export default function Home() {
         {/* Blog Section */}
         <section className="min-h-screen w-full flex flex-col justify-center bg-background">
            <Blog posts={BLOG_POSTS} />
+        </section>
+
+        {/* Contact Section */}
+        <section className="min-h-screen w-full flex flex-col justify-center bg-white dark:bg-neutral-950">
+           <Contact2 />
         </section>
       </div>
     </>
