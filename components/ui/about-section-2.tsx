@@ -98,14 +98,15 @@ export default function AboutSection2() {
               </TimelineContent>
 
               <TimelineContent
-                as="button"
+                as="div"
                 animationNum={5}
                 timelineRef={heroRef}
                 customVariants={textVariants}
-                className="bg-brand gap-2 font-medium shadow-lg shadow-brand/20 text-brand-foreground h-12 px-4 rounded-full text-sm inline-flex items-center cursor-pointer hover:opacity-90 transition-opacity"
+                className="inline-block"
               >
-                <Zap fill="currentColor" size={16} />
-                 About Me
+                <ParticleButton className="bg-brand gap-2 font-medium shadow-lg shadow-brand/20 text-brand-foreground h-12 px-4 rounded-full text-sm inline-flex items-center cursor-pointer hover:opacity-90 transition-opacity border-none">
+                   About Me
+                </ParticleButton>
               </TimelineContent>
             </div>
           </div>
