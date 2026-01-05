@@ -191,7 +191,7 @@ export default function Home() {
                 <ExpandableSkillTags
                   title={category.title}
                   skills={category.skills}
-                  initialCount={6}
+                  initialCount={8}
                 />
               </div>
             ))}
