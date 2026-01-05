@@ -125,13 +125,13 @@ export default function Component() {
   };
 
   const menuItems = [
-    { label: "HOME", href: "#", highlight: true },
-    { label: "ABOUT", href: "#" },
-    { label: "PROJECTS", href: "#" },
-    { label: "EXPERIENCE", href: "#" },
-    { label: "EDUCATION", href: "#" },
-    { label: "WRITING", href: "#" },
-    { label: "CONTACT", href: "#" },
+    { label: "HOME", href: "#home", highlight: true },
+    { label: "ABOUT", href: "#about" },
+    { label: "PROJECTS", href: "#projects" },
+    { label: "EXPERIENCE", href: "#experience" },
+    { label: "EDUCATION", href: "#education" },
+    { label: "WRITING", href: "#writing" },
+    { label: "CONTACT", href: "#contact" },
     { label: "RESUME", href: "/resume.pdf", highlight: true },
   ];
 

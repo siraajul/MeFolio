@@ -86,6 +86,8 @@ const SKILL_CATEGORIES = [
 import { Timeline } from "@/components/ui/timeline";
 import { Blog, BlogPost } from "@/components/ui/blog-section";
 import { Contact2 } from "@/components/ui/contact-2";
+import { Footer } from "@/components/ui/modem-animated-footer";
+import { Twitter, Linkedin, Github, Mail } from "lucide-react";
 
 const EDUCATION_DATA = [
   {
@@ -167,12 +169,14 @@ export default function Home() {
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&family=Antic&display=swap"
       />
-      <div className="w-full">
+      <div className="w-full" id="home">
         <PortfolioHero />
-        <AboutSection2 />
+        <div id="about">
+          <AboutSection2 />
+        </div>
         
         {/* Skills Section */}
-        <section className="min-h-screen w-full flex flex-col justify-center max-w-7xl mx-auto py-24 px-6">
+        <section id="skills" className="min-h-screen w-full flex flex-col justify-center max-w-7xl mx-auto py-24 px-6">
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center uppercase tracking-tight">
             Technical <span className="text-brand italic">Expertise</span>
           </h2>
@@ -193,7 +197,7 @@ export default function Home() {
         </section>
         
         {/* Experience Section */}
-        <section className="min-h-screen w-full flex flex-col justify-center max-w-7xl mx-auto py-24 px-6">
+        <section id="experience" className="min-h-screen w-full flex flex-col justify-center max-w-7xl mx-auto py-24 px-6">
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center uppercase tracking-tight">
             Work <span className="text-brand italic">Experience</span>
           </h2>
@@ -203,20 +207,52 @@ export default function Home() {
           />
         </section>
 
-        <ProjectsSection />
+        <div id="projects">
+          <ProjectsSection />
+        </div>
 
         {/* Education Section */}
-        <section className="min-h-screen w-full flex flex-col justify-center bg-white dark:bg-neutral-950">
+        <section id="education" className="min-h-screen w-full flex flex-col justify-center bg-white dark:bg-neutral-950">
            <Timeline data={EDUCATION_DATA} />
         </section>
 
         {/* Blog Section */}
-        <section className="min-h-screen w-full flex flex-col justify-center bg-background">
+        <section id="writing" className="min-h-screen w-full flex flex-col justify-center bg-background">
            <Blog posts={BLOG_POSTS} />
         </section>
 
         {/* Contact Section */}
-        <Contact2 />
+        <div id="contact">
+          <Contact2 />
+        </div>
+
+        <Footer
+          brandName="Sirajul Islam"
+          brandDescription="Senior SQA Automation Engineer & SDET specializing in scalable test frameworks and quality assurance strategies."
+          socialLinks={[
+            {
+              icon: <Github className="w-6 h-6" />,
+              href: "https://github.com",
+              label: "GitHub",
+            },
+            {
+              icon: <Linkedin className="w-6 h-6" />,
+              href: "https://linkedin.com",
+              label: "LinkedIn",
+            },
+            {
+              icon: <Mail className="w-6 h-6" />,
+              href: "mailto:hello@example.com",
+              label: "Email",
+            },
+          ]}
+          navLinks={[
+            { label: "Home", href: "/" },
+            { label: "About", href: "#about" },
+            { label: "Projects", href: "#projects" },
+            { label: "Blog", href: "#blog" },
+          ]}
+        />
       </div>
     </>
   );
