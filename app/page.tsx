@@ -1,5 +1,6 @@
 import PortfolioHero from "@/components/ui/portfolio-hero";
 import AboutSection2 from "@/components/ui/about-section-2";
+import ProjectsSection from "@/components/ui/3d-folder";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <div className="w-full">
         <PortfolioHero />
         <AboutSection2 />
+        <ProjectsSection />
       </div>
     </>
   );
