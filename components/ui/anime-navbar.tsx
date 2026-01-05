@@ -40,15 +40,17 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
+  const isManualScroll = React.useRef(false)
+  const timeoutRef = React.useRef<NodeJS.Timeout | null>(null)
+
   // Scroll Spy Logic
   useEffect(() => {
     if (!mounted) return
 
-    const observers: IntersectionObserver[] = []
-    let timeoutId: NodeJS.Timeout
-
     const observer = new IntersectionObserver(
       (entries) => {
+        if (isManualScroll.current) return
+
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const id = entry.target.id
@@ -60,7 +62,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
         })
       },
       {
-        rootMargin: "-45% 0px -45% 0px", // Triggers when the section is in the middle of the viewport
+        rootMargin: "-45% 0px -45% 0px",
         threshold: 0,
       }
     )
@@ -76,10 +78,23 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
     })
 
     return () => {
-      observer.disconnect()
-      if (timeoutId) clearTimeout(timeoutId)
+       observer.disconnect()
+       if (timeoutRef.current) clearTimeout(timeoutRef.current)
     }
   }, [mounted, items])
+
+  const handleLinkClick = (name: string, e: React.MouseEvent) => {
+    // e.preventDefault() // Let Next.js/Browser handle the scroll
+    setActiveTab(name)
+    setHoveredTab(null)
+    
+    // Disable scroll spy temporarily
+    isManualScroll.current = true
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    timeoutRef.current = setTimeout(() => {
+      isManualScroll.current = false
+    }, 1000)
+  }
 
   if (!mounted) return null
 
@@ -105,10 +120,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
               <Link
                 key={item.name}
                 href={item.url}
-                onClick={(e) => {
-                  // Allow default anchor behavior but update state
-                  setActiveTab(item.name)
-                }}
+                onClick={(e) => handleLinkClick(item.name, e)}
                 onMouseEnter={() => setHoveredTab(item.name)}
                 onMouseLeave={() => setHoveredTab(null)}
                 className={cn(
