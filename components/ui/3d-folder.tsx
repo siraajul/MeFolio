@@ -426,64 +426,59 @@ const AnimatedFolder: React.FC<AnimatedFolderProps> = ({ title, projects, classN
 
 const portfolioData = [
   {
-    title: "Branding",
-    gradient: "linear-gradient(135deg, #e73827, #f85032)",
+    title: "Web Automation",
+    gradient: "linear-gradient(135deg, #C3E41D, #9BC53D)",
     projects: [
-      { id: "b1", image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800", title: "Lumnia Identity" },
-      { id: "b2", image: "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=800", title: "Prism Collective" },
-      { id: "b3", image: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&q=80&w=800", title: "Vertex Studio" },
-      { id: "b4", image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=800", title: "Aura Branding" },
-      { id: "b5", image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=800", title: "Zephyr Lab" },
-      { id: "b6", image: "https://images.unsplash.com/photo-1554446422-d05db23719d2?auto=format&fit=crop&q=80&w=800", title: "Origin Brand" },
+      { id: "wa1", image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800", title: "Selenium Suite" },
+      { id: "wa2", image: "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=800", title: "Cypress E2E" },
+      { id: "wa3", image: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&q=80&w=800", title: "Playwright Tests" },
+      { id: "wa4", image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=800", title: "Regression Suite" },
     ] as Project[]
   },
   {
-    title: "Web Design",
-    gradient: "linear-gradient(to right, #f7b733, #fc4a1a)",
+    title: "API Testing",
+    gradient: "linear-gradient(to right, #22d3ee, #06b6d4)",
     projects: [
-      { id: "w1", image: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&q=80&w=800", title: "Nexus Platform" },
-      { id: "w2", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800", title: "Echo Analytics" },
-      { id: "w3", image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=800", title: "Flow Systems" },
-      { id: "w4", image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800", title: "Code Nest" },
-      { id: "w5", image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800", title: "Dev Port" },
+      { id: "at1", image: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&q=80&w=800", title: "Postman Collections" },
+      { id: "at2", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800", title: "REST Assured" },
+      { id: "at3", image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=800", title: "GraphQL Tests" },
+      { id: "at4", image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800", title: "Karate Framework" },
     ] as Project[]
   },
   {
-    title: "UI/UX Design",
-    gradient: "linear-gradient(135deg, #00c6ff, #0072ff)",
+    title: "Performance",
+    gradient: "linear-gradient(135deg, #60a5fa, #3b82f6)",
     projects: [
-      { id: "u1", image: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?auto=format&fit=crop&q=80&w=800", title: "Crypto Wallet" },
-      { id: "u2", image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=800", title: "Social Connect" },
-      { id: "u3", image: "https://images.unsplash.com/photo-1522542550221-31fd19fe4af0?auto=format&fit=crop&q=80&w=800", title: "Health Tracker" },
-      { id: "u4", image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&q=80&w=800", title: "Finance Dash" },
-      { id: "u5", image: "https://images.unsplash.com/photo-1541462608141-ad4d4f942177?auto=format&fit=crop&q=80&w=800", title: "UX Wireframe" },
+      { id: "pt1", image: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?auto=format&fit=crop&q=80&w=800", title: "JMeter Load Tests" },
+      { id: "pt2", image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=800", title: "K6 Stress Tests" },
+      { id: "pt3", image: "https://images.unsplash.com/photo-1522542550221-31fd19fe4af0?auto=format&fit=crop&q=80&w=800", title: "Gatling Sims" },
     ] as Project[]
   },
   {
-    title: "Photography",
-    gradient: "linear-gradient(to right, #414345, #232526)",
+    title: "Mobile Testing",
+    gradient: "linear-gradient(to right, #a78bfa, #8b5cf6)",
     projects: [
-      { id: "p1", image: "https://images.unsplash.com/photo-1493863641943-9b68992a8d07?auto=format&fit=crop&q=80&w=800", title: "Urban Rhythms" },
-      { id: "p2", image: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&q=80&w=800", title: "Natural States" },
-      { id: "p3", image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=800", title: "Silent Woods" },
+      { id: "mt1", image: "https://images.unsplash.com/photo-1493863641943-9b68992a8d07?auto=format&fit=crop&q=80&w=800", title: "Appium iOS" },
+      { id: "mt2", image: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&q=80&w=800", title: "Espresso Android" },
+      { id: "mt3", image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=800", title: "XCUITest" },
     ] as Project[]
   },
   {
-    title: "Illustration",
-    gradient: "linear-gradient(135deg, #8e2de2, #4a00e0)",
+    title: "CI/CD",
+    gradient: "linear-gradient(135deg, #94a3b8, #64748b)",
     projects: [
-      { id: "i1", image: "https://images.unsplash.com/photo-1618335829737-2228915674e0?auto=format&fit=crop&q=80&w=800", title: "Digital Flora" },
-      { id: "i2", image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=800", title: "Neon Nights" },
-      { id: "i3", image: "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&q=80&w=800", title: "Abstract Worlds" },
+      { id: "ci1", image: "https://images.unsplash.com/photo-1618335829737-2228915674e0?auto=format&fit=crop&q=80&w=800", title: "Jenkins Pipelines" },
+      { id: "ci2", image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=800", title: "GitHub Actions" },
+      { id: "ci3", image: "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&q=80&w=800", title: "Dockerized Tests" },
     ] as Project[]
   },
   {
-    title: "Motion",
-    gradient: "linear-gradient(135deg, #f80759, #bc4e9c)",
+    title: "Manual Testing",
+    gradient: "linear-gradient(135deg, #fbbf24, #f59e0b)",
     projects: [
-      { id: "m1", image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800", title: "3D Sequences" },
-      { id: "m2", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800", title: "Glitch Art" },
-      { id: "m3", image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&q=80&w=800", title: "Tech Loops" },
+      { id: "mn1", image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800", title: "Test Plans" },
+      { id: "mn2", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800", title: "Bug Reports" },
+      { id: "mn3", image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&q=80&w=800", title: "Jira Workflows" },
     ] as Project[]
   }
 ];
@@ -528,10 +523,10 @@ export default function ProjectsSection() {
 
       <div className="max-w-7xl mx-auto pt-20 px-6 text-center">
         <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          Design <span className="text-primary italic">Portfolio</span>
+          QA <span className="text-brand italic">Projects</span>
         </h1>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
-          An interactive catalog of creative work. Hover over folders to reveal project previews.
+          A showcase of test automation frameworks, performance testing, and quality assurance strategies.
         </p>
       </div>
 

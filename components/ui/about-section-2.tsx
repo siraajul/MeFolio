@@ -48,36 +48,36 @@ export default function AboutSection2() {
               customVariants={revealVariants}
               className="sm:text-4xl text-2xl md:text-5xl !leading-[110%] font-semibold text-gray-900 dark:text-gray-100 mb-8"
             >
-              We are{" "}
+              I am{" "}
               <TimelineContent
                 as="span"
                 animationNum={1}
                 timelineRef={heroRef}
                 customVariants={textVariants}
-                className="text-blue-600 dark:text-blue-400 border-2 border-blue-500 dark:border-blue-400 inline-block xl:h-16  border-dotted px-2 rounded-md"
+                className="text-brand border-2 border-brand inline-block xl:h-16  border-dotted px-2 rounded-md"
               >
-                rethinking
+                redefining
               </TimelineContent>{" "}
-              vehicle charging to be more reliable and always you-first. Our
-              goal is to continually raise the bar and{" "}
+              software quality to be more reliable and user-centric. My goal is
+              to continually raise the bar and{" "}
               <TimelineContent
                 as="span"
                 animationNum={2}
                 timelineRef={heroRef}
                 customVariants={textVariants}
-                className="text-orange-600 dark:text-orange-400 border-2 border-orange-500 dark:border-orange-400 inline-block xl:h-16 border-dotted px-2 rounded-md"
+                className="text-brand border-2 border-brand inline-block xl:h-16 border-dotted px-2 rounded-md"
               >
                 challenge
               </TimelineContent>{" "}
-              how things could{" "}
+              how testing ensures{" "}
               <TimelineContent
                 as="span"
                 animationNum={3}
                 timelineRef={heroRef}
                 customVariants={textVariants}
-                className="text-green-600 dark:text-green-400 border-2 border-green-500 dark:border-green-400 inline-block xl:h-16 border-dotted px-2 rounded-md"
+                className="text-brand border-2 border-brand inline-block xl:h-16 border-dotted px-2 rounded-md"
               >
-                work for you.
+                perfection.
               </TimelineContent>
             </TimelineContent>
 
@@ -90,10 +90,10 @@ export default function AboutSection2() {
                 className="mb-4 sm:text-xl text-xs sm:mb-0"
               >
                 <div className=" font-medium text-gray-900 dark:text-gray-100 mb-1 capitalize">
-                  We are Electra and we will
+                  Quality Assurance Specialist
                 </div>
                 <div className=" text-gray-600 dark:text-gray-400 font-semibold uppercase">
-                  take you further
+                  Based in Dhaka
                 </div>
               </TimelineContent>
 
@@ -102,10 +102,10 @@ export default function AboutSection2() {
                 animationNum={5}
                 timelineRef={heroRef}
                 customVariants={textVariants}
-                className="bg-blue-600 dark:bg-blue-500 gap-2 font-medium shadow-lg shadow-blue-600/50 dark:shadow-blue-500/50 text-white h-12 px-4 rounded-full text-sm inline-flex items-center cursor-pointer hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
+                className="bg-brand gap-2 font-medium shadow-lg shadow-brand/20 text-brand-foreground h-12 px-4 rounded-full text-sm inline-flex items-center cursor-pointer hover:opacity-90 transition-opacity"
               >
-                <Zap fill="white" size={16} />
-                About Electra
+                <Zap fill="currentColor" size={16} />
+                 About Me
               </TimelineContent>
             </div>
           </div>

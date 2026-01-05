@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Github, Linkedin, Mail } from "lucide-react";
 
 // Inline Button component
 const Button = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(
@@ -131,6 +131,7 @@ export default function Component() {
     { label: "EDUCATION", href: "#" },
     { label: "WRITING", href: "#" },
     { label: "CONTACT", href: "#" },
+    { label: "RESUME", href: "/resume.pdf", highlight: true },
   ];
 
   return (
@@ -174,13 +175,13 @@ export default function Component() {
                     href={item.href}
                     className="block text-lg md:text-xl font-bold tracking-tight py-1.5 px-2 cursor-pointer transition-colors duration-300"
                     style={{
-                      color: item.highlight ? "#C3E41D" : isDark ? "hsl(0 0% 100%)" : "hsl(0 0% 10%)",
+                      color: item.highlight ? "var(--brand)" : isDark ? "hsl(0 0% 100%)" : "hsl(0 0% 10%)",
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.color = "#C3E41D";
+                      e.currentTarget.style.color = "var(--brand)";
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.color = item.highlight ? "#C3E41D" : (isDark ? "hsl(0 0% 100%)" : "hsl(0 0% 10%)");
+                      e.currentTarget.style.color = item.highlight ? "var(--brand)" : (isDark ? "hsl(0 0% 100%)" : "hsl(0 0% 10%)");
                     }}
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -227,7 +228,7 @@ export default function Component() {
                 animateBy="letters"
                 direction="top"
                 className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.75] tracking-tighter uppercase justify-center whitespace-nowrap"
-                style={{ color: "#C3E41D", fontFamily: "'Fira Code', monospace" }}
+                style={{ color: "var(--brand)", fontFamily: "'Fira Code', monospace" }}
               />
             </div>
             <div>
@@ -237,7 +238,7 @@ export default function Component() {
                 animateBy="letters"
                 direction="top"
                 className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.75] tracking-tighter uppercase justify-center whitespace-nowrap"
-                style={{ color: "#C3E41D", fontFamily: "'Fira Code', monospace" }}
+                style={{ color: "var(--brand)", fontFamily: "'Fira Code', monospace" }}
               />
             </div>
 
@@ -258,14 +259,66 @@ export default function Component() {
         <div className="absolute bottom-16 sm:bottom-20 md:bottom-24 lg:bottom-32 xl:bottom-36 left-1/2 -translate-x-1/2 w-full px-6">
           <div className="flex justify-center">
             <BlurText
-              text="Designing human experiences in code."
+              text="Ensuring software reliability and quality through automation."
               delay={150}
               animateBy="words"
               direction="top"
               className="text-[15px] sm:text-[18px] md:text-[20px] lg:text-[22px] text-center transition-colors duration-300 text-neutral-500 hover:text-black dark:hover:text-white"
               style={{ fontFamily: "'Antic', sans-serif" }}
             />
-          </div>
+            </div>
+            {/* Social Icons */}
+            <div className="flex justify-center items-center gap-6 mt-6 md:mt-8">
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors duration-300 transform hover:scale-110"
+                style={{
+                  color: isDark ? "rgba(255,255,255,0.6)" : "rgba(0,0,0,0.6)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = "var(--brand)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = isDark ? "rgba(255,255,255,0.6)" : "rgba(0,0,0,0.6)";
+                }}
+              >
+                <Github className="w-6 h-6 md:w-7 md:h-7" />
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors duration-300 transform hover:scale-110"
+                style={{
+                  color: isDark ? "rgba(255,255,255,0.6)" : "rgba(0,0,0,0.6)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = "var(--brand)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = isDark ? "rgba(255,255,255,0.6)" : "rgba(0,0,0,0.6)";
+                }}
+              >
+                <Linkedin className="w-6 h-6 md:w-7 md:h-7" />
+              </a>
+              <a
+                href="mailto:contact@example.com"
+                className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors duration-300 transform hover:scale-110"
+                style={{
+                  color: isDark ? "rgba(255,255,255,0.6)" : "rgba(0,0,0,0.6)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = "var(--brand)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = isDark ? "rgba(255,255,255,0.6)" : "rgba(0,0,0,0.6)";
+                }}
+              >
+                <Mail className="w-6 h-6 md:w-7 md:h-7" />
+              </a>
+            </div>
         </div>
 
         {/* Scroll Indicator */}

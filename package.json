@@ -9,6 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@radix-ui/react-collapsible": "^1.1.12",
+    "@radix-ui/react-separator": "^1.1.8",
+    "@radix-ui/react-slot": "^1.2.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.27",
@@ -16,6 +19,7 @@
     "next": "16.1.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-markdown": "^10.1.0",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
