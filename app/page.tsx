@@ -202,7 +202,7 @@ export default function Home() {
             Work <span className="text-brand italic">Experience</span>
           </h2>
           <WorkExperience
-            className="w-full max-w-5xl mx-auto rounded-3xl border border-border/50 shadow-xl bg-card/30 backdrop-blur-sm"
+            className="w-full max-w-5xl mx-auto"
             experiences={WORK_EXPERIENCE}
           />
         </section>
