@@ -84,6 +84,7 @@ const SKILL_CATEGORIES = [
 ];
 
 import { Timeline } from "@/components/ui/timeline";
+import { Blog, BlogPost } from "@/components/ui/blog-section";
 
 const EDUCATION_DATA = [
   {
@@ -124,6 +125,37 @@ const EDUCATION_DATA = [
          </ul>
       </div>
     ),
+  },
+];
+
+const BLOG_POSTS: BlogPost[] = [
+  {
+    id: "1",
+    title: "Mastering Playwright for E2E Testing",
+    summary: "A comprehensive guide to setting up a scalable Playwright framework with TypeScript, covering page objects, fixtures, and CI/CD integration.",
+    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop", // React generic
+    link: "#",
+  },
+  {
+    id: "2",
+    title: "Shift-Left Testing: A Practical Approach",
+    summary: "How to integrate testing earlier in the development lifecycle to catch bugs sooner and reduce remediation costs.",
+    image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2070&auto=format&fit=crop", // Code generic
+    link: "#",
+  },
+  {
+    id: "3",
+    title: "Performance Testing with K6",
+    summary: "Load testing your APIs efficiently using K6. Learn how to script user scenarios and analyze performance metrics.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop", // Analytics generic
+    link: "#",
+  },
+  {
+    id: "4",
+    title: "The Art of Writing Effective Bug Reports",
+    summary: "Tips and templates for writing clear, actionable bug reports that developers love, ensuring faster resolution times.",
+    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop", // Meeting generic
+    link: "#",
   },
 ];
 
@@ -173,6 +205,11 @@ export default function Home() {
         {/* Education Section */}
         <section className="min-h-screen w-full flex flex-col justify-center bg-white dark:bg-neutral-950">
            <Timeline data={EDUCATION_DATA} />
+        </section>
+
+        {/* Blog Section */}
+        <section className="min-h-screen w-full flex flex-col justify-center bg-background">
+           <Blog posts={BLOG_POSTS} />
         </section>
 
         <ProjectsSection />
