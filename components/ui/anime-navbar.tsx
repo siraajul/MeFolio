@@ -40,6 +40,47 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
+  // Scroll Spy Logic
+  useEffect(() => {
+    if (!mounted) return
+
+    const observers: IntersectionObserver[] = []
+    let timeoutId: NodeJS.Timeout
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id
+            const navItem = items.find((item) => item.url === `#${id}`)
+            if (navItem) {
+              setActiveTab(navItem.name)
+            }
+          }
+        })
+      },
+      {
+        rootMargin: "-45% 0px -45% 0px", // Triggers when the section is in the middle of the viewport
+        threshold: 0,
+      }
+    )
+
+    items.forEach((item) => {
+      if (item.url.startsWith("#")) {
+        const id = item.url.replace("#", "")
+        const element = document.getElementById(id)
+        if (element) {
+          observer.observe(element)
+        }
+      }
+    })
+
+    return () => {
+      observer.disconnect()
+      if (timeoutId) clearTimeout(timeoutId)
+    }
+  }, [mounted, items])
+
   if (!mounted) return null
 
   return (
