@@ -92,23 +92,6 @@ import { Twitter, Linkedin, Github, Mail } from "lucide-react";
 
 const EDUCATION_DATA = [
   {
-    title: "2023",
-    content: (
-      <div>
-        <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8 uppercase tracking-wide">
-          Certification
-        </p>
-        <div className="">
-             <h4 className="text-lg md:text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">ISTQB Certified Tester</h4>
-             <p className="text-neutral-600 dark:text-neutral-400 text-sm md:text-base">Foundation Level (CTFL)</p>
-             <p className="mt-4 text-neutral-600 dark:text-neutral-400 text-sm md:text-base">
-               Certified in fundamental software testing concepts, test lifecycle, and defect management.
-             </p>
-        </div>
-      </div>
-    ),
-  },
-  {
     title: "2019 - 2023",
     content: (
       <div>
@@ -127,6 +110,27 @@ const EDUCATION_DATA = [
            <li>Major: Software Engineering</li>
            <li>Capstone Project: Automated Testing Framework for E-commerce Microservices</li>
          </ul>
+      </div>
+    ),
+  },
+];
+
+
+const CERTIFICATION_DATA = [
+  {
+    title: "2023",
+    content: (
+      <div>
+        <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8 uppercase tracking-wide">
+          Certification
+        </p>
+        <div className="">
+             <h4 className="text-lg md:text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">ISTQB Certified Tester</h4>
+             <p className="text-neutral-600 dark:text-neutral-400 text-sm md:text-base">Foundation Level (CTFL)</p>
+             <p className="mt-4 text-neutral-600 dark:text-neutral-400 text-sm md:text-base">
+               Certified in fundamental software testing concepts, test lifecycle, and defect management.
+             </p>
+        </div>
       </div>
     ),
   },
@@ -182,7 +186,7 @@ export default function Home() {
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center uppercase tracking-tight">
             Technical <span className="text-brand italic">Expertise</span>
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
             {SKILL_CATEGORIES.map((category, index) => (
               <div 
                 key={category.title}
@@ -215,7 +219,20 @@ export default function Home() {
 
         {/* Education Section */}
         <section id="education" className="min-h-screen w-full flex flex-col justify-center bg-white dark:bg-neutral-950">
-           <Timeline data={EDUCATION_DATA} />
+           <Timeline 
+             data={EDUCATION_DATA} 
+             title={<>Academic <span className="text-brand italic">Education</span></>}
+             description="My university degree and academic achievements."
+           />
+        </section>
+
+        {/* Certification Section */}
+        <section id="certifications" className="min-h-screen w-full flex flex-col justify-center bg-gray-50 dark:bg-neutral-900/50">
+           <Timeline 
+             data={CERTIFICATION_DATA} 
+             title={<>Professional <span className="text-brand italic">Certifications</span></>}
+             description="My professional qualifications and industry credentials."
+           />
         </section>
 
         {/* Blog Section */}

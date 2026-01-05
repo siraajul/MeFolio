@@ -105,9 +105,11 @@ export default function AboutSection2() {
                 customVariants={textVariants}
                 className="inline-block"
               >
-                <ParticleButton className="bg-brand gap-2 font-medium shadow-lg shadow-brand/20 text-brand-foreground h-12 px-4 rounded-full text-sm inline-flex items-center cursor-pointer hover:opacity-90 transition-opacity border-none">
-                   About Me
-                </ParticleButton>
+                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                  <ParticleButton className="bg-brand gap-2 font-medium shadow-lg shadow-brand/20 text-brand-foreground h-12 px-4 rounded-full text-sm inline-flex items-center cursor-pointer hover:opacity-90 transition-opacity border-none">
+                     Resume
+                  </ParticleButton>
+                </a>
               </TimelineContent>
             </div>
           </div>

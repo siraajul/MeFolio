@@ -9,8 +9,7 @@ import {
   FolderOpen, 
   GraduationCap, 
   PenTool, 
-  Mail, 
-  FileText 
+  Mail 
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -22,7 +21,6 @@ const NAV_ITEMS = [
   { name: "Education", url: "#education", icon: GraduationCap, hiddenOnMobile: true },
   { name: "Writing", url: "#writing", icon: PenTool, hiddenOnMobile: true },
   { name: "Contact", url: "#contact", icon: Mail },
-  { name: "Resume", url: "/resume.pdf", icon: FileText, hiddenOnMobile: true },
 ];
 
 export function SiteNavBar() {

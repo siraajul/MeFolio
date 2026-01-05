@@ -21,7 +21,7 @@ export const Contact2 = ({
   web = { label: "linkedin.com/in/sqa-engineer", url: "#" },
 }: Contact2Props) => {
   return (
-    <section className="py-24 px-6 min-h-screen flex flex-col justify-center bg-white dark:bg-neutral-950">
+    <section className="py-12 md:py-24 px-4 md:px-6 min-h-screen flex flex-col justify-center bg-white dark:bg-neutral-950">
       <div className="container mx-auto">
         <div className="mx-auto flex max-w-screen-xl flex-col justify-between gap-10 lg:flex-row lg:gap-20">
           <div className="mx-auto flex max-w-sm flex-col justify-between gap-10">

@@ -12,7 +12,15 @@ interface TimelineEntry {
   content: React.ReactNode;
 }
 
-export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
+export const Timeline = ({ 
+  data, 
+  title, 
+  description 
+}: { 
+  data: TimelineEntry[], 
+  title?: React.ReactNode, 
+  description?: string 
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
@@ -39,10 +47,14 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
     >
       <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
         <h2 className="text-4xl md:text-5xl font-bold mb-4 text-black dark:text-white max-w-4xl uppercase tracking-tight text-center md:text-left">
-          Education & <span className="text-brand italic">Certifications</span>
+          {title || (
+            <>
+              Education & <span className="text-brand italic">Certifications</span>
+            </>
+          )}
         </h2>
         <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm text-center md:text-left mx-auto md:mx-0">
-          My academic content and professional certifications.
+          {description || "My academic content and professional certifications."}
         </p>
       </div>
 
