@@ -12,6 +12,7 @@ interface NavItem {
   name: string
   url: string
   icon: LucideIcon
+  hiddenOnMobile?: boolean
 }
 
 interface NavBarProps {
@@ -144,7 +145,8 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
                 className={cn(
                   "relative cursor-pointer text-sm font-semibold px-6 py-3 rounded-full transition-all duration-300",
                   "text-white/70 hover:text-white",
-                  isActive && "text-white"
+                  isActive && "text-white",
+                  item.hiddenOnMobile && "hidden md:flex"
                 )}
               >
                 {isActive && (

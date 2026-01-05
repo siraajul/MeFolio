@@ -16,13 +16,13 @@ import {
 const NAV_ITEMS = [
   { name: "Home", url: "#home", icon: Home },
   { name: "About", url: "#about", icon: User },
-  { name: "Skills", url: "#skills", icon: Code2 },
-  { name: "Experience", url: "#experience", icon: Briefcase },
+  { name: "Skills", url: "#skills", icon: Code2, hiddenOnMobile: true },
+  { name: "Experience", url: "#experience", icon: Briefcase, hiddenOnMobile: true },
   { name: "Projects", url: "#projects", icon: FolderOpen },
-  { name: "Education", url: "#education", icon: GraduationCap },
-  { name: "Writing", url: "#writing", icon: PenTool },
+  { name: "Education", url: "#education", icon: GraduationCap, hiddenOnMobile: true },
+  { name: "Writing", url: "#writing", icon: PenTool, hiddenOnMobile: true },
   { name: "Contact", url: "#contact", icon: Mail },
-  { name: "Resume", url: "/resume.pdf", icon: FileText },
+  { name: "Resume", url: "/resume.pdf", icon: FileText, hiddenOnMobile: true },
 ];
 
 export function SiteNavBar() {
