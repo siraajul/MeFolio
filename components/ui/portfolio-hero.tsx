@@ -1,7 +1,9 @@
+```javascript
 "use client";
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { Menu, X, ChevronDown, Github, Linkedin, Mail } from "lucide-react";
+import { Menu, X, ChevronDown, Github, Linkedin, Mail, FileText } from "lucide-react";
+import { ParticleButton } from "@/components/ui/particle-button";
 
 // Inline Button component
 const Button = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(

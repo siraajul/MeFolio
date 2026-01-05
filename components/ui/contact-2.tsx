@@ -1,6 +1,10 @@
 import React from "react";
 
-import { Button } from "@/components/ui/button";
+import { ParticleButton } from "@/components/ui/particle-button";
+
+// ...
+
+            <ParticleButton className="w-full bg-brand text-brand-foreground hover:bg-brand/90 font-bold">Send Message</ParticleButton>
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";

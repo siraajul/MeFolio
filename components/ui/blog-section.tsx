@@ -1,6 +1,12 @@
 "use client";
 import { MoveRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ParticleButton } from "@/components/ui/particle-button";
+
+// ...
+
+        <ParticleButton className="gap-4 bg-brand text-brand-foreground hover:bg-brand/90 font-bold">
+          View all articles <MoveRight className="w-4 h-4" />
+        </ParticleButton>
 import Image from "next/image";
 import Link from "next/link";
 
