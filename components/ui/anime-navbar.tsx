@@ -6,6 +6,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useLenis } from "@/components/ui/smooth-scroll"
 
 interface NavItem {
   name: string
@@ -83,10 +84,27 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
     }
   }, [mounted, items])
 
-  const handleLinkClick = (name: string, e: React.MouseEvent) => {
-    // e.preventDefault() // Let Next.js/Browser handle the scroll
+  const lenis = useLenis()
+
+  const handleLinkClick = (name: string, url: string, e: React.MouseEvent) => {
     setActiveTab(name)
     setHoveredTab(null)
+
+    // Handle smooth scrolling for anchor links
+    if (url.startsWith("#")) {
+      e.preventDefault()
+      const targetId = url.replace("#", "")
+      const element = document.getElementById(targetId)
+      
+      if (element) {
+        if (lenis) {
+          lenis.scrollTo(element, { offset: 0 })
+        } else {
+          // Fallback if Lenis isn't ready or available
+          element.scrollIntoView({ behavior: "smooth" })
+        }
+      }
+    }
     
     // Disable scroll spy temporarily
     isManualScroll.current = true
@@ -120,7 +138,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
               <Link
                 key={item.name}
                 href={item.url}
-                onClick={(e) => handleLinkClick(item.name, e)}
+                onClick={(e) => handleLinkClick(item.name, item.url, e)}
                 onMouseEnter={() => setHoveredTab(item.name)}
                 onMouseLeave={() => setHoveredTab(null)}
                 className={cn(
