@@ -88,14 +88,9 @@ const BlurText: React.FC<BlurTextProps> = ({
 };
 
 export default function Component() {
-  const [isDark, setIsDark] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    document.documentElement.classList.add("dark");
-  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -114,36 +109,10 @@ export default function Component() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isMenuOpen]);
 
-  const toggleTheme = () => {
-    const newTheme = !isDark;
-    setIsDark(newTheme);
-    if (newTheme) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  };
-
-  const menuItems = [
-    { label: "HOME", href: "#home", highlight: true },
-    { label: "ABOUT", href: "#about" },
-    { label: "PROJECTS", href: "#projects" },
-    { label: "EXPERIENCE", href: "#experience" },
-    { label: "EDUCATION", href: "#education" },
-    { label: "WRITING", href: "#writing" },
-    { label: "CONTACT", href: "#contact" },
-    { label: "RESUME", href: "/resume.pdf", highlight: true },
-  ];
-
   return (
     <div 
-      className="min-h-screen text-foreground transition-colors"
-      style={{
-        backgroundColor: isDark ? "hsl(0 0% 0%)" : "hsl(0 0% 98%)",
-        color: isDark ? "hsl(0 0% 100%)" : "hsl(0 0% 10%)",
-      }}
+      className="min-h-screen text-foreground transition-colors bg-[#FAFAFA] dark:bg-black text-[#1a1a1a] dark:text-white"
     >
-      {/* Header */}
       {/* Header Removed - Replaced by AnimeNavBar */}
 
       {/* Hero Section */}
@@ -193,7 +162,7 @@ export default function Component() {
               delay={150}
               animateBy="words"
               direction="top"
-              className="text-[15px] sm:text-[18px] md:text-[20px] lg:text-[22px] text-center transition-colors duration-300 text-neutral-500 hover:text-black dark:hover:text-white"
+              className="text-[15px] sm:text-[18px] md:text-[20px] lg:text-[22px] text-center transition-colors duration-300 text-neutral-500 hover:text-black dark:text-neutral-400 dark:hover:text-white"
               style={{ fontFamily: "'Antic', sans-serif" }}
             />
             </div>
@@ -203,15 +172,12 @@ export default function Component() {
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors duration-300 transform hover:scale-110"
-                style={{
-                  color: isDark ? "rgba(255,255,255,0.6)" : "rgba(0,0,0,0.6)",
-                }}
+                className="text-neutral-500 hover:text-black dark:text-white/60 dark:hover:text-white transition-colors duration-300 transform hover:scale-110"
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = "var(--brand)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.color = isDark ? "rgba(255,255,255,0.6)" : "rgba(0,0,0,0.6)";
+                  e.currentTarget.style.color = ""; // Reset inline style to let CSS take over
                 }}
               >
                 <Github className="w-6 h-6 md:w-7 md:h-7" />
@@ -220,30 +186,24 @@ export default function Component() {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors duration-300 transform hover:scale-110"
-                style={{
-                  color: isDark ? "rgba(255,255,255,0.6)" : "rgba(0,0,0,0.6)",
-                }}
+                className="text-neutral-500 hover:text-black dark:text-white/60 dark:hover:text-white transition-colors duration-300 transform hover:scale-110"
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = "var(--brand)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.color = isDark ? "rgba(255,255,255,0.6)" : "rgba(0,0,0,0.6)";
+                  e.currentTarget.style.color = "";
                 }}
               >
                 <Linkedin className="w-6 h-6 md:w-7 md:h-7" />
               </a>
               <a
                 href="mailto:contact@example.com"
-                className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors duration-300 transform hover:scale-110"
-                style={{
-                  color: isDark ? "rgba(255,255,255,0.6)" : "rgba(0,0,0,0.6)",
-                }}
+                className="text-neutral-500 hover:text-black dark:text-white/60 dark:hover:text-white transition-colors duration-300 transform hover:scale-110"
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = "var(--brand)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.color = isDark ? "rgba(255,255,255,0.6)" : "rgba(0,0,0,0.6)";
+                  e.currentTarget.style.color = "";
                 }}
               >
                 <Mail className="w-6 h-6 md:w-7 md:h-7" />
