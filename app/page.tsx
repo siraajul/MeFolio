@@ -3,6 +3,7 @@ import AboutSection2 from "@/components/ui/about-section-2";
 import ProjectsSection from "@/components/ui/3d-folder";
 import { WorkExperience, ExperienceItemType } from "@/components/ui/work-experience";
 import { ExpandableSkillTags } from "@/components/ui/expandable-skill-tags";
+import { SiteNavBar } from "@/components/ui/site-navbar";
 
 const WORK_EXPERIENCE: ExperienceItemType[] = [
   {
@@ -169,6 +170,7 @@ export default function Home() {
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&family=Antic&display=swap"
       />
+      <SiteNavBar />
       <div className="w-full" id="home">
         <PortfolioHero />
         <div id="about">
