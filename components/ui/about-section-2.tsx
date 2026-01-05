@@ -1,5 +1,6 @@
 "use client";
 import { TimelineContent } from "@/components/ui/timeline-animation";
+import { ParticleButton } from "@/components/ui/particle-button";
 import { Zap } from "lucide-react";
 import { useRef } from "react";
 

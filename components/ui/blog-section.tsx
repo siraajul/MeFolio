@@ -1,12 +1,6 @@
 "use client";
 import { MoveRight } from "lucide-react";
 import { ParticleButton } from "@/components/ui/particle-button";
-
-// ...
-
-        <ParticleButton className="gap-4 bg-brand text-brand-foreground hover:bg-brand/90 font-bold">
-          View all articles <MoveRight className="w-4 h-4" />
-        </ParticleButton>
 import Image from "next/image";
 import Link from "next/link";
 
@@ -29,9 +23,9 @@ export const Blog = ({ posts }: BlogProps) => (
         <h4 className="text-3xl md:text-5xl tracking-tighter max-w-xl font-bold uppercase">
           Latest <span className="text-brand italic">Articles</span>
         </h4>
-        <Button className="gap-4 bg-brand text-brand-foreground hover:bg-brand/90">
+        <ParticleButton className="gap-4 bg-brand text-brand-foreground hover:bg-brand/90 font-bold">
           View all articles <MoveRight className="w-4 h-4" />
-        </Button>
+        </ParticleButton>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {posts.map((post) => (
