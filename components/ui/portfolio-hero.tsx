@@ -126,7 +126,7 @@ export default function Component() {
                 delay={100}
                 animateBy="letters"
                 direction="top"
-                className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.75] tracking-tighter uppercase justify-center whitespace-nowrap"
+                className="font-bold text-[14vw] sm:text-[120px] md:text-[160px] lg:text-[200px] leading-[0.85] tracking-tighter uppercase justify-center"
                 style={{ color: "var(--brand)", fontFamily: "'Fira Code', monospace" }}
               />
             </div>
@@ -136,7 +136,7 @@ export default function Component() {
                 delay={100}
                 animateBy="letters"
                 direction="top"
-                className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.75] tracking-tighter uppercase justify-center whitespace-nowrap"
+                className="font-bold text-[14vw] sm:text-[120px] md:text-[160px] lg:text-[200px] leading-[0.85] tracking-tighter uppercase justify-center"
                 style={{ color: "var(--brand)", fontFamily: "'Fira Code', monospace" }}
               />
             </div>
