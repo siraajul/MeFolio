@@ -36,7 +36,7 @@ export default function AboutSection2() {
     },
   };
   return (
-    <section className="py-32 px-4 bg-gray-50 dark:bg-zinc-900 min-h-screen transition-colors duration-300">
+    <section className="py-32 px-4 bg-background min-h-screen transition-colors duration-300">
       <div className="max-w-6xl mx-auto" ref={heroRef}>
         <div className="flex flex-col lg:flex-row items-start gap-8">
           {/* Right side - Content */}
@@ -46,7 +46,7 @@ export default function AboutSection2() {
               animationNum={0}
               timelineRef={heroRef}
               customVariants={revealVariants}
-              className="sm:text-4xl text-2xl md:text-5xl !leading-[110%] font-semibold text-gray-900 dark:text-gray-100 mb-8"
+              className="sm:text-4xl text-2xl md:text-5xl !leading-[110%] font-semibold text-foreground mb-8"
             >
               I am{" "}
               <TimelineContent
@@ -89,10 +89,10 @@ export default function AboutSection2() {
                 customVariants={textVariants}
                 className="mb-4 sm:text-xl text-xs sm:mb-0"
               >
-                <div className=" font-medium text-gray-900 dark:text-gray-100 mb-1 capitalize">
+                <div className=" font-medium text-foreground mb-1 capitalize">
                   Quality Assurance Specialist
                 </div>
-                <div className=" text-gray-600 dark:text-gray-400 font-semibold uppercase">
+                <div className=" text-muted-foreground font-semibold uppercase">
                   Based in Dhaka
                 </div>
               </TimelineContent>
