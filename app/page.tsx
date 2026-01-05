@@ -1,6 +1,7 @@
 import PortfolioHero from "@/components/ui/portfolio-hero";
 import AboutSection2 from "@/components/ui/about-section-2";
 import ProjectsSection from "@/components/ui/3d-folder";
+import { EducationCard } from "@/components/ui/education-card";
 import { WorkExperience, ExperienceItemType } from "@/components/ui/work-experience";
 import { ExpandableSkillTags } from "@/components/ui/expandable-skill-tags";
 import { SiteNavBar } from "@/components/ui/site-navbar";
@@ -90,30 +91,7 @@ import { Contact2 } from "@/components/ui/contact-2";
 import { Footer } from "@/components/ui/modem-animated-footer";
 import { Twitter, Linkedin, Github, Mail } from "lucide-react";
 
-const EDUCATION_DATA = [
-  {
-    title: "2019 - 2023",
-    content: (
-      <div>
-        <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8 uppercase tracking-wide">
-          University Degree
-        </p>
-        <div className="mb-4">
-             <h4 className="text-lg md:text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">Bachelor of Science in Computer Science and Engineering</h4>
-             <p className="text-neutral-600 dark:text-neutral-400 text-sm md:text-base">Daffodil International University (DIU)</p>
-        </div>
-         <p className="text-neutral-600 dark:text-neutral-400 text-sm md:text-base mb-4">
-            Graduated with a strong foundation in software engineering, algorithms, and database systems. 
-            Relevant coursework included Software Quality Assurance, Data Structures, and Web Development.
-         </p>
-         <ul className="list-disc list-inside text-neutral-600 dark:text-neutral-400 text-sm md:text-base space-y-1">
-           <li>Major: Software Engineering</li>
-           <li>Capstone Project: Automated Testing Framework for E-commerce Microservices</li>
-         </ul>
-      </div>
-    ),
-  },
-];
+
 
 
 const CERTIFICATION_DATA = [
@@ -182,7 +160,7 @@ export default function Home() {
         </div>
         
         {/* Skills Section */}
-        <section id="skills" className="min-h-screen w-full flex flex-col justify-center max-w-7xl mx-auto py-12 md:py-24 px-4 md:px-6">
+        <section id="skills" className="min-h-screen w-full flex flex-col justify-center max-w-7xl mx-auto py-12 md:py-16 px-4 md:px-6">
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center uppercase tracking-tight">
             Technical <span className="text-brand italic">Expertise</span>
           </h2>
@@ -203,7 +181,7 @@ export default function Home() {
         </section>
         
         {/* Experience Section */}
-        <section id="experience" className="min-h-screen w-full flex flex-col justify-center max-w-7xl mx-auto py-12 md:py-24 px-4 md:px-6">
+        <section id="experience" className="min-h-screen w-full flex flex-col justify-center max-w-7xl mx-auto py-12 md:py-16 px-4 md:px-6">
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center uppercase tracking-tight">
             Work <span className="text-brand italic">Experience</span>
           </h2>
@@ -217,17 +195,31 @@ export default function Home() {
           <ProjectsSection />
         </div>
 
+
+
         {/* Education Section */}
-        <section id="education" className="min-h-screen w-full flex flex-col justify-center bg-white dark:bg-neutral-950">
-           <Timeline 
-             data={EDUCATION_DATA} 
-             title={<>Academic <span className="text-brand italic">Education</span></>}
-             description="My university degree and academic achievements."
+        <section id="education" className="w-full flex flex-col justify-center items-center py-12 px-4">
+           <div className="mb-12 text-center">
+             <h2 className="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">
+               Academic <span className="text-brand italic">Education</span>
+             </h2>
+             <p className="text-neutral-600 dark:text-neutral-400 max-w-lg mx-auto">
+               My foundation in Computer Science and Engineering.
+             </p>
+           </div>
+           
+           <EducationCard
+             universityName="Daffodil International University"
+             degree="B.Sc. in Computer Science and Engineering"
+             period="2019 - 2023"
+             location="Dhaka, Bangladesh"
+             description="Graduated with a strong foundation in software engineering, algorithms, and database systems. Relevant coursework included Software Quality Assurance, Data Structures, and Web Development. Capstone Project: Automated Testing Framework for E-commerce Microservices."
+             logoUrl="https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Daffodil_International_University_logo.svg/1200px-Daffodil_International_University_logo.svg.png"
            />
         </section>
 
         {/* Certification Section */}
-        <section id="certifications" className="min-h-screen w-full flex flex-col justify-center bg-gray-50 dark:bg-neutral-900/50">
+        <section id="certifications" className="w-full flex flex-col justify-center py-12">
            <Timeline 
              data={CERTIFICATION_DATA} 
              title={<>Professional <span className="text-brand italic">Certifications</span></>}

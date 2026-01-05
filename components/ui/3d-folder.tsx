@@ -503,7 +503,7 @@ export default function ProjectsSection() {
   const toggleTheme = () => setIsDark(!isDark);
 
   return (
-    <section className="min-h-screen bg-background text-foreground transition-colors duration-500 selection:bg-accent/30 selection:text-accent-foreground">
+    <section className="bg-background text-foreground transition-colors duration-500 selection:bg-accent/30 selection:text-accent-foreground">
       {/* 
       Header is commented out to avoid conflict with PortfolioHero header.
       If standalone usage is preferred, uncomment below.
@@ -521,7 +521,7 @@ export default function ProjectsSection() {
       </header>
       */}
 
-      <div className="max-w-7xl mx-auto pt-20 px-4 md:px-6 text-center">
+      <div className="max-w-7xl mx-auto pt-12 px-4 md:px-6 text-center">
         <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
           QA <span className="text-brand italic">Projects</span>
         </h1>
@@ -530,7 +530,7 @@ export default function ProjectsSection() {
         </p>
       </div>
 
-      <section className="max-w-7xl mx-auto px-4 md:px-6 pt-16 pb-32">
+      <section className="max-w-7xl mx-auto px-4 md:px-6 pt-12 pb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 justify-items-center">
           {portfolioData.map((folder, index) => (
             <div 
