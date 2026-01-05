@@ -170,17 +170,6 @@ export default function Home() {
         <PortfolioHero />
         <AboutSection2 />
         
-        {/* Experience Section */}
-        <section className="min-h-screen w-full flex flex-col justify-center max-w-7xl mx-auto py-24 px-6">
-          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center uppercase tracking-tight">
-            Work <span className="text-brand italic">Experience</span>
-          </h2>
-          <WorkExperience
-            className="w-full max-w-5xl mx-auto rounded-3xl border border-border/50 shadow-xl bg-card/30 backdrop-blur-sm"
-            experiences={WORK_EXPERIENCE}
-          />
-        </section>
-
         {/* Skills Section */}
         <section className="min-h-screen w-full flex flex-col justify-center max-w-7xl mx-auto py-24 px-6">
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center uppercase tracking-tight">
@@ -201,6 +190,19 @@ export default function Home() {
             ))}
           </div>
         </section>
+        
+        {/* Experience Section */}
+        <section className="min-h-screen w-full flex flex-col justify-center max-w-7xl mx-auto py-24 px-6">
+          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center uppercase tracking-tight">
+            Work <span className="text-brand italic">Experience</span>
+          </h2>
+          <WorkExperience
+            className="w-full max-w-5xl mx-auto rounded-3xl border border-border/50 shadow-xl bg-card/30 backdrop-blur-sm"
+            experiences={WORK_EXPERIENCE}
+          />
+        </section>
+
+        <ProjectsSection />
 
         {/* Education Section */}
         <section className="min-h-screen w-full flex flex-col justify-center bg-white dark:bg-neutral-950">
@@ -211,8 +213,6 @@ export default function Home() {
         <section className="min-h-screen w-full flex flex-col justify-center bg-background">
            <Blog posts={BLOG_POSTS} />
         </section>
-
-        <ProjectsSection />
       </div>
     </>
   );

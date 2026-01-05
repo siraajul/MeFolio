@@ -54,7 +54,7 @@ export default function AboutSection2() {
                 animationNum={1}
                 timelineRef={heroRef}
                 customVariants={textVariants}
-                className="text-brand border-2 border-brand inline-block xl:h-16  border-dotted px-2 rounded-md"
+                className="text-cyan-500 border-2 border-cyan-500 inline-block xl:h-16  border-dotted px-2 rounded-md"
               >
                 redefining
               </TimelineContent>{" "}
@@ -65,7 +65,7 @@ export default function AboutSection2() {
                 animationNum={2}
                 timelineRef={heroRef}
                 customVariants={textVariants}
-                className="text-brand border-2 border-brand inline-block xl:h-16 border-dotted px-2 rounded-md"
+                className="text-purple-500 border-2 border-purple-500 inline-block xl:h-16 border-dotted px-2 rounded-md"
               >
                 challenge
               </TimelineContent>{" "}
@@ -75,7 +75,7 @@ export default function AboutSection2() {
                 animationNum={3}
                 timelineRef={heroRef}
                 customVariants={textVariants}
-                className="text-brand border-2 border-brand inline-block xl:h-16 border-dotted px-2 rounded-md"
+                className="text-rose-500 border-2 border-rose-500 inline-block xl:h-16 border-dotted px-2 rounded-md"
               >
                 perfection.
               </TimelineContent>
