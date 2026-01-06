@@ -1,0 +1,140 @@
+import { client } from "@/sanity/lib/client";
+import { groq, PortableText } from "next-sanity";
+import { urlFor } from "@/sanity/lib/client";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import { Metadata } from "next";
+
+// Force dynamic rendering to ensure fresh data
+export const dynamic = "force-dynamic";
+
+// Revalidate every 60 seconds
+export const revalidate = 60;
+
+interface BlogPostProps {
+  params: Promise<{ slug: string }>;
+}
+
+// GROQ Query to fetch a single post
+const postQuery = groq`*[_type == "post" && slug.current == $slug][0]{
+  title,
+  summary,
+  "imageUrl": image.asset->url,
+  content,
+  publishedAt,
+  externalLink
+}`;
+
+// Generate SEO Metadata
+export async function generateMetadata({ params }: BlogPostProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await client.fetch(postQuery, { slug });
+
+  if (!post) {
+    return {
+      title: "Post Not Found | Sirajul Islam",
+    };
+  }
+
+  return {
+    title: `${post.title} | Sirajul Islam`,
+    description: post.summary,
+    openGraph: {
+      title: post.title,
+      description: post.summary,
+      type: "article",
+      images: post.imageUrl ? [{ url: post.imageUrl }] : [],
+      publishedTime: post.publishedAt,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.summary,
+      images: post.imageUrl ? [post.imageUrl] : [],
+    },
+  };
+}
+
+const PortableTextComponents = {
+  types: {
+    image: ({ value }: any) => {
+      return (
+        <div className="relative w-full h-96 my-8 rounded-lg overflow-hidden">
+          <Image
+            src={urlFor(value).url()}
+            alt={value.alt || "Post Image"}
+            fill
+            className="object-cover"
+          />
+        </div>
+      );
+    },
+    code: ({ value }: any) => {
+      return (
+        <pre className="bg-neutral-900 text-neutral-100 p-4 rounded-lg overflow-x-auto my-6 font-mono text-sm max-w-full">
+          <code>{value.code}</code>
+        </pre>
+      );
+    },
+  },
+};
+
+export default async function BlogPostPage({ params }: BlogPostProps) {
+  const { slug } = await params;
+  const post = await client.fetch(postQuery, { slug });
+
+  if (!post) {
+    notFound();
+  }
+
+  return (
+    <article className="min-h-screen bg-white dark:bg-black text-foreground pb-20">
+      {/* ... Hero Section ... */}
+      <div className="w-full h-[40vh] md:h-[50vh] relative bg-neutral-100 dark:bg-neutral-900">
+        {post.imageUrl ? (
+          <Image
+            src={post.imageUrl}
+            alt={post.title}
+            fill
+            className="object-cover"
+            priority
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+            No Featured Image
+          </div>
+        )}
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute bottom-0 left-0 w-full p-6 md:p-12 lg:p-20 bg-gradient-to-t from-black/80 to-transparent">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
+              {post.title}
+            </h1>
+            <p className="text-white/80 text-lg md:text-xl max-w-2xl">
+              {post.summary}
+            </p>
+             {post.publishedAt && (
+              <p className="text-brand font-mono text-sm mt-6">
+                {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-3xl mx-auto px-6 py-12 md:py-20">
+        <div className="prose prose-lg dark:prose-invert prose-neutral max-w-none prose-a:text-brand prose-img:rounded-2xl">
+          {post.content ? (
+             <PortableText value={post.content} components={PortableTextComponents} />
+          ) : (
+            <p className="text-muted-foreground italic">No content available.</p>
+          )}
+        </div>
+      </div>
+    </article>
+  );
+}
