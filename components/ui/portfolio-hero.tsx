@@ -150,7 +150,7 @@ export default function PortfolioHero({
                 delay={100}
                 animateBy="letters"
                 direction="top"
-                className="font-bold text-[14vw] sm:text-[120px] md:text-[160px] lg:text-[200px] leading-[0.85] tracking-tighter uppercase justify-center"
+                className="font-bold text-[13vw] sm:text-[80px] md:text-[110px] lg:text-[160px] xl:text-[190px] leading-[0.85] tracking-tighter uppercase justify-center"
                 style={{ color: "var(--brand)", fontFamily: "'Fira Code', monospace" }}
               />
             </div>
@@ -160,7 +160,7 @@ export default function PortfolioHero({
                 delay={100}
                 animateBy="letters"
                 direction="top"
-                className="font-bold text-[14vw] sm:text-[120px] md:text-[160px] lg:text-[200px] leading-[0.85] tracking-tighter uppercase justify-center"
+                className="font-bold text-[13vw] sm:text-[80px] md:text-[110px] lg:text-[160px] xl:text-[190px] leading-[0.85] tracking-tighter uppercase justify-center"
                 style={{ color: "var(--brand)", fontFamily: "'Fira Code', monospace" }}
               />
             </div>
@@ -179,14 +179,14 @@ export default function PortfolioHero({
         </div>
 
         {/* Tagline */}
-        <div className="absolute bottom-16 sm:bottom-20 md:bottom-24 lg:bottom-32 xl:bottom-36 left-1/2 -translate-x-1/2 w-full px-6">
+        <div className="absolute bottom-20 sm:bottom-24 md:bottom-28 lg:bottom-32 xl:bottom-40 left-1/2 -translate-x-1/2 w-full px-6">
           <div className="flex justify-center">
             <BlurText
               text={tagline}
               delay={150}
               animateBy="words"
               direction="top"
-              className="text-[15px] sm:text-[18px] md:text-[20px] lg:text-[22px] text-center transition-colors duration-300 text-neutral-500 hover:text-black dark:text-neutral-400 dark:hover:text-white"
+              className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] text-center transition-colors duration-300 text-neutral-500 hover:text-black dark:text-neutral-400 dark:hover:text-white"
               style={{ fontFamily: "'Antic', sans-serif" }}
             />
             </div>

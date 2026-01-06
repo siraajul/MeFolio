@@ -110,13 +110,13 @@ export function ExperienceItem({
                )}
              </div>
              {/* Mobile connector line */}
-             <div className="sm:hidden absolute top-12 bottom-[-48px] w-[2px] bg-border/50 left-1/2 -translate-x-1/2" />
+             <div className="sm:hidden absolute top-12 bottom-[-48px] w-[1px] bg-border/40 left-1/2 -translate-x-1/2" />
            </div>
         </div>
 
         {/* Content Card */}
         <div className="flex-1">
-          <div className="bg-card/30 backdrop-blur-sm border border-border/40 rounded-3xl p-6 sm:p-8 hover:bg-card/50 hover:border-brand/30 hover:shadow-lg hover:shadow-brand/5 transition-all duration-300">
+          <div className="bg-card/30 backdrop-blur-sm border border-border/40 rounded-3xl p-4 sm:p-8 hover:bg-card/50 hover:border-brand/30 hover:shadow-lg hover:shadow-brand/5 transition-all duration-300">
              <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-2">
                <div>
                   <h3 className="text-2xl font-bold tracking-tight text-foreground flex items-center gap-3">

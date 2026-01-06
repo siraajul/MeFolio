@@ -39,7 +39,7 @@ export function EducationCard({
       <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 opacity-50 blur-xl group-hover:opacity-100 transition-opacity duration-500" />
 
       {/* Card Content */}
-      <div className="relative h-full bg-white/50 dark:bg-neutral-900/80 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-3xl p-8 md:p-10 flex flex-col items-center text-center shadow-2xl">
+      <div className="relative h-full bg-white/50 dark:bg-neutral-900/80 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-3xl p-6 sm:p-8 md:p-10 flex flex-col items-center text-center shadow-2xl">
         
         {/* Glow Effect behind Logo */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-brand/20 blur-[60px] rounded-full pointer-events-none" />

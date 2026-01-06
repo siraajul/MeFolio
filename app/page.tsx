@@ -88,8 +88,8 @@ export default async function Home() {
         </div>
         
         {/* Skills Section */}
-        <section id="skills" className="min-h-screen w-full flex flex-col justify-center max-w-7xl mx-auto py-12 md:py-16 px-4 md:px-6">
-          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center uppercase tracking-tight">
+        <section id="skills" className="min-h-screen w-full flex flex-col justify-center max-w-7xl mx-auto py-8 sm:py-12 md:py-16 px-4 md:px-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 sm:mb-16 text-center uppercase tracking-tight">
             Technical <span className="text-brand italic">Expertise</span>
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
@@ -113,8 +113,8 @@ export default async function Home() {
         </section>
         
         {/* Experience Section */}
-        <section id="experience" className="min-h-screen w-full flex flex-col justify-center max-w-7xl mx-auto py-12 md:py-16 px-4 md:px-6">
-          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center uppercase tracking-tight">
+        <section id="experience" className="min-h-screen w-full flex flex-col justify-center max-w-7xl mx-auto py-8 sm:py-12 md:py-16 px-4 md:px-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 sm:mb-16 text-center uppercase tracking-tight">
             Work <span className="text-brand italic">Experience</span>
           </h2>
           {experiences?.length > 0 ? (
@@ -132,9 +132,9 @@ export default async function Home() {
         </div>
 
         {/* Education Section */}
-        <section id="education" className="w-full flex flex-col justify-center items-center py-12 px-4">
-           <div className="mb-12 text-center">
-             <h2 className="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">
+        <section id="education" className="w-full flex flex-col justify-center items-center py-8 sm:py-12 px-4">
+           <div className="mb-10 sm:mb-12 text-center">
+             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">
                Academic <span className="text-brand italic">Education</span>
              </h2>
              <p className="text-neutral-600 dark:text-neutral-400 max-w-lg mx-auto">
