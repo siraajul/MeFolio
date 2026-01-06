@@ -19,6 +19,18 @@ export default defineType({
             options: { hotspot: true },
         }),
         defineField({
+            name: "providerName",
+            title: "Provider Name",
+            type: "string",
+            description: "e.g., Udemy, Coursera, AWS",
+        }),
+        defineField({
+            name: "skills",
+            title: "Skills Acquired",
+            type: "array",
+            of: [{ type: "string" }],
+        }),
+        defineField({
             name: "level",
             title: "Level/Type",
             type: "string",

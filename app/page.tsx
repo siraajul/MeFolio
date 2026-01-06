@@ -58,18 +58,33 @@ export default async function Home() {
             </div>
           )}
           <div>
-          <h4 className="text-lg md:text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
+          <h4 className="text-lg md:text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-1">
             {cert.title}
           </h4>
+          {cert.providerName && (
+             <p className="text-brand font-medium text-sm mb-2">{cert.providerName}</p>
+          )}
           {cert.level && (
-            <p className="text-neutral-600 dark:text-neutral-400 text-sm md:text-base">
+            <p className="text-neutral-600 dark:text-neutral-400 text-sm md:text-base mb-3">
               {cert.level}
             </p>
           )}
           {cert.description && (
-            <p className="mt-4 text-neutral-600 dark:text-neutral-400 text-sm md:text-base">
+            <p className="mb-4 text-neutral-600 dark:text-neutral-400 text-sm md:text-base leading-relaxed">
               {cert.description}
             </p>
+          )}
+          {cert.skills && cert.skills.length > 0 && (
+            <div className="flex flex-wrap gap-2 mt-3">
+              {cert.skills.map((skill: string, idx: number) => (
+                <span 
+                  key={idx}
+                  className="inline-flex items-center rounded-md border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 px-2 py-1 text-xs font-medium text-neutral-600 dark:text-neutral-400"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
           )}
         </div>
        </div>

@@ -59,6 +59,8 @@ export const certificationsQuery = groq`*[_type == "certification"] | order(year
   _id,
   title,
   "providerImageUrl": providerImage.asset->url,
+  providerName,
+  skills,
   level,
   year,
   description
