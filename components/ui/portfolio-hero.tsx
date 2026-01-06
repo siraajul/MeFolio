@@ -150,7 +150,7 @@ export default function PortfolioHero({
                 delay={100}
                 animateBy="letters"
                 direction="top"
-                className="font-bold text-[17vw] sm:text-[100px] md:text-[130px] lg:text-[180px] xl:text-[200px] leading-[0.85] tracking-tighter uppercase justify-center"
+                className="font-bold text-[17vw] sm:text-[100px] md:text-[130px] lg:text-[180px] xl:text-[200px] 2xl:text-[260px] leading-[0.85] tracking-tighter 2xl:tracking-wide uppercase justify-center"
                 style={{ color: "var(--brand)", fontFamily: "'Fira Code', monospace" }}
               />
             </div>
@@ -160,7 +160,7 @@ export default function PortfolioHero({
                 delay={100}
                 animateBy="letters"
                 direction="top"
-                className="font-bold text-[17vw] sm:text-[100px] md:text-[130px] lg:text-[180px] xl:text-[200px] leading-[0.85] tracking-tighter uppercase justify-center"
+                className="font-bold text-[17vw] sm:text-[100px] md:text-[130px] lg:text-[180px] xl:text-[200px] 2xl:text-[260px] leading-[0.85] tracking-tighter 2xl:tracking-wide uppercase justify-center"
                 style={{ color: "var(--brand)", fontFamily: "'Fira Code', monospace" }}
               />
             </div>
