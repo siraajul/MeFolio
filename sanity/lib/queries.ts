@@ -12,7 +12,7 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
 }`;
 
 export const experiencesQuery = groq`*[_type == "experience"] | order(order asc){
-  _id,
+  "id": _id,
   companyName,
   "companyLogo": companyLogo.asset->url,
   isCurrentEmployer,
