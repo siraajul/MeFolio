@@ -13,6 +13,12 @@ export default defineType({
             validation: (Rule) => Rule.required(),
         }),
         defineField({
+            name: "providerImage",
+            title: "Provider Logo",
+            type: "image",
+            options: { hotspot: true },
+        }),
+        defineField({
             name: "level",
             title: "Level/Type",
             type: "string",

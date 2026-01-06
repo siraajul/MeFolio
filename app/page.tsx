@@ -1,4 +1,5 @@
 import { client } from "@/sanity/lib/client";
+import Image from "next/image";
 import {
   siteSettingsQuery,
   aboutQuery,
@@ -43,7 +44,20 @@ export default async function Home() {
         <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8 uppercase tracking-wide">
           Certification
         </p>
-        <div>
+        <div className="flex items-start gap-4">
+          {cert.providerImageUrl && (
+            <div className="relative w-12 h-12 flex-shrink-0 bg-white dark:bg-neutral-800 rounded-lg p-1 border border-neutral-200 dark:border-neutral-700">
+              <Image
+                src={cert.providerImageUrl}
+                alt={cert.title}
+                width={48}
+                height={48}
+                className="w-full h-full object-contain"
+                unoptimized
+              />
+            </div>
+          )}
+          <div>
           <h4 className="text-lg md:text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
             {cert.title}
           </h4>
@@ -58,6 +72,7 @@ export default async function Home() {
             </p>
           )}
         </div>
+       </div>
       </div>
     ),
   }));

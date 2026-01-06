@@ -58,6 +58,7 @@ export const educationsQuery = groq`*[_type == "education"] | order(order asc){
 export const certificationsQuery = groq`*[_type == "certification"] | order(year desc){
   _id,
   title,
+  "providerImageUrl": providerImage.asset->url,
   level,
   year,
   description
