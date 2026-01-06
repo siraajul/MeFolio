@@ -31,7 +31,8 @@ const iconMap = {
 export type ExperiencePositionIconType = keyof typeof iconMap;
 
 export type ExperiencePositionItemType = {
-  id: string;
+  id?: string;
+  _key?: string;
   title: string;
   employmentPeriod: string;
   employmentType?: string;
@@ -132,7 +133,7 @@ export function ExperienceItem({
 
              <div className="space-y-8">
                 {experience.positions.map((position) => (
-                  <ExperiencePositionItem key={position.id} position={position} />
+                  <ExperiencePositionItem key={position._key || position.id || position.title} position={position} />
                 ))}
              </div>
           </div>

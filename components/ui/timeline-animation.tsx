@@ -45,7 +45,7 @@ export const TimelineContent = ({
   // We explicitly type the motion component to any to allow dynamic 'as' prop usage with Framer Motion,
   // though typically you'd use motion[Component] if it were a string like 'div'.
   // However, for simplicity with creating dynamic motion components:
-  const MotionComponent = motion(Component as any);
+  const MotionComponent = motion.create(Component as any);
 
   return (
     <MotionComponent

@@ -17,6 +17,7 @@ export const experiencesQuery = groq`*[_type == "experience"] | order(order asc)
   "companyLogo": companyLogo.asset->url,
   isCurrentEmployer,
   positions[]{
+    "_key": _key,
     title,
     employmentPeriod,
     employmentType,
@@ -37,7 +38,7 @@ export const projectCategoriesQuery = groq`*[_type == "projectCategory"] | order
   title,
   gradient,
   projects[]{
-    "_id": _key,
+    "id": _key,
     title,
     "image": image.asset->url,
     link,
