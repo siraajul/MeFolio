@@ -1,0 +1,174 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - link "Home" [ref=e5] [cursor=pointer]:
+      - /url: "#home"
+      - text: Home
+    - link "About" [ref=e12] [cursor=pointer]:
+      - /url: "#about"
+    - link "Skills" [ref=e13] [cursor=pointer]:
+      - /url: "#skills"
+      - generic [ref=e14]: Skills
+    - link "Experience" [ref=e15] [cursor=pointer]:
+      - /url: "#experience"
+      - generic [ref=e16]: Experience
+    - link "Projects" [ref=e17] [cursor=pointer]:
+      - /url: "#projects"
+    - link "Education" [ref=e18] [cursor=pointer]:
+      - /url: "#education"
+      - generic [ref=e19]: Education
+    - link "Writing" [ref=e20] [cursor=pointer]:
+      - /url: "#writing"
+      - generic [ref=e21]: Writing
+    - link "Contact" [ref=e22] [cursor=pointer]:
+      - /url: "#contact"
+  - generic [ref=e23]:
+    - main [ref=e25]:
+      - generic [ref=e27]:
+        - paragraph [ref=e29]:
+          - generic [ref=e30]: S
+          - generic [ref=e31]: I
+          - generic [ref=e32]: R
+          - generic [ref=e33]: A
+          - generic [ref=e34]: J
+          - generic [ref=e35]: U
+          - generic [ref=e36]: L
+        - paragraph [ref=e38]:
+          - generic [ref=e39]: I
+          - generic [ref=e40]: S
+          - generic [ref=e41]: L
+          - generic [ref=e42]: A
+          - generic [ref=e43]: M
+        - img "Profile" [ref=e46] [cursor=pointer]
+      - paragraph [ref=e49]:
+        - generic [ref=e50]: Ensuring
+        - generic [ref=e52]: software
+        - generic [ref=e54]: reliability
+        - generic [ref=e56]: and
+        - generic [ref=e58]: quality
+        - generic [ref=e60]: through
+        - generic [ref=e62]: automation.
+      - button "Scroll down" [ref=e63]:
+        - img [ref=e64]
+    - generic [ref=e70]:
+      - heading "I am redefining software quality to be more reliable and user-centric. My goal is to continually raise the bar and challenge how testing ensures perfection." [level=1] [ref=e71]:
+        - text: I am
+        - generic [ref=e72]: redefining
+        - text: software quality to be more reliable and user-centric. My goal is to continually raise the bar and
+        - generic [ref=e73]: challenge
+        - text: how testing ensures
+        - generic [ref=e74]: perfection.
+      - generic [ref=e75]:
+        - generic [ref=e76]:
+          - generic [ref=e77]: Quality Assurance Specialist
+          - generic [ref=e78]: Based in Dhaka
+        - link "Resume" [ref=e80]:
+          - /url: /resume.pdf
+          - button "Resume" [ref=e81] [cursor=pointer]
+    - generic [ref=e82]:
+      - heading "Technical Expertise" [level=2] [ref=e83]
+      - paragraph [ref=e85]: Add skills in Sanity Studio
+    - generic [ref=e86]:
+      - heading "Work Experience" [level=2] [ref=e87]
+      - paragraph [ref=e88]: Add work experience in Sanity Studio
+    - generic [ref=e90]:
+      - generic [ref=e91]:
+        - heading "QA Projects" [level=1] [ref=e92]
+        - paragraph [ref=e93]: A showcase of test automation frameworks, performance testing, and quality assurance strategies.
+      - paragraph [ref=e96]: No projects found. Please add content in Sanity Studio.
+    - generic [ref=e97]:
+      - generic [ref=e98]:
+        - heading "Academic Education" [level=2] [ref=e99]
+        - paragraph [ref=e100]: My foundation in Computer Science and Engineering.
+      - generic [ref=e105]:
+        - img "Lovely Professional University Logo" [ref=e107]
+        - heading "Lovely Professional University" [level=3] [ref=e108]
+        - generic [ref=e109]:
+          - img [ref=e110]
+          - generic [ref=e113]: B.Tech in CSE
+        - generic [ref=e114]:
+          - generic [ref=e115]:
+            - img [ref=e116]
+            - text: 2016-2022
+          - generic [ref=e119]: Punjab, India
+        - paragraph
+    - generic [ref=e122]:
+      - heading "Professional Certifications" [level=2] [ref=e123]
+      - paragraph [ref=e124]: My professional qualifications and industry credentials.
+    - generic [ref=e130]:
+      - heading "Latest Articles" [level=4] [ref=e131]
+      - button "View all articles" [ref=e132]:
+        - text: View all articles
+        - img [ref=e133]
+    - generic [ref=e138]:
+      - generic [ref=e139]:
+        - generic [ref=e140]:
+          - heading "Contact Me" [level=1] [ref=e141]
+          - paragraph [ref=e142]: I am available for questions, feedback, or collaboration opportunities. Let me know how I can help!
+        - generic [ref=e143]:
+          - heading "Contact Details" [level=3] [ref=e144]
+          - list [ref=e145]:
+            - listitem [ref=e146]: "Phone: +1 (555) 000-0000"
+            - listitem [ref=e147]:
+              - text: "Email:"
+              - link "hello@example.com" [ref=e148]:
+                - /url: mailto:hello@example.com
+            - listitem [ref=e149]:
+              - text: "Social:"
+              - link "linkedin.com/in/sqa-engineer" [ref=e150]:
+                - /url: "#"
+      - generic [ref=e151]:
+        - generic [ref=e152]:
+          - generic [ref=e153]:
+            - generic [ref=e154]: First Name
+            - textbox "First Name" [ref=e155]
+          - generic [ref=e156]:
+            - generic [ref=e157]: Last Name
+            - textbox "Last Name" [ref=e158]
+        - generic [ref=e159]:
+          - generic [ref=e160]: Email
+          - textbox "Email" [ref=e161]
+        - generic [ref=e162]:
+          - generic [ref=e163]: Subject
+          - textbox "Subject" [ref=e164]
+        - generic [ref=e165]:
+          - generic [ref=e166]: Message
+          - textbox "Message" [ref=e167]:
+            - /placeholder: Type your message here.
+        - button "Send Message" [ref=e168]
+    - generic [ref=e170]:
+      - generic [ref=e171]:
+        - generic [ref=e173]:
+          - generic [ref=e174]:
+            - link "GitHub" [ref=e175]:
+              - /url: https://github.com
+              - img [ref=e177]
+              - generic [ref=e180]: GitHub
+            - link "LinkedIn" [ref=e181]:
+              - /url: https://linkedin.com
+              - img [ref=e183]
+              - generic [ref=e187]: LinkedIn
+            - link "Email" [ref=e188]:
+              - /url: mailto:hello@example.com
+              - img [ref=e190]
+              - generic [ref=e193]: Email
+          - generic [ref=e194]:
+            - link "Home" [ref=e195]:
+              - /url: /
+            - link "About" [ref=e196]:
+              - /url: "#about"
+            - link "Projects" [ref=e197]:
+              - /url: "#projects"
+            - link "Blog" [ref=e198]:
+              - /url: "#blog"
+        - paragraph [ref=e200]: ©2026 SIRAJUL ISLAM. All rights reserved.
+      - generic: SIRAJUL ISLAM
+  - button "Toggle theme" [ref=e203]:
+    - img [ref=e206]
+    - generic [ref=e212]: Toggle theme
+  - button "Open Next.js Dev Tools" [ref=e218] [cursor=pointer]:
+    - img [ref=e219]
+  - alert [ref=e224]
+```
