@@ -4,6 +4,8 @@
 
 **MeFolio** is a high-performance, aesthetically pleasing, and technically robust personal portfolio tailored for Software Engineers, SDETs, and Designers. It bridges the gap between a stunning visual presentation and a headless content management system.
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/sirajul-islam/mefolio)
+
 ## 🌟 Features
 
 -   **Headless CMS Integration**: Powered by [Sanity.io](https://www.sanity.io/) for real-time content management (Projects, Experience, Education, Skills).
@@ -12,6 +14,14 @@
 -   **SEO Optimized**: Dynamic metadata, OpenGraph tags, and semantic HTML structure.
 -   **Responsive Design**: Mobile-first approach ensuring a flawless experience across all devices.
 -   **Dark Mode**: Native dark mode support with system preference detection.
+
+## 📸 Gallery
+
+> *Tip: Replace these placeholders with actual screenshots of your application.*
+
+| Hero Section (Dark Mode) | Sanity Studio (Backend) |
+| :---: | :---: |
+| ![Hero](https://placehold.co/800x500/1e293b/FFF?text=App+Screenshot) | ![Studio](https://placehold.co/800x500/e34c26/FFF?text=Sanity+Studio) |
 
 ## 🏗 Architecture & Design Patterns
 
