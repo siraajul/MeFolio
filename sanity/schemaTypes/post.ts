@@ -57,6 +57,18 @@ export default defineType({
             title: "Published At",
             type: "datetime",
         }),
+        defineField({
+            name: "series",
+            title: "Series",
+            type: "reference",
+            to: [{ type: "series" }],
+        }),
+        defineField({
+            name: "seriesOrder",
+            title: "Order in Series",
+            type: "number",
+            description: "1, 2, 3... used to determine Next/Prev",
+        }),
     ],
     orderings: [
         {

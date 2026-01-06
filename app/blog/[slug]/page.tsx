@@ -2,6 +2,7 @@ import { client } from "@/sanity/lib/client";
 import { groq, PortableText } from "next-sanity";
 import { urlFor } from "@/sanity/lib/client";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
@@ -22,7 +23,18 @@ const postQuery = groq`*[_type == "post" && slug.current == $slug][0]{
   "imageUrl": image.asset->url,
   content,
   publishedAt,
-  externalLink
+  externalLink,
+  "slug": slug.current,
+  "series": series->{
+    title,
+    "slug": slug.current,
+    "posts": *[_type == "post" && references(^._id)] | order(seriesOrder asc) {
+      title,
+      "slug": slug.current,
+      seriesOrder
+    }
+  },
+  seriesOrder
 }`;
 
 // Generate SEO Metadata
@@ -65,6 +77,7 @@ const PortableTextComponents = {
             alt={value.alt || "Post Image"}
             fill
             className="object-cover"
+            unoptimized // Ensures GIFs remain animated and Sanity handles optimization
           />
         </div>
       );
@@ -78,6 +91,25 @@ const PortableTextComponents = {
     },
   },
 };
+
+function estimateReadingTime(blocks: any[]): string {
+  if (!blocks || !Array.isArray(blocks)) return "1 min read";
+
+  let wordCount = 0;
+  blocks.forEach((block) => {
+    if (block._type === "block" && block.children) {
+      block.children.forEach((child: any) => {
+        if (child.text) {
+          wordCount += child.text.split(/\s+/).length;
+        }
+      });
+    }
+  });
+
+  const readingSpeed = 200; // words per minute
+  const minutes = Math.ceil(wordCount / readingSpeed);
+  return `${minutes} min read`;
+}
 
 export default async function BlogPostPage({ params }: BlogPostProps) {
   const { slug } = await params;
@@ -113,15 +145,21 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
             <p className="text-white/80 text-lg md:text-xl max-w-2xl">
               {post.summary}
             </p>
-             {post.publishedAt && (
-              <p className="text-brand font-mono text-sm mt-6">
-                {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
+            <div className="flex items-center gap-4 mt-6">
+              {post.publishedAt && (
+                <p className="text-brand font-mono text-sm">
+                  {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </p>
+              )}
+              <span className="text-white/40 text-sm">•</span>
+              <p className="text-white/80 font-mono text-sm">
+                {estimateReadingTime(post.content)}
               </p>
-            )}
+            </div>
           </div>
         </div>
       </div>
@@ -134,6 +172,47 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
             <p className="text-muted-foreground italic">No content available.</p>
           )}
         </div>
+
+        {/* Series Navigation */}
+        {post.series && post.series.posts && (
+          <div className="mt-16 border-t border-neutral-200 dark:border-neutral-800 pt-8">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-6">
+              More in this series: <span className="text-foreground">{post.series.title}</span>
+            </h3>
+            
+            <div className="flex flex-col sm:flex-row justify-between gap-4">
+              {(() => {
+                const currentOrder = post.seriesOrder;
+                const posts = post.series.posts;
+                const prevPost = posts.find((p: any) => p.seriesOrder < currentOrder && p.slug !== post.slug) || 
+                                 posts.filter((p: any) => p.seriesOrder === currentOrder - 1)[0]; 
+                                 // Fallback if logic is tricky, but strictly:
+                                 // With sorted list, just find index?
+                const currentIndex = posts.findIndex((p: any) => p.slug === post.slug);
+                const prev = posts[currentIndex - 1];
+                const next = posts[currentIndex + 1];
+
+                return (
+                   <>
+                    {prev ? (
+                      <Link href={`/blog/${prev.slug}`} className="flex-1 group p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:border-brand/50 transition-colors">
+                        <div className="text-xs text-muted-foreground mb-1 group-hover:text-brand">Previous Story</div>
+                        <div className="font-semibold">{prev.title}</div>
+                      </Link>
+                    ) : <div className="flex-1" />}
+                    
+                    {next ? (
+                      <Link href={`/blog/${next.slug}`} className="flex-1 group p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:border-brand/50 transition-colors text-right">
+                        <div className="text-xs text-muted-foreground mb-1 group-hover:text-brand">Next Story</div>
+                        <div className="font-semibold">{next.title}</div>
+                      </Link>
+                    ) : <div className="flex-1" />}
+                   </>
+                );
+              })()}
+            </div>
+          </div>
+        )}
       </div>
     </article>
   );

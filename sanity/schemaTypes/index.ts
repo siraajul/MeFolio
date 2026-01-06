@@ -7,6 +7,7 @@ import education from "./education";
 import certification from "./certification";
 import post from "./post";
 import about from "./about";
+import series from "./series";
 
 export const schemaTypes = [
     siteSettings,
@@ -17,4 +18,5 @@ export const schemaTypes = [
     education,
     certification,
     post,
+    series,
 ];
