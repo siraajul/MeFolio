@@ -7,6 +7,7 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   tagline,
   brandDescription,
   "profileImageUrl": profileImage.asset->url,
+  "ogImageUrl": ogImage.asset->url,
   socialLinks[]{platform, url},
   "resumeUrl": resumeFile.asset->url
 }`;

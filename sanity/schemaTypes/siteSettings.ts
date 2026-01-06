@@ -55,5 +55,12 @@ export default defineType({
             title: "Resume PDF",
             type: "file",
         }),
+        defineField({
+            name: "ogImage",
+            title: "Open Graph Image (Social Share)",
+            type: "image",
+            description: "Recommended size: 1200x630px. Shown when sharing link on social media.",
+            options: { hotspot: true },
+        }),
     ],
 });

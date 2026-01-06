@@ -15,18 +15,36 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Sirajul Islam | SQA Automation Engineer",
-  description: "SQA Automation Engineer & SDET specializing in scalable test frameworks, performance testing, and quality assurance strategies.",
-  icons: {
-    icon: "/favicon.ico",
-  },
-  openGraph: {
+import { client } from "@/sanity/lib/client";
+import { siteSettingsQuery } from "@/sanity/lib/queries";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const siteSettings = await client.fetch(siteSettingsQuery);
+
+  return {
     title: "Sirajul Islam | SQA Automation Engineer",
-    description: "Expert in Test Automation, SDET, and Quality Assurance strategies.",
-    type: "website",
-  },
-};
+    description: 
+      siteSettings?.tagline || 
+      "SQA Automation Engineer & SDET specializing in scalable test frameworks, performance testing, and quality assurance strategies.",
+    icons: {
+      icon: "/favicon.ico",
+    },
+    openGraph: {
+      title: "Sirajul Islam | SQA Automation Engineer",
+      description: 
+        siteSettings?.tagline || 
+        "Expert in Test Automation, SDET, and Quality Assurance strategies.",
+      type: "website",
+      images: siteSettings?.ogImageUrl ? [{ url: siteSettings.ogImageUrl }] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Sirajul Islam | SQA Automation Engineer",
+      description: siteSettings?.tagline || "Expert in Test Automation, SDET, and Quality Assurance strategies.",
+      images: siteSettings?.ogImageUrl ? [siteSettings.ogImageUrl] : [],
+    },
+  };
+}
 
 export default function RootLayout({
   children,
