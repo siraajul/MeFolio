@@ -188,7 +188,7 @@ export default async function Home() {
 
         <Footer
           brandName={settings?.firstName ? `${settings.firstName} ${settings.lastName}` : "Sirajul Islam"}
-          brandDescription={settings?.brandDescription || "Senior SQA Automation Engineer & SDET specializing in scalable test frameworks and quality assurance strategies."}
+          brandDescription={settings?.brandDescription || "SQA Automation Engineer & SDET specializing in scalable test frameworks and quality assurance strategies."}
           socialLinks={settings?.socialLinks?.map((link: any) => ({
             icon: link.platform.toLowerCase().includes("github") ? <Github className="w-6 h-6" /> : 
                   link.platform.toLowerCase().includes("linkedin") ? <Linkedin className="w-6 h-6" /> : 

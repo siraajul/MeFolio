@@ -42,6 +42,23 @@ export default function RootLayout({
           {children}
           <ThemeToggleFab />
         </SmoothScroll>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Sirajul Islam",
+              jobTitle: "SQA Automation Engineer",
+              url: "https://mefolio.vercel.app",
+              sameAs: [
+                "https://github.com/sirajul-islam",
+                "https://linkedin.com/in/sirajul-islam-qa",
+              ],
+              description: "SQA Automation Engineer & SDET specializing in scalable test frameworks and quality assurance.",
+            }),
+          }}
+        />
       </body>
     </html>
   );

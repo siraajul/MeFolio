@@ -1,0 +1,23 @@
+# Sirajul Islam
+
+SQA Automation Engineer & SDET specializing in scalable test frameworks, performance testing, and quality assurance strategies.
+
+## About
+Sirajul Islam is an expert in Software Quality Assurance with deep knowledge in automation (Selenium, Cypress, Playwright), CI/CD pipelines, and performance engineering. He builds robust testing infrastructure for scalable applications.
+
+## Key Skills
+- **Automation**: Cypress, Playwright, Selenium, Appium
+- **Languages**: JavaScript, TypeScript, Python, Java
+- **Tools**: Jenkins, GitHub Actions, Docker, Kubernetes
+- **Performance**: JMeter, K6
+
+## Contact
+- GitHub: https://github.com/sirajul-islam
+- LinkedIn: https://linkedin.com/in/sirajul-islam-qa
+
+## Website Structure
+- `/`: Home (Portfolio, Skills, Experience)
+- `/blog`: Technical articles and tutorials
+- `/studio`: Admin CMS (Authorized access only)
+
+This website is built with Next.js 16, Sanity CMS v3, and Tailwind CSS.
