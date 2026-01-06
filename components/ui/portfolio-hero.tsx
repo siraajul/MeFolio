@@ -150,7 +150,7 @@ export default function PortfolioHero({
                 delay={100}
                 animateBy="letters"
                 direction="top"
-                className="font-bold text-[13vw] sm:text-[80px] md:text-[110px] lg:text-[160px] xl:text-[190px] leading-[0.85] tracking-tighter uppercase justify-center"
+                className="font-bold text-[17vw] sm:text-[100px] md:text-[130px] lg:text-[180px] xl:text-[200px] leading-[0.85] tracking-tighter uppercase justify-center"
                 style={{ color: "var(--brand)", fontFamily: "'Fira Code', monospace" }}
               />
             </div>
@@ -160,14 +160,14 @@ export default function PortfolioHero({
                 delay={100}
                 animateBy="letters"
                 direction="top"
-                className="font-bold text-[13vw] sm:text-[80px] md:text-[110px] lg:text-[160px] xl:text-[190px] leading-[0.85] tracking-tighter uppercase justify-center"
+                className="font-bold text-[17vw] sm:text-[100px] md:text-[130px] lg:text-[180px] xl:text-[200px] leading-[0.85] tracking-tighter uppercase justify-center"
                 style={{ color: "var(--brand)", fontFamily: "'Fira Code', monospace" }}
               />
             </div>
 
             {/* Profile Picture */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-              <div className="w-[65px] h-[110px] sm:w-[90px] sm:h-[152px] md:w-[110px] md:h-[185px] lg:w-[129px] lg:h-[218px] rounded-full overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer">
+              <div className="w-[85px] h-[135px] sm:w-[120px] sm:h-[190px] md:w-[140px] md:h-[220px] lg:w-[160px] lg:h-[250px] rounded-full overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer">
                 <img
                   src={profileImageUrl || "https://i.postimg.cc/y8DnKLyK/albert-dera-ILip77-Sbm-OE-unsplash.jpg"}
                   alt="Profile"
@@ -186,7 +186,7 @@ export default function PortfolioHero({
               delay={150}
               animateBy="words"
               direction="top"
-              className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] text-center transition-colors duration-300 text-neutral-500 hover:text-black dark:text-neutral-400 dark:hover:text-white"
+              className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] text-center transition-colors duration-300 text-neutral-500 hover:text-black dark:text-neutral-400 dark:hover:text-white"
               style={{ fontFamily: "'Antic', sans-serif" }}
             />
             </div>
