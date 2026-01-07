@@ -488,7 +488,7 @@ export default function ProjectsSection({ categories = [] }: ProjectsSectionProp
                   title={folder.title} 
                   projects={folder.projects} 
                   gradient={folder.gradient}
-                  className="w-full"
+                  className="w-full mx-auto"
                 />
               </div>
             ))}

@@ -118,7 +118,7 @@ export default async function Home() {
         </div>
         
         {/* Skills Section */}
-        <section id="skills" className="min-h-screen w-full flex flex-col justify-center max-w-7xl mx-auto py-8 sm:py-12 md:py-16 px-4 md:px-6">
+        <section id="skills" className="min-h-0 md:min-h-screen w-full flex flex-col justify-center max-w-7xl mx-auto py-12 md:py-16 px-4 md:px-6">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 sm:mb-16 text-center uppercase tracking-tight">
             Technical <span className="text-brand italic">Expertise</span>
           </h2>
@@ -143,7 +143,7 @@ export default async function Home() {
         </section>
         
         {/* Experience Section */}
-        <section id="experience" className="min-h-screen w-full flex flex-col justify-center max-w-7xl mx-auto py-8 sm:py-12 md:py-16 px-4 md:px-6">
+        <section id="experience" className="min-h-0 md:min-h-screen w-full flex flex-col justify-center max-w-7xl mx-auto py-12 md:py-16 px-4 md:px-6">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 sm:mb-16 text-center uppercase tracking-tight">
             Work <span className="text-brand italic">Experience</span>
           </h2>
@@ -201,7 +201,7 @@ export default async function Home() {
         </section>
 
         {/* Blog Section */}
-        <section id="writing" className="min-h-screen w-full flex flex-col justify-center bg-background">
+        <section id="writing" className="min-h-0 md:min-h-screen w-full flex flex-col justify-center bg-background">
            <Blog posts={posts?.map((p: any) => ({
              id: p._id,
              title: p.title,
