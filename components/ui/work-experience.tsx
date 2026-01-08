@@ -64,7 +64,7 @@ export function WorkExperience({
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.5, staggerChildren: 0.2 }}
-        className="space-y-12"
+        className="flex sm:block overflow-x-auto sm:overflow-visible gap-4 sm:gap-0 sm:space-y-12 snap-x snap-mandatory py-6 sm:py-0 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0"
       >
         {experiences.map((experience, index) => (
           <ExperienceItem key={experience.id} experience={experience} index={index} />
@@ -87,15 +87,15 @@ export function ExperienceItem({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="relative pl-8 sm:pl-0"
+      className="relative pl-0 sm:pl-0 min-w-[85vw] sm:min-w-0 snap-center sm:snap-none"
     >
       {/* Timeline Connector for Desktop */}
       <div className="hidden sm:block absolute left-[-2px] top-0 bottom-[-48px] w-[2px] bg-gradient-to-b from-border/50 via-border/50 to-transparent last:to-transparent last:via-transparent last:h-full" />
       
-      <div className="flex flex-col sm:flex-row gap-8 group">
+      <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 group">
         {/* Company Logo / Marker */}
-        <div className="absolute left-[-2px] sm:relative sm:left-0 flex-none">
-           <div className="relative flex items-center justify-center">
+        <div className="relative left-0 sm:relative sm:left-0 flex-none">
+           <div className="relative flex items-center justify-start sm:justify-center">
              <div className="w-12 h-12 rounded-2xl bg-card border border-border/50 shadow-sm flex items-center justify-center z-10 group-hover:border-brand/50 group-hover:scale-110 transition-all duration-300">
                {experience.companyLogo ? (
                  <Image
@@ -110,8 +110,8 @@ export function ExperienceItem({
                  <BriefcaseBusinessIcon className="w-5 h-5 text-muted-foreground group-hover:text-brand transition-colors" />
                )}
              </div>
-             {/* Mobile connector line */}
-             <div className="sm:hidden absolute top-12 bottom-[-48px] w-[1px] bg-border/40 left-1/2 -translate-x-1/2" />
+             {/* Mobile connector line - Hidden for horizontal layout */}
+             <div className="hidden absolute top-12 bottom-[-48px] w-[1px] bg-border/40 left-1/2 -translate-x-1/2" />
            </div>
         </div>
 

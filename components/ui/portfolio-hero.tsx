@@ -80,7 +80,6 @@ const BlurText: React.FC<BlurTextProps> = ({
           }}
         >
           {segment}
-          {animateBy === "words" && i < segments.length - 1 ? "\u00A0" : ""}
         </span>
       ))}
     </p>
@@ -186,7 +185,7 @@ export default function PortfolioHero({
               delay={150}
               animateBy="words"
               direction="top"
-              className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] text-center transition-colors duration-300 text-neutral-500 hover:text-black dark:text-neutral-400 dark:hover:text-white"
+              className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] text-center transition-colors duration-300 text-neutral-500 hover:text-black dark:text-neutral-400 dark:hover:text-white flex flex-wrap justify-center gap-[0.3em]"
               style={{ fontFamily: "'Antic', sans-serif" }}
             />
             </div>
