@@ -11,8 +11,9 @@
 -   **Headless CMS Integration**: Powered by [Sanity.io](https://www.sanity.io/) for real-time content management (Projects, Experience, Education, Skills).
 -   **Modern Tech Stack**: Built with **Next.js 14+ (App Router)**, **TypeScript**, and **Tailwind CSS v4**.
 -   **Interactive UI**: Smooth animations using **Framer Motion**, **Lenis** (smooth scrolling), and **Shadcn/UI components**.
--   **SEO Optimized**: Dynamic metadata, OpenGraph tags, and semantic HTML structure.
--   **Responsive Design**: Mobile-first approach ensuring a flawless experience across all devices.
+-   **Structure**: Clean architecture with strict TypeScript types (`types/sanity.ts`) and custom hooks.
+-   **Performance**: Optimized with `next/font` (zero CLS) and automatic image optimization.
+-   **Quality Assurance**: Comprehensive E2E testing with **Playwright** and CI/CD pipelines via GitHub Actions.
 -   **Dark Mode**: Native dark mode support with system preference detection.
 
 ## 📸 Gallery
@@ -111,6 +112,33 @@ graph TD
     -   Frontend: `http://localhost:3000`
     -   Admin Studio: `http://localhost:3000/studio`
 
+## ✅ Quality Assurance & Testing
+
+This project maintains high code quality standards through automated testing and rigorous type safety.
+
+### Running Tests
+
+```bash
+# Run all end-to-end tests
+npx playwright test
+
+# Run tests in UI mode (interactive)
+npx playwright test --ui
+
+# Run specific test file
+npx playwright test tests/navbar.spec.ts
+```
+
+### CI/CD Pipeline
+- **GitHub Actions**: Automated workflow (`.github/workflows/playwright.yml`) runs on every push and PR.
+- **Sanity Integration**: The CI environment securely connects to Sanity.io using GitHub Secrets.
+
+## 🏗 Key Refactoring Highlights
+
+- **Type Safety**: Full TypeScript coverage with custom interfaces in `types/sanity.ts`.
+- **Navigation**: Centralized navigation logic using the `useNavigation` hook.
+- **Optimization**: Replaced Google Fonts with `next/font` for better performance and privacy.
+
 ## 📂 Project Structure
 
 ```bash
@@ -119,13 +147,14 @@ graph TD
 │   ├── layout.tsx        # Root layout (Fonts, Metadata)
 │   └── studio/           # Sanity Studio route
 ├── components/           # React Components (Views)
-│   ├── ui/               # Reusable atomic components (Buttons, Cards, Inputs)
+│   ├── ui/               # Reusable atomic components
+├── hooks/                # Custom React Hooks (`use-navigation.ts`)
+├── types/                # TypeScript Interfaces (`sanity.ts`)
+├── tests/                # Playwright E2E Tests (`navbar.spec.ts`, `home.spec.ts`)
 ├── sanity/               # Backend Logic (Models)
 │   ├── lib/              # Client configuration & GROQ Queries
 │   ├── schemaTypes/      # Content Schema Definitions
-│   └── structure.ts      # Desk structure configuration
-├── public/               # Static assets (Images, Fonts)
-└── styles/               # Global styles (Tailwind config)
+└── public/               # Static assets
 ```
 
 ## 🛡 License
