@@ -1,0 +1,308 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - link [ref=e5] [cursor=pointer]:
+      - /url: "#home"
+      - img [ref=e13]
+    - link [ref=e16] [cursor=pointer]:
+      - /url: "#about"
+      - img [ref=e18]
+    - link [ref=e21] [cursor=pointer]:
+      - /url: "#projects"
+      - img [ref=e23]
+    - link [ref=e25] [cursor=pointer]:
+      - /url: "#contact"
+      - img [ref=e27]
+  - generic [ref=e30]:
+    - main [ref=e32]:
+      - generic [ref=e34]:
+        - paragraph [ref=e36]:
+          - generic [ref=e37]: S
+          - generic [ref=e38]: I
+          - generic [ref=e39]: R
+          - generic [ref=e40]: A
+          - generic [ref=e41]: J
+          - generic [ref=e42]: U
+          - generic [ref=e43]: L
+        - paragraph [ref=e45]:
+          - generic [ref=e46]: I
+          - generic [ref=e47]: S
+          - generic [ref=e48]: L
+          - generic [ref=e49]: A
+          - generic [ref=e50]: M
+        - img "Profile" [ref=e53] [cursor=pointer]
+      - generic [ref=e54]:
+        - paragraph [ref=e56]:
+          - generic [ref=e57]: Ensuring
+          - generic [ref=e58]: software
+          - generic [ref=e59]: reliability
+          - generic [ref=e60]: and
+          - generic [ref=e61]: quality
+          - generic [ref=e62]: through
+          - generic [ref=e63]: automation.
+        - button "Watch Video CV" [ref=e65]:
+          - img [ref=e67]
+          - generic [ref=e69]: Watch Video CV
+      - button "Scroll down" [ref=e70]:
+        - img [ref=e71]
+    - generic [ref=e77]:
+      - heading "I am redefining software quality to be more reliable and user-centric. My goal is to continually raise the bar and challenge how testing ensures perfection." [level=1] [ref=e78]:
+        - text: I am
+        - generic [ref=e79]: redefining
+        - text: software quality to be more reliable and user-centric. My goal is to continually raise the bar and
+        - generic [ref=e80]: challenge
+        - text: how testing ensures
+        - generic [ref=e81]: perfection.
+      - generic [ref=e82]:
+        - generic [ref=e83]:
+          - generic [ref=e84]: Quality Assurance Specialist
+          - generic [ref=e85]: Based in Dhaka
+        - link "Resume" [ref=e87] [cursor=pointer]:
+          - /url: /resume.pdf
+          - button "Resume" [ref=e88]
+    - generic [ref=e89]:
+      - heading "Technical Expertise" [level=2] [ref=e90]
+      - paragraph [ref=e92]: Add skills in Sanity Studio
+    - generic [ref=e93]:
+      - heading "Work Experience" [level=2] [ref=e94]
+      - generic [ref=e96]:
+        - generic [ref=e98]:
+          - img "GeekSSort" [ref=e102]
+          - generic [ref=e104]:
+            - heading "GeekSSort" [level=3] [ref=e107]
+            - button "Junior Software QA Engineer May 2025 - Nov 2025 Full Time" [ref=e110]:
+              - generic [ref=e111]:
+                - img [ref=e113]
+                - generic [ref=e117]:
+                  - generic [ref=e118]:
+                    - heading "Junior Software QA Engineer" [level=4] [ref=e119]
+                    - generic [ref=e120]:
+                      - generic [ref=e121]: May 2025 - Nov 2025
+                      - img [ref=e123]
+                  - paragraph [ref=e126]: Full Time
+        - generic [ref=e128]:
+          - img "TripNao" [ref=e132]
+          - generic [ref=e134]:
+            - heading "TripNao" [level=3] [ref=e137]
+            - button "Junior Software Engineer Mar 2024 - Oct 2024 Full Time" [ref=e140]:
+              - generic [ref=e141]:
+                - img [ref=e143]
+                - generic [ref=e147]:
+                  - generic [ref=e148]:
+                    - heading "Junior Software Engineer" [level=4] [ref=e149]
+                    - generic [ref=e150]:
+                      - generic [ref=e151]: Mar 2024 - Oct 2024
+                      - img [ref=e153]
+                  - paragraph [ref=e156]: Full Time
+        - generic [ref=e158]:
+          - img "Astha IT" [ref=e162]
+          - generic [ref=e164]:
+            - heading "Astha IT" [level=3] [ref=e167]
+            - button "Software Engineer Intern Nov 2023 - Feb 2024 Internship" [ref=e170]:
+              - generic [ref=e171]:
+                - img [ref=e173]
+                - generic [ref=e177]:
+                  - generic [ref=e178]:
+                    - heading "Software Engineer Intern" [level=4] [ref=e179]
+                    - generic [ref=e180]:
+                      - generic [ref=e181]: Nov 2023 - Feb 2024
+                      - img [ref=e183]
+                  - paragraph [ref=e186]: Internship
+    - generic [ref=e188]:
+      - generic [ref=e189]:
+        - heading "QA Projects" [level=1] [ref=e190]
+        - paragraph [ref=e191]: A showcase of test automation frameworks, performance testing, and quality assurance strategies.
+      - generic [ref=e193]:
+        - generic [ref=e195] [cursor=pointer]:
+          - generic [ref=e201]:
+            - img [ref=e204]
+            - img "E-Commerce Testing" [ref=e209]
+            - paragraph [ref=e211]: E-Commerce Testing
+          - generic [ref=e213]:
+            - heading "Manual" [level=3] [ref=e214]
+            - paragraph [ref=e215]: 1 project
+        - generic [ref=e217] [cursor=pointer]:
+          - generic [ref=e223]:
+            - img [ref=e226]
+            - img "API 101" [ref=e231]
+            - paragraph [ref=e233]: API 101
+          - generic [ref=e235]:
+            - heading "API Testing" [level=3] [ref=e236]
+            - paragraph [ref=e237]: 1 project
+        - generic [ref=e239] [cursor=pointer]:
+          - generic [ref=e245]:
+            - img "Performance 101" [ref=e246]
+            - paragraph [ref=e248]: Performance 101
+          - generic [ref=e250]:
+            - heading "Performance" [level=3] [ref=e251]
+            - paragraph [ref=e252]: 1 project
+        - generic [ref=e254] [cursor=pointer]:
+          - generic [ref=e260]:
+            - img [ref=e263]
+            - img "Web Automation 101" [ref=e268]
+            - paragraph [ref=e270]: Web Automation 101
+          - generic [ref=e272]:
+            - heading "Web Automation" [level=3] [ref=e273]
+            - paragraph [ref=e274]: 1 project
+        - generic [ref=e276] [cursor=pointer]:
+          - generic [ref=e282]:
+            - img "CI/CD 101" [ref=e283]
+            - paragraph [ref=e285]: CI/CD 101
+          - generic [ref=e287]:
+            - heading "CI/CD" [level=3] [ref=e288]
+            - paragraph [ref=e289]: 1 project
+        - generic [ref=e291] [cursor=pointer]:
+          - generic [ref=e297]:
+            - img "Appium 101" [ref=e298]
+            - paragraph [ref=e300]: Appium 101
+          - generic [ref=e302]:
+            - heading "Mobile" [level=3] [ref=e303]
+            - paragraph [ref=e304]: 1 project
+    - generic [ref=e305]:
+      - generic [ref=e306]:
+        - heading "Academic Education" [level=2] [ref=e307]
+        - paragraph [ref=e308]: My foundation in Computer Science and Engineering.
+      - generic [ref=e313]:
+        - img "Lovely Professional University Logo" [ref=e315]
+        - heading "Lovely Professional University" [level=3] [ref=e316]
+        - generic [ref=e317]:
+          - img [ref=e318]
+          - generic [ref=e321]: B.Tech in CSE
+        - generic [ref=e322]:
+          - generic [ref=e323]:
+            - img [ref=e324]
+            - text: 2016-2022
+          - generic [ref=e327]: Punjab, India
+        - paragraph
+    - generic [ref=e329]:
+      - generic [ref=e330]:
+        - heading "Professional Certifications" [level=2] [ref=e331]
+        - paragraph [ref=e332]: My professional qualifications and industry credentials.
+      - generic [ref=e337]:
+        - heading "2025" [level=3] [ref=e338]
+        - generic [ref=e339]:
+          - paragraph [ref=e340]: Certification
+          - generic [ref=e341]:
+            - img "Full Stack SQA and Software Test Automation" [ref=e343]
+            - generic [ref=e344]:
+              - heading "Full Stack SQA and Software Test Automation" [level=4] [ref=e345]
+              - paragraph [ref=e346]: RoadToSDET
+              - generic [ref=e347]:
+                - generic [ref=e348]: Manual Testing
+                - generic [ref=e349]: API Testing
+                - generic [ref=e350]: Performance Testing
+                - generic [ref=e351]: Database
+                - generic [ref=e352]: Java
+                - generic [ref=e353]: OOP
+                - generic [ref=e354]: JUnit
+                - generic [ref=e355]: JavaScript
+                - generic [ref=e356]: PlayWright
+                - generic [ref=e357]: TestNG
+                - generic [ref=e358]: Appium
+                - generic [ref=e359]: CI/CD
+    - generic [ref=e363]:
+      - generic [ref=e364]:
+        - generic [ref=e365]:
+          - heading "Latest Articles" [level=4] [ref=e366]
+          - paragraph [ref=e367]: Insights, thoughts, and tutorials on web development and design.
+        - generic [ref=e368]:
+          - button "Previous posts" [disabled] [ref=e369]:
+            - img [ref=e370]
+          - button "Next posts" [ref=e372]:
+            - img [ref=e373]
+          - link:
+            - /url: /blog
+      - generic [ref=e376]:
+        - 'link "Mastering API Testing: The Foundation of Reliable QA Mastering API Testing: The Foundation of Reliable QA Why UI tests are too flaky for the core of your automation strategy. A guide to the \"Testing Pyramid\" and practical examples of robust API testing using efficient assertions." [ref=e378] [cursor=pointer]':
+          - /url: /blog/api-testing-101
+          - 'img "Mastering API Testing: The Foundation of Reliable QA" [ref=e380]'
+          - generic [ref=e381]:
+            - 'heading "Mastering API Testing: The Foundation of Reliable QA" [level=3] [ref=e382]'
+            - paragraph [ref=e383]: Why UI tests are too flaky for the core of your automation strategy. A guide to the "Testing Pyramid" and practical examples of robust API testing using efficient assertions.
+        - 'link "Under the Hood: Building a Portfolio with Next.js 14 and Sanity Under the Hood: Building a Portfolio with Next.js 14 and Sanity A full retrospective on the tech stack used to build this website. I discuss the architectural decisions behind using Next.js App Router, the flexibility of Sanity CMS, and optimizing animations with Framer Motion." [ref=e385] [cursor=pointer]':
+          - /url: /blog/building-my-portfolio
+          - 'img "Under the Hood: Building a Portfolio with Next.js 14 and Sanity" [ref=e387]'
+          - generic [ref=e388]:
+            - 'heading "Under the Hood: Building a Portfolio with Next.js 14 and Sanity" [level=3] [ref=e389]'
+            - paragraph [ref=e390]: A full retrospective on the tech stack used to build this website. I discuss the architectural decisions behind using Next.js App Router, the flexibility of Sanity CMS, and optimizing animations with Framer Motion.
+        - 'link "Pixel Perfect: Catching UI Bugs with Visual Regression Pixel Perfect: Catching UI Bugs with Visual Regression Functional tests check if it works; visual tests check if it looks right. Learn how to prevent CSS regressions using tools like Percy and Playwright''s built-in comparison engine." [ref=e392] [cursor=pointer]':
+          - /url: /blog/visual-regression-testing
+          - 'img "Pixel Perfect: Catching UI Bugs with Visual Regression" [ref=e394]'
+          - generic [ref=e395]:
+            - 'heading "Pixel Perfect: Catching UI Bugs with Visual Regression" [level=3] [ref=e396]'
+            - paragraph [ref=e397]: Functional tests check if it works; visual tests check if it looks right. Learn how to prevent CSS regressions using tools like Percy and Playwright's built-in comparison engine.
+        - 'link "Goodbye Selenium, Hello Playwright: The New King of E2E Goodbye Selenium, Hello Playwright: The New King of E2E A technical deep-dive comparing Playwright vs. Selenium. I analyze architecture, speed, reliability, and explain why I migrated my latest test suite to Playwright." [ref=e399] [cursor=pointer]':
+          - /url: /blog/why-playwright
+          - 'img "Goodbye Selenium, Hello Playwright: The New King of E2E" [ref=e401]'
+          - generic [ref=e402]:
+            - 'heading "Goodbye Selenium, Hello Playwright: The New King of E2E" [level=3] [ref=e403]'
+            - paragraph [ref=e404]: A technical deep-dive comparing Playwright vs. Selenium. I analyze architecture, speed, reliability, and explain why I migrated my latest test suite to Playwright.
+        - 'link "The Shift Left: Why QA Happens Earlier Now The Shift Left: Why QA Happens Earlier Now An in-depth look at the \"Shift Left\" movement in DevOps, exploring why traditional testing models fail in high-velocity environments and how to implement earlier quality checks." [ref=e406] [cursor=pointer]':
+          - /url: /blog/shift-left-qa
+          - 'img "The Shift Left: Why QA Happens Earlier Now" [ref=e408]'
+          - generic [ref=e409]:
+            - 'heading "The Shift Left: Why QA Happens Earlier Now" [level=3] [ref=e410]'
+            - paragraph [ref=e411]: An in-depth look at the "Shift Left" movement in DevOps, exploring why traditional testing models fail in high-velocity environments and how to implement earlier quality checks.
+      - link "View all articles" [ref=e413] [cursor=pointer]:
+        - /url: /blog
+        - button "View all articles" [ref=e414]:
+          - text: View all articles
+          - img [ref=e415]
+    - generic [ref=e419]:
+      - heading "Contact Me" [level=1] [ref=e420]
+      - paragraph [ref=e421]: I am available for questions, feedback, or collaboration opportunities. Let me know how I can help!
+      - generic [ref=e422]:
+        - link "Email hello@example.com" [ref=e423] [cursor=pointer]:
+          - /url: mailto:hello@example.com
+          - img [ref=e425]
+          - generic [ref=e428]:
+            - heading "Email" [level=3] [ref=e429]
+            - paragraph [ref=e430]: hello@example.com
+        - link "Phone +1 (555) 000-0000" [ref=e431] [cursor=pointer]:
+          - /url: tel:+15550000000
+          - img [ref=e433]
+          - generic [ref=e435]:
+            - heading "Phone" [level=3] [ref=e436]
+            - paragraph [ref=e437]: +1 (555) 000-0000
+        - link "Social Connect" [ref=e438] [cursor=pointer]:
+          - /url: "#"
+          - img [ref=e440]
+          - generic [ref=e444]:
+            - heading "Social" [level=3] [ref=e445]
+            - paragraph [ref=e446]: Connect
+    - generic [ref=e448]:
+      - generic [ref=e449]:
+        - generic [ref=e451]:
+          - generic [ref=e452]:
+            - link "GitHub" [ref=e453] [cursor=pointer]:
+              - /url: https://github.com
+              - img [ref=e455]
+              - generic [ref=e458]: GitHub
+            - link "LinkedIn" [ref=e459] [cursor=pointer]:
+              - /url: https://linkedin.com
+              - img [ref=e461]
+              - generic [ref=e465]: LinkedIn
+            - link "Email" [ref=e466] [cursor=pointer]:
+              - /url: mailto:hello@example.com
+              - img [ref=e468]
+              - generic [ref=e471]: Email
+          - generic [ref=e472]:
+            - link "Home" [ref=e473] [cursor=pointer]:
+              - /url: /
+            - link "About" [ref=e474] [cursor=pointer]:
+              - /url: "#about"
+            - link "Projects" [ref=e475] [cursor=pointer]:
+              - /url: "#projects"
+            - link "Blog" [ref=e476] [cursor=pointer]:
+              - /url: "#blog"
+        - paragraph [ref=e478]: ©2026 SIRAJUL ISLAM. All rights reserved.
+      - generic: SIRAJUL ISLAM
+  - button "Toggle theme" [ref=e481]:
+    - img [ref=e484]
+    - generic [ref=e490]: Toggle theme
+  - button "Open Next.js Dev Tools" [ref=e496] [cursor=pointer]:
+    - img [ref=e497]
+  - alert [ref=e500]
+```
