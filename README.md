@@ -70,6 +70,7 @@ graph TD
 | **CMS** | [Sanity v3](https://www.sanity.io/) | Headless content backend |
 | **Animations** | [Framer Motion](https://www.framer.com/motion/) | Complex UI transitions and layouts |
 | **Icons** | [Lucide React](https://lucide.dev/) | Consistent and clean SVG icons |
+| **Testing** | [Playwright](https://playwright.dev/) | End-to-end testing framework |
 | **Deployment** | [Vercel](https://vercel.com/) | CI/CD, Hosting, and Edge caching |
 
 ## 🚀 Getting Started
