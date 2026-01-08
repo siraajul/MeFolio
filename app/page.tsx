@@ -111,6 +111,7 @@ export default async function Home() {
     tagline: settings?.tagline || "Ensuring software reliability and quality through automation.",
     profileImageUrl: settings?.profileImageUrl,
     socialLinks: settings?.socialLinks || [],
+    cvVideo: settings?.cvVideo,
   };
 
   return (

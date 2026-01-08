@@ -62,5 +62,11 @@ export default defineType({
             description: "Recommended size: 1200x630px. Shown when sharing link on social media.",
             options: { hotspot: true },
         }),
+        defineField({
+            name: "cvVideo",
+            title: "Video CV URL",
+            type: "url",
+            description: "Direct link to your video CV (mp4, webm, or hosted link)",
+        }),
     ],
 });

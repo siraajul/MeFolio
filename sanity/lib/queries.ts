@@ -9,7 +9,8 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   "profileImageUrl": profileImage.asset->url,
   "ogImageUrl": ogImage.asset->url,
   socialLinks[]{platform, url},
-  "resumeUrl": resumeFile.asset->url
+  "resumeUrl": resumeFile.asset->url,
+  cvVideo
 }`;
 
 export const experiencesQuery = groq`*[_type == "experience"] | order(order asc){

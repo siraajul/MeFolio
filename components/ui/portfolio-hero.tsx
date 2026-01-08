@@ -99,6 +99,7 @@ interface PortfolioHeroProps {
   tagline: string;
   profileImageUrl: string;
   socialLinks: SocialLink[];
+  cvVideo?: string;
 }
 
 export default function PortfolioHero({
@@ -107,6 +108,7 @@ export default function PortfolioHero({
   tagline = "Ensuring software reliability and quality through automation.",
   profileImageUrl,
   socialLinks = [],
+  cvVideo,
 }: PortfolioHeroProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -261,7 +263,7 @@ export default function PortfolioHero({
                    >
                       <X className="w-8 h-8" />
                    </button>
-                   <VideoPlayer src="https://videos.pexels.com/video-files/30333849/13003128_2560_1440_25fps.mp4" />
+                   <VideoPlayer src={cvVideo || "https://videos.pexels.com/video-files/30333849/13003128_2560_1440_25fps.mp4"} />
                 </motion.div>
              </motion.div>
            )}
