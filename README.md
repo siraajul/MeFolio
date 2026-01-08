@@ -13,6 +13,7 @@
 -   **Interactive UI**: Smooth animations using **Framer Motion**, **Lenis** (smooth scrolling), and **Shadcn/UI components**.
 -   **Structure**: Clean architecture with strict TypeScript types (`types/sanity.ts`) and custom hooks.
 -   **Performance**: Optimized with `next/font` (zero CLS) and automatic image optimization.
+-   **Live Activity**: **GitHub Contribution Graph** to showcase coding consistency and activity.
 -   **Quality Assurance**: Comprehensive E2E testing with **Playwright** and CI/CD pipelines via GitHub Actions.
 -   **Dark Mode**: Native dark mode support with system preference detection.
 

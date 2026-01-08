@@ -15,13 +15,14 @@ import AboutSection2 from "@/components/ui/about-section-2";
 import ProjectsSection from "@/components/ui/3d-folder";
 import { EducationCard } from "@/components/ui/education-card";
 import { WorkExperience } from "@/components/ui/work-experience";
-import { ExpandableSkillTags } from "@/components/ui/expandable-skill-tags";
 import { SiteNavBar } from "@/components/ui/site-navbar";
 import { Timeline } from "@/components/ui/timeline";
 import { Blog } from "@/components/ui/blog-section";
 import { Contact2 } from "@/components/ui/contact-2";
 import { Footer } from "@/components/ui/modem-animated-footer";
 import { Github, Linkedin, Mail } from "lucide-react";
+import { SkillsSection } from "@/components/ui/skills-section";
+import { GitHubActivity } from "@/components/ui/github-activity";
 
 import { 
   SiteSettings, 
@@ -125,30 +126,7 @@ export default async function Home() {
           <AboutSection2 />
         </div>
         
-        {/* Skills Section */}
-        <section id="skills" className="min-h-0 md:min-h-screen w-full flex flex-col justify-center max-w-7xl mx-auto py-12 md:py-16 px-4 md:px-6">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 sm:mb-16 text-center uppercase tracking-tight">
-            Technical <span className="text-brand italic">Expertise</span>
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-            {skillCategories?.length > 0 ? (
-              skillCategories.map((category: SkillCategory) => (
-                <div 
-                  key={category._id}
-                  className="p-6 rounded-2xl border border-border/50 shadow-lg bg-card/30 backdrop-blur-sm hover:border-brand/30 transition-colors"
-                >
-                  <ExpandableSkillTags
-                    title={category.title}
-                    skills={category.skills}
-                    initialCount={8}
-                  />
-                </div>
-              ))
-            ) : (
-              <p className="col-span-full text-center text-muted-foreground">Add skills in Sanity Studio</p>
-            )}
-          </div>
-        </section>
+        <SkillsSection categories={skillCategories} />
         
         {/* Experience Section */}
         <section id="experience" className="min-h-0 md:min-h-screen w-full flex flex-col justify-center max-w-7xl mx-auto py-12 md:py-16 px-4 md:px-6">
@@ -168,6 +146,11 @@ export default async function Home() {
         <div id="projects">
           <ProjectsSection categories={projectCategories || []} />
         </div>
+
+        {/* GitHub Activity Section */}
+        <GitHubActivity username={
+            settings?.socialLinks?.find((link: any) => link.platform.toLowerCase().includes("github"))?.url.split("/").pop() || "siraajul"
+        } />
 
         {/* Education Section */}
         <section id="education" className="w-full flex flex-col justify-center items-center py-8 sm:py-12 px-4">

@@ -54,10 +54,10 @@ export const ExpandableSkillTags = ({
   };
 
   return (
-    <section className={cn("w-full", className)}>
+    <section className={cn("w-full flex flex-col items-center text-center", className)}>
       <h3 className="mb-6 text-xl font-bold uppercase tracking-tight text-foreground">{title}</h3>
       <motion.div
-        className="flex flex-wrap gap-2"
+        className="flex flex-wrap gap-2 justify-center"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
