@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { Menu, X, ChevronDown, Github, Linkedin, Mail, FileText } from "lucide-react";
+import { Menu, X, ChevronDown, Github, Linkedin, Mail, FileText, Play } from "lucide-react";
 import { ParticleButton } from "@/components/ui/particle-button";
+import VideoPlayer from "@/components/ui/video-player";
+import { AnimatePresence, motion } from "framer-motion";
 
 // Inline Button component
 const Button = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(
@@ -107,6 +109,7 @@ export default function PortfolioHero({
   socialLinks = [],
 }: PortfolioHeroProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -139,9 +142,9 @@ export default function PortfolioHero({
     <div 
       className="min-h-screen text-foreground transition-colors bg-[#FAFAFA] dark:bg-black text-[#1a1a1a] dark:text-white"
     >
-      <main className="relative min-h-screen flex flex-col">
+      <main className="relative min-h-screen flex flex-col justify-center items-center pt-40 pb-20">
         {/* Centered Main Name */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-4">
+        <div className="relative w-full px-4 mb-12 sm:mb-16">
           <div className="relative text-center">
             <div>
               <BlurText
@@ -178,7 +181,7 @@ export default function PortfolioHero({
         </div>
 
         {/* Tagline */}
-        <div className="absolute bottom-20 sm:bottom-24 md:bottom-28 lg:bottom-32 xl:bottom-40 left-1/2 -translate-x-1/2 w-full px-6">
+        <div className="relative w-full px-6 flex flex-col items-center gap-8">
           <div className="flex justify-center">
             <BlurText
               text={tagline}
@@ -188,9 +191,25 @@ export default function PortfolioHero({
               className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] text-center transition-colors duration-300 text-neutral-500 hover:text-black dark:text-neutral-400 dark:hover:text-white flex flex-wrap justify-center gap-[0.3em]"
               style={{ fontFamily: "'Antic', sans-serif" }}
             />
-            </div>
+          </div>
+
+          {/* Video CV Button */}
+          <div className="flex justify-center">
+             <button
+                onClick={() => setIsVideoOpen(true)}
+                className="group relative inline-flex items-center gap-2 px-6 py-3 bg-secondary/50 dark:bg-white/5 backdrop-blur-sm border border-border/50 dark:border-white/10 rounded-full hover:bg-secondary/80 dark:hover:bg-white/10 transition-all duration-300 hover:scale-105"
+             >
+                <div className="w-8 h-8 rounded-full bg-brand/20 flex items-center justify-center group-hover:bg-brand/30 transition-colors">
+                   <Play className="w-4 h-4 text-brand fill-brand" />
+                </div>
+                <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                   Watch Video CV
+                </span>
+             </button>
+          </div>
+
             {/* Social Icons */}
-            <div className="flex justify-center items-center gap-6 mt-6 md:mt-8">
+            <div className="flex justify-center items-center gap-6">
               {socialLinks.map((link, idx) => (
                 <a
                   key={idx}
@@ -219,6 +238,34 @@ export default function PortfolioHero({
         >
           <ChevronDown className="w-5 h-5 md:w-8 md:h-8 text-neutral-500 hover:text-black dark:hover:text-white transition-colors duration-300" />
         </button>
+
+        <AnimatePresence>
+           {isVideoOpen && (
+             <motion.div
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+               className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4"
+               onClick={() => setIsVideoOpen(false)}
+             >
+                <motion.div
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.9, opacity: 0 }}
+                  onClick={(e) => e.stopPropagation()}
+                  className="relative w-full max-w-5xl"
+                >
+                   <button
+                     onClick={() => setIsVideoOpen(false)}
+                     className="absolute -top-12 right-0 p-2 text-white/70 hover:text-white transition-colors"
+                   >
+                      <X className="w-8 h-8" />
+                   </button>
+                   <VideoPlayer src="https://videos.pexels.com/video-files/30333849/13003128_2560_1440_25fps.mp4" />
+                </motion.div>
+             </motion.div>
+           )}
+        </AnimatePresence>
       </main>
     </div>
   );

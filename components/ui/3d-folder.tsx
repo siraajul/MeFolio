@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect, useLayoutEffect, useCallback, forwardRef } from 'react';
 import { Sun, Moon, X, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { LoaderIcon } from "@/components/LoaderIcon";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -46,6 +47,8 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
     const translationX = factor * 85; 
     const translationY = Math.abs(factor) * 12;
 
+    const [isLoading, setIsLoading] = useState(true);
+
     return (
       <div
         ref={ref}
@@ -73,12 +76,19 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
           "transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
           "group-hover/card:-translate-y-6 group-hover/card:shadow-2xl group-hover/card:shadow-accent/40 group-hover/card:ring-2 group-hover/card:ring-accent group-hover/card:scale-125"
         )}>
+          {isLoading && (
+            <div className="absolute inset-0 flex items-center justify-center bg-muted/20 z-10 backdrop-blur-sm">
+                <LoaderIcon className="text-brand w-8 h-8" />
+            </div>
+          )}
           <img 
             src={image || PLACEHOLDER_IMAGE} 
             alt={title} 
             className="w-full h-full object-cover"
+            onLoad={() => setIsLoading(false)}
             onError={(e) => {
               (e.target as HTMLImageElement).src = PLACEHOLDER_IMAGE;
+              setIsLoading(false);
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
