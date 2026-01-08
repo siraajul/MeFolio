@@ -23,21 +23,33 @@ import { Contact2 } from "@/components/ui/contact-2";
 import { Footer } from "@/components/ui/modem-animated-footer";
 import { Github, Linkedin, Mail } from "lucide-react";
 
+import { 
+  SiteSettings, 
+  About, 
+  Experience, 
+  SkillCategory, 
+  ProjectCategory, 
+  Education, 
+  Certification, 
+  Post 
+} from "@/types/sanity";
+
 // Revalidate every 60 seconds
 export const revalidate = 60;
 
 export default async function Home() {
-  const settings = await client.fetch(siteSettingsQuery);
-  const about = await client.fetch(aboutQuery);
-  const experiences = await client.fetch(experiencesQuery);
-  const skillCategories = await client.fetch(skillCategoriesQuery);
-  const projectCategories = await client.fetch(projectCategoriesQuery);
-  const educations = await client.fetch(educationsQuery);
-  const certifications = await client.fetch(certificationsQuery);
-  const posts = await client.fetch(postsQuery);
+  const settings = await client.fetch<SiteSettings>(siteSettingsQuery);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const about = await client.fetch<About>(aboutQuery);
+  const experiences = await client.fetch<Experience[]>(experiencesQuery);
+  const skillCategories = await client.fetch<SkillCategory[]>(skillCategoriesQuery);
+  const projectCategories = await client.fetch<ProjectCategory[]>(projectCategoriesQuery);
+  const educations = await client.fetch<Education[]>(educationsQuery);
+  const certifications = await client.fetch<Certification[]>(certificationsQuery);
+  const posts = await client.fetch<Post[]>(postsQuery);
 
   // Map Certifications to Timeline Data
-  const certificationTimelineData = certifications.map((cert: any) => ({
+  const certificationTimelineData = certifications.map((cert: Certification) => ({
     title: cert.year,
     content: (
       <div>
@@ -53,7 +65,6 @@ export default async function Home() {
                 width={48}
                 height={48}
                 className="w-full h-full object-contain"
-                unoptimized
               />
             </div>
           )}
@@ -103,10 +114,7 @@ export default async function Home() {
 
   return (
     <>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&family=Antic&display=swap"
-      />
+
       <SiteNavBar />
       <div className="w-full" id="home">
         <PortfolioHero {...heroProps} />
@@ -124,7 +132,7 @@ export default async function Home() {
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
             {skillCategories?.length > 0 ? (
-              skillCategories.map((category: any) => (
+              skillCategories.map((category: SkillCategory) => (
                 <div 
                   key={category._id}
                   className="p-6 rounded-2xl border border-border/50 shadow-lg bg-card/30 backdrop-blur-sm hover:border-brand/30 transition-colors"

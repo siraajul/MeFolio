@@ -15,6 +15,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+import { Fira_Code, Antic } from "next/font/google";
+
+const firaCode = Fira_Code({
+  variable: "--font-fira-code",
+  subsets: ["latin"],
+  weight: "700",
+});
+
+const antic = Antic({
+  variable: "--font-antic",
+  subsets: ["latin"],
+  weight: "400",
+});
+
 import { client } from "@/sanity/lib/client";
 import { siteSettingsQuery } from "@/sanity/lib/queries";
 
@@ -54,7 +68,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${firaCode.variable} ${antic.variable} antialiased`}
       >
         <SmoothScroll>
           {children}

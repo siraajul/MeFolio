@@ -1,28 +1,9 @@
 "use client";
 
 import { AnimeNavBar } from "@/components/ui/anime-navbar";
-import { 
-  Home, 
-  User, 
-  Code2, 
-  Briefcase, 
-  FolderOpen, 
-  GraduationCap, 
-  PenTool, 
-  Mail 
-} from "lucide-react";
-
-const NAV_ITEMS = [
-  { name: "Home", url: "#home", icon: Home },
-  { name: "About", url: "#about", icon: User },
-  { name: "Skills", url: "#skills", icon: Code2, hiddenOnMobile: true },
-  { name: "Experience", url: "#experience", icon: Briefcase, hiddenOnMobile: true },
-  { name: "Projects", url: "#projects", icon: FolderOpen },
-  { name: "Education", url: "#education", icon: GraduationCap, hiddenOnMobile: true },
-  { name: "Writing", url: "#writing", icon: PenTool, hiddenOnMobile: true },
-  { name: "Contact", url: "#contact", icon: Mail },
-];
+import { useNavigation } from "@/hooks/use-navigation";
 
 export function SiteNavBar() {
-  return <AnimeNavBar items={NAV_ITEMS} defaultActive="Home" />;
+  const items = useNavigation();
+  return <AnimeNavBar items={items} defaultActive="Home" />;
 }

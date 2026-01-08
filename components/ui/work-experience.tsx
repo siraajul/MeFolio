@@ -104,7 +104,6 @@ export function ExperienceItem({
                    width={28}
                    height={28}
                    className="rounded-lg"
-                   unoptimized
                  />
                ) : (
                  <BriefcaseBusinessIcon className="w-5 h-5 text-muted-foreground group-hover:text-brand transition-colors" />
