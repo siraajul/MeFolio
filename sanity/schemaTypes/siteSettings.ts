@@ -68,5 +68,18 @@ export default defineType({
             type: "url",
             description: "Direct link to your video CV (mp4, webm, or hosted link)",
         }),
+        defineField({
+            name: "phoneNumber",
+            title: "Phone Number",
+            type: "string",
+            description: "Your contact phone number (e.g., +1 555-0123)",
+        }),
+        defineField({
+            name: "email",
+            title: "Email Address",
+            type: "string",
+            description: "Your contact email address",
+            validation: (Rule) => Rule.email(),
+        }),
     ],
 });

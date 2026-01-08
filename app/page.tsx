@@ -205,7 +205,14 @@ export default async function Home() {
 
         {/* Contact Section */}
         <div id="contact">
-          <Contact2 />
+          <Contact2 
+            phone={settings?.phoneNumber}
+            email={settings?.email}
+            web={{
+                label: "LinkedIn",
+                url: settings?.socialLinks?.find((link: any) => link.platform.toLowerCase().includes("linkedin"))?.url || "#"
+            }}
+          />
         </div>
 
         <Footer
