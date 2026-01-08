@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 import SmoothScroll from "@/components/ui/smooth-scroll";
 import { ThemeToggleFab } from "@/components/ui/theme-toggle-fab";
@@ -74,6 +75,7 @@ export default function RootLayout({
           {children}
           <ThemeToggleFab />
         </SmoothScroll>
+        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
