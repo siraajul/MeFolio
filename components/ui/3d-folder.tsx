@@ -70,6 +70,7 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
           e.stopPropagation();
           onClick();
         }}
+        onTouchStart={(e) => e.stopPropagation()}
       >
         <div className={cn(
           "w-full h-full rounded-lg overflow-hidden shadow-xl bg-card border border-white/5 relative",
@@ -353,10 +354,19 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
                   <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground/60">{internalIndex + 1} / {totalProjects}</p>
                 </div>
               </div>
-              <button className={cn("flex items-center gap-2 px-6 py-3 text-sm font-bold uppercase tracking-widest text-primary-foreground bg-primary hover:brightness-110 rounded-xl shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-105 active:scale-95")}>
+              <a 
+                href={currentProject?.link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className={cn(
+                    "flex items-center gap-2 px-6 py-3 text-sm font-bold uppercase tracking-widest text-primary-foreground bg-primary hover:brightness-110 rounded-xl shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-105 active:scale-95",
+                    !currentProject?.link && "opacity-50 pointer-events-none"
+                )}
+              >
                 <span>View Project</span>
                 <ExternalLink className="w-4 h-4" />
-              </button>
+              </a>
             </div>
           </div>
         </div>
