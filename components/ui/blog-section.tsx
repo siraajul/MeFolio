@@ -6,6 +6,7 @@ import { ParticleButton } from "@/components/ui/particle-button";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { SupportKori } from "@/components/ui/support-kori";
 
 export interface BlogPost {
   id: string;
@@ -167,6 +168,9 @@ export const Blog = ({ posts }: BlogProps) => {
               </ParticleButton>
            </Link>
         </div>
+
+        {/* Support Kori Section */}
+        <SupportKori className="mt-20" />
 
       </div>
     </div>

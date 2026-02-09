@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import { SupportKori } from "@/components/ui/support-kori";
 
 // Force dynamic rendering to ensure fresh data
 export const dynamic = "force-dynamic";
@@ -185,6 +186,9 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
             <p className="text-muted-foreground italic">No content available.</p>
           )}
         </div>
+
+        {/* Support Kori */}
+        <SupportKori className="mt-12 mb-12" />
 
         {/* Series Navigation */}
         {post.series && post.series.posts && (
