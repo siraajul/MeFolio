@@ -22,7 +22,7 @@ export const SupportKori = ({ className = "" }: SupportKoriProps) => {
           <img 
             src="/support-kori.png" 
             alt="Support Kori" 
-            className="h-12 w-auto object-contain relative z-10"
+            className="h-12 w-auto object-contain relative z-10 dark:invert"
             onError={(e) => {
               e.currentTarget.style.display = 'none';
               e.currentTarget.parentElement?.querySelector('.fallback-text')?.classList.remove('hidden');
