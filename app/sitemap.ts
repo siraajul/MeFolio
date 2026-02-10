@@ -3,25 +3,39 @@ import { client } from '@/sanity/lib/client'
 import { groq } from 'next-sanity'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://mefolio.vercel.app';
+    const baseUrl = 'https://siraajul.vercel.app'
 
-    // Fetch all posts to generate dynamic routes
-    const posts = await client.fetch(groq`*[_type == "post"]{ "slug": slug.current, publishedAt }`);
+    // Fetch all dynamic routes (projects and blog posts)
+    const projects = await client.fetch(groq`*[_type == "projectCategory"].projects[].slug.current`)
+    // Assuming posts are in a similar structure or check your query for blog posts
+    // const posts = await client.fetch(groq`*[_type == "post"].slug.current`) 
 
-    const blogUrls = posts.map((post: any) => ({
-        url: `${baseUrl}/blog/${post.slug}`,
-        lastModified: new Date(post.publishedAt || new Date()),
+    const projectUrls = (projects || []).map((slug: string) => ({
+        url: `${baseUrl}/projects/${slug}`,
+        lastModified: new Date(),
         changeFrequency: 'weekly' as const,
-        priority: 0.7,
-    }));
+        priority: 0.8,
+    }))
 
     return [
         {
             url: baseUrl,
             lastModified: new Date(),
-            changeFrequency: 'monthly',
+            changeFrequency: 'yearly',
             priority: 1,
         },
-        ...blogUrls,
+        {
+            url: `${baseUrl}/resume`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.9,
+        },
+        {
+            url: `${baseUrl}/blog`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.8,
+        },
+        ...projectUrls,
     ]
 }

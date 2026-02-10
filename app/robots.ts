@@ -1,14 +1,12 @@
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://mefolio.vercel.app';
-
     return {
         rules: {
             userAgent: '*',
             allow: '/',
-            disallow: '/studio/',
+            disallow: ['/studio/', '/private/'],
         },
-        sitemap: `${baseUrl}/sitemap.xml`,
+        sitemap: 'https://siraajul.vercel.app/sitemap.xml',
     }
 }
