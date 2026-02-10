@@ -81,5 +81,17 @@ export default defineType({
             description: "Your contact email address",
             validation: (Rule) => Rule.email(),
         }),
+        defineField({
+            name: "linkedin",
+            title: "LinkedIn URL",
+            type: "url",
+            description: "Direct link to your LinkedIn profile (e.g. https://www.linkedin.com/in/username)",
+        }),
+        defineField({
+            name: "github",
+            title: "GitHub URL",
+            type: "url",
+            description: "Direct link to your GitHub profile (e.g. https://github.com/username)",
+        }),
     ],
 });

@@ -150,7 +150,7 @@ export default async function Home() {
 
         {/* GitHub Activity Section */}
         <GithubActivity username={
-            settings?.socialLinks?.find((link: any) => link.platform.toLowerCase().includes("github"))?.url.split("/").pop() || "siraajul"
+            (settings?.github || settings?.socialLinks?.find((link: any) => link.platform.toLowerCase().includes("github"))?.url || "").split("/").pop() || "siraajul"
         } />
 
         {/* Education Section */}
@@ -210,7 +210,7 @@ export default async function Home() {
             email={settings?.email}
             web={{
                 label: "LinkedIn",
-                url: settings?.socialLinks?.find((link: any) => link.platform.toLowerCase().includes("linkedin"))?.url || "#"
+                url: settings?.linkedin || settings?.socialLinks?.find((link: any) => link.platform.toLowerCase().includes("linkedin"))?.url || "#"
             }}
           />
         </div>
@@ -218,16 +218,18 @@ export default async function Home() {
         <Footer
           brandName={settings?.firstName ? `${settings.firstName} ${settings.lastName}` : "Sirajul Islam"}
           brandDescription={settings?.brandDescription || "SQA Automation Engineer & SDET specializing in scalable test frameworks and quality assurance strategies."}
-          socialLinks={settings?.socialLinks?.map((link: any) => ({
-            icon: link.platform.toLowerCase().includes("github") ? <Github className="w-6 h-6" /> : 
-                  link.platform.toLowerCase().includes("linkedin") ? <Linkedin className="w-6 h-6" /> : 
-                  <Mail className="w-6 h-6" />,
-            href: link.url,
-            label: link.platform,
-          })) || [
-             { icon: <Github className="w-6 h-6" />, href: "https://github.com", label: "GitHub" },
-             { icon: <Linkedin className="w-6 h-6" />, href: "https://linkedin.com", label: "LinkedIn" },
-             { icon: <Mail className="w-6 h-6" />, href: "mailto:hello@example.com", label: "Email" }
+          socialLinks={[
+             ...(settings?.github ? [{ icon: <Github className="w-6 h-6" />, href: settings.github, label: "GitHub" }] : []),
+             ...(settings?.linkedin ? [{ icon: <Linkedin className="w-6 h-6" />, href: settings.linkedin, label: "LinkedIn" }] : []),
+             ...(settings?.email ? [{ icon: <Mail className="w-6 h-6" />, href: `mailto:${settings.email}`, label: "Email" }] : []),
+             ...(settings?.socialLinks?.filter((link: any) => {
+               const p = link.platform.toLowerCase();
+               return !p.includes('github') && !p.includes('linkedin');
+             }).map((link: any) => ({
+               icon: <Mail className="w-6 h-6" />,
+               href: link.url,
+               label: link.platform,
+             })) || []),
           ]}
           navLinks={[
             { label: "Home", href: "/" },

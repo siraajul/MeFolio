@@ -12,7 +12,9 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   "resumeUrl": resumeFile.asset->url,
   cvVideo,
   phoneNumber,
-  email
+  email,
+  linkedin,
+  github
 }`;
 
 export const experiencesQuery = groq`*[_type == "experience"] | order(order asc){
