@@ -1,185 +1,185 @@
 # MeFolio - Modern Developer Portfolio 🚀
 
-![MeFolio Banner](https://img.shields.io/badge/Status-Production%20Ready-success?style=for-the-badge) ![Tech Stack](https://img.shields.io/badge/Stack-Next.js%2014%20%7C%20Sanity%20%7C%20Tailwind-blue?style=for-the-badge)
+![MeFolio Banner](https://img.shields.io/badge/Status-Production%20Ready-success?style=for-the-badge) ![Next.js](https://img.shields.io/badge/Next.js-14+-black?style=for-the-badge&logo=next.js) ![Sanity](https://img.shields.io/badge/Sanity-v3-e34c26?style=for-the-badge&logo=sanity) ![Tailwind](https://img.shields.io/badge/Tailwind-v4-38bdf8?style=for-the-badge&logo=tailwind-css) ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript) ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
-**MeFolio** is a high-performance, aesthetically pleasing, and technically robust personal portfolio tailored for Software Engineers, SDETs, and Designers. It bridges the gap between a stunning visual presentation and a headless content management system.
+## 📖 What is MeFolio?
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/sirajul-islam/mefolio)
+**MeFolio** is a high-performance, aesthetically pleasing, and technically robust personal portfolio template tailored for **Software Engineers**, **SDETs**, and **Designers**. 
 
-## 🌟 Features
+It solves the common problem of "Portfolio Paralysis" by bridging the gap between a stunning visual presentation and a powerful Headless CMS. Instead of hardcoding your projects and experience, you manage them in a dedicated dashboard, while the frontend remains a blazing-fast Next.js application.
 
--   **Headless CMS Integration**: Powered by [Sanity.io](https://www.sanity.io/) for real-time content management (Projects, Experience, Education, Skills).
--   **Modern Tech Stack**: Built with **Next.js 14+ (App Router)**, **TypeScript**, and **Tailwind CSS v4**.
--   **Interactive UI**: Smooth animations using **Framer Motion**, **Lenis** (smooth scrolling), and **Shadcn/UI components**.
--   **Structure**: Clean architecture with strict TypeScript types (`types/sanity.ts`) and custom hooks.
--   **Performance**: Optimized with `next/font` (zero CLS) and automatic image optimization.
--   **Live Activity**: **GitHub Contribution Graph** to showcase coding consistency and activity.
--   **Quality Assurance**: Comprehensive E2E testing with **Playwright** and CI/CD pipelines via GitHub Actions.
--   **Dark Mode**: Native dark mode support with system preference detection.
+---
 
-### ✨ New Features (v2.0)
+## 🏗 System Architecture
 
--   **📄 Smart Resume System (`/resume`)**: 
-    -   Dedicated route optimizing content from Sanity.
-    -   **ATS-Friendly** layout.
-    -   **Print-Optimized**: Automatically formats perfectly for PDF export (Cmd+P).
--   **💼 Deep Project Case Studies (`/projects/[slug]`)**: 
-    -   Rich text support for "Problem", "Solution", and "Tech Stack".
-    -   Image galleries and live demos.
--   **🖼️ Dynamic Social Cards**: 
-    -   Auto-generated Open Graph images (`next/og`) for professional link sharing.
--   **☕ Support Kori Integration**: 
-    -   Seamless "Buy Me a Coffee" integration in blog posts and footer.
-
-## 📸 Gallery
-
-> *Tip: Replace these placeholders with actual screenshots of your application.*
-
-| Hero Section (Dark Mode) | Sanity Studio (Backend) |
-| :---: | :---: |
-| ![Hero](https://placehold.co/800x500/1e293b/FFF?text=App+Screenshot) | ![Studio](https://placehold.co/800x500/e34c26/FFF?text=Sanity+Studio) |
-
-## 🏗 Architecture & Design Patterns
-
-MeFolio follows a modern **Component-Based Architecture** with a clear separation of concerns, effectively mirroring the **MVC (Model-View-Controller)** pattern:
-
-### System Architecture Diagram
+Understanding how MeFolio works under the hood:
 
 ```mermaid
 graph TD
-    User[End User] -->|HTTPS Request| CDN[Vercel Edge Network]
-    CDN -->|Cache Hit| User
-    CDN -->|Cache Miss| NextServer[Next.js Server]
+    User([End User])
+    VercelEdge[Vercel Edge Network]
+    NextServer[Next.js Server / SSR]
+    SanityDL[(Sanity Content Lake)]
     
-    subgraph "Controller (The Logic)"
-        NextServer -->|Server Components| PageLogic[Page Controllers]
+    User -->|HTTPS Request| VercelEdge
+    VercelEdge -->|Cache Hit (Stale-While-Revalidate)| User
+    VercelEdge -->|Cache Miss| NextServer
+    
+    subgraph "The Application"
+        NextServer -->|1. Fetch Content (GROQ)| SanityDL
+        SanityDL -->|2. Return JSON Data| NextServer
+        NextServer -->|3. Render React Components| PageHTML[Static HTML + Hydration]
     end
     
-    subgraph "Model (The Data)"
-        PageLogic -->|GROQ Query| SanityClient[Sanity Client]
-        SanityClient -->|Fetch JSON| SanityDB[(Sanity Content Lake)]
-    end
-    
-    subgraph "View (The Presentation)"
-        PageLogic -->|Props| ReactComp[React Components]
-        ReactComp -->|HTML/CSS/JS| User
-    end
-
-    style NextServer fill:#000,stroke:#fff,color:#fff
-    style SanityDB fill:#f03e2f,stroke:#fff,color:#fff
+    PageHTML -->|Response| VercelEdge
 ```
 
-### Data Flow
+### 🔄 Content Workflow
 
-1.  **Content Creation**: You update content (Add a new Job, specific Skill, or Project) in the **Sanity Studio** (`/studio`).
-2.  **Build/Request Time**: Next.js fetches this data using **GROQ** queries defined in `sanity/lib/queries.ts`.
-3.  **Rendering**: The data is passed to **Atomic UI Components** (`components/ui/*`) for rendering.
-4.  **Client Hydration**: Client-side interactivity (Framer Motion, 3D elements) is hydrated for the user.
+How data flows from you to your visitors:
+
+```mermaid
+sequenceDiagram
+    participant You as Developer/Author
+    participant Studio as Sanity Studio (/studio)
+    participant DB as Sanity Backend
+    participant App as Next.js Frontend
+    participant Visitor as End User
+
+    You->>Studio: Creates new Project/Post
+    Studio->>DB: Saves Document
+    DB-->>App: Webhook Trigger (Optional)
+    App->>DB: Fetches New Content (ISR/SSR)
+    App->>Visitor: Delivers Updated Page
+```
+
+---
+
+## 🌟 Key Features
+
+### 👨‍💻 For Developers
+*   **Modern Tech Stack**: Built with **Next.js 14+ (App Router)**, **TypeScript**, and **Tailwind CSS v4**.
+*   **Clean Architecture**: Separation of concerns with strict TypeScript types (`types/sanity.ts`) and modular components.
+*   **Performance First**: Optimized with `next/font` (zero CLS), `next/image` optimization, and extensive use of `dynamic` imports.
+*   **Testing Ready**: comprehensive E2E testing setup with **Playwright**.
+
+### ✍️ For Content Creators
+*   **Headless CMS**: Integrated **Sanity.io** for real-time management of:
+    *   Projects & Case Studies
+    *   Work Experience & Education
+    *   Skills & Certifications
+    *   Blog Posts
+*   **Markdown Support**: Write rich content for your case studies and blogs.
+*   **Smart Resume**: A dedicated `/resume` route that generates an ATS-friendly, print-optimized resume from your CMS data.
+
+### 🎨 For End Users
+*   **Interactive UI**: Smooth animations using **Framer Motion** and **Lenis** for buttery smooth scrolling.
+*   **Dark Mode**: Native dark mode support that respects system preferences.
+*   **Responsive Design**: Flawless experience across Mobile, Tablet, and Desktop.
+
+---
 
 ## 🛠 Tech Stack
 
-| Category | Technology | Usage |
+| Category | Technology | Description |
 | :--- | :--- | :--- |
-| **Framework** | [Next.js 14 (App Router)](https://nextjs.org/) | Core application framework |
-| **Language** | [TypeScript](https://www.typescriptlang.org/) | Type safety and robust code patterns |
-| **Styling** | [Tailwind CSS v4](https://tailwindcss.com/) | Utility-first styling system |
-| **CMS** | [Sanity v3](https://www.sanity.io/) | Headless content backend |
-| **Animations** | [Framer Motion](https://www.framer.com/motion/) | Complex UI transitions and layouts |
-| **Icons** | [Lucide React](https://lucide.dev/) | Consistent and clean SVG icons |
-| **Testing** | [Playwright](https://playwright.dev/) | End-to-end testing framework |
-| **Deployment** | [Vercel](https://vercel.com/) | CI/CD, Hosting, and Edge caching |
+| **Framework** | [Next.js 14 (App Router)](https://nextjs.org/) | React framework for production with Server Components. |
+| **Language** | [TypeScript](https://www.typescriptlang.org/) | Static typing for better developer experience and reliability. |
+| **Styling** | [Tailwind CSS v4](https://tailwindcss.com/) | Utility-first CSS framework (Experimental v4). |
+| **CMS** | [Sanity v3](https://www.sanity.io/) | Unified Content Platform for structured content. |
+| **Animations** | [Framer Motion](https://www.framer.com/motion/) | Production-ready motion library for React. |
+| **Testing** | [Playwright](https://playwright.dev/) | Reliable end-to-end testing for modern web apps. |
+| **Icons** | [Lucide React](https://lucide.dev/) | Beautiful & consistent icon set. |
+| **Deployment** | [Vercel](https://vercel.com/) | The platform for frontend developers. |
+
+---
 
 ## 🚀 Getting Started
 
-### Prerequisites
+Follow these steps to get your portfolio running locally.
 
--   Node.js 18+ installed
--   A [Sanity.io](https://www.sanity.io/) account (Free tier is sufficient)
+### 1. Prerequisites
+*   Node.js 18+ installed
+*   A [Sanity.io](https://www.sanity.io/) account (Free tier is perfect)
 
-### Installation
+### 2. Installation
 
-1.  **Clone the repository**:
-    ```bash
-    git clone https://github.com/yourusername/mefolio.git
-    cd mefolio
-    ```
+Clone the repository and install dependencies:
 
-2.  **Install dependencies**:
-    ```bash
-    npm install
-    # or
-    yarn install
-    ```
+```bash
+git clone https://github.com/yourusername/mefolio.git
+cd mefolio
+npm install
+# or
+yarn install
+```
 
-3.  **Configure Environment Variables**:
-    Create a `.env.local` file in the root directory:
-    ```env
-    NEXT_PUBLIC_SANITY_PROJECT_ID="your_project_id"
-    NEXT_PUBLIC_SANITY_DATASET="production"
-    ```
+### 3. Environment Setup
 
-4.  **Run the Development Server**:
-    ```bash
-    npm run dev
-    ```
+Create a `.env.local` file in the root directory. You'll need your Sanity project details:
 
-5.  **Access the App**:
-    -   Frontend: `http://localhost:3000`
-    -   Admin Studio: `http://localhost:3000/studio`
+```env
+NEXT_PUBLIC_SANITY_PROJECT_ID="your_project_id"
+NEXT_PUBLIC_SANITY_DATASET="production"
+# Optional: Webhook secret for revalidation
+SANITY_REVALIDATE_SECRET="your_secret" 
+```
 
-## ✅ Quality Assurance & Testing
+### 4. Run Locally
 
-This project maintains high code quality standards through automated testing and rigorous type safety.
+Start the development server:
 
-### Running Tests
+```bash
+npm run dev
+```
+
+Visit `http://localhost:3000` to see your portfolio.
+Visit `http://localhost:3000/studio` to access the CMS and start adding content.
+
+---
+
+## 📂 Project Structure
+
+```bash
+├── app/                  # Next.js App Router (The "View")
+│   ├── (website)/        # Public facing pages
+│   │   ├── page.tsx      # Home Controller
+│   │   ├── projects/     # Project Case Studies
+│   │   └── resume/       # Smart Resume Page
+│   └── studio/           # Sanity Studio Admin Panel
+├── components/           # React Components
+│   ├── sections/         # Big page sections (Hero, About, etc.)
+│   ├── ui/               # Reusable atomic elements (Buttons, Cards)
+│   └── shared/           # Logic-heavy shared components
+├── sanity/               # The "Model" (Backend Logic)
+│   ├── lib/              # Client & Queries
+│   └── schemaTypes/      # Content Schemas (Projects, Experience)
+├── types/                # TypeScript Interfaces
+└── tests/                # Playwright E2E Tests
+```
+
+---
+
+## ✅ Quality Assurance
+
+MeFolio comes with a built-in testing suite to ensure your portfolio never breaks.
 
 ```bash
 # Run all end-to-end tests
 npx playwright test
 
-# Run tests in UI mode (interactive)
+# Run tests in UI mode (Interactive)
 npx playwright test --ui
-
-# Run specific test file
-npx playwright test tests/navbar.spec.ts
 ```
-
-### CI/CD Pipeline
-- **GitHub Actions**: Automated workflow (`.github/workflows/playwright.yml`) runs on every push and PR.
-- **Sanity Integration**: The CI environment securely connects to Sanity.io using GitHub Secrets.
-
-## 🏗 Key Refactoring Highlights
-
-- **Type Safety**: Full TypeScript coverage with custom interfaces in `types/sanity.ts`.
-- **Navigation**: Centralized navigation logic using the `useNavigation` hook.
-- **Optimization**: Replaced Google Fonts with `next/font` for better performance and privacy.
-
-## 📂 Project Structure
-
-```bash
-├── app/                  # Next.js App Router
-│   ├── page.tsx          # Home Controller
-│   ├── resume/           # Resume Page
-│   ├── projects/         # Dynamic Case Study Pages
-│   ├── blog/             # Blog & Articles
-│   ├── layout.tsx        # Root layout
-│   └── studio/           # Sanity Studio route
-├── components/           # React Components
-│   ├── ui/               # Reusable atomic components
-│   └── resume/           # Resume specific components
-├── hooks/                # Custom React Hooks
-├── types/                # TypeScript Interfaces
-├── tests/                # Playwright E2E Tests
-├── sanity/               # Backend Logic
-│   ├── lib/              # Client & Queries
-│   ├── schemaTypes/      # Schema Definitions
-└── public/               # Static assets
-```
-
-## 🛡 License
-
-This project is open-source and available under the [MIT License](LICENSE).
 
 ---
 
-Designed & Developed with ❤️ by [Sirajul Islam](https://github.com/sirajul-islam)
+## 🛡 License
+
+This project is open-source and available under the [MIT License](LICENSE). Feel free to use it for your own portfolio!
+
+---
+
+<p align="center">
+  Designed & Developed with ❤️ by <a href="https://github.com/sirajul-islam">Sirajul Islam</a>
+</p>
