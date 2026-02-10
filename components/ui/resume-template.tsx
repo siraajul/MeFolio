@@ -21,11 +21,11 @@ export const ResumeTemplate = ({
   references,
 }: ResumeProps) => {
   return (
-    <div className="w-full max-w-[210mm] mx-auto bg-white text-black p-8 md:p-12 font-sans shadow-none print:shadow-none print:max-w-none print:w-full print:p-0">
+    <div className="w-full max-w-[210mm] mx-auto bg-white text-black p-5 md:p-12 font-sans shadow-none print:shadow-none print:max-w-none print:w-full print:p-0">
       
       {/* Header */}
       <header className="border-b-2 border-black pb-6 mb-6">
-        <h1 className="text-4xl font-bold uppercase tracking-tight mb-2">
+        <h1 className="text-3xl md:text-4xl font-bold uppercase tracking-tight mb-2">
           {settings?.firstName} {settings?.lastName}
         </h1>
         <p className="text-lg font-medium text-neutral-700 mb-4">{settings?.tagline}</p>

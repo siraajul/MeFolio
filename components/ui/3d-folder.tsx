@@ -331,16 +331,16 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
             </div>
           </div>
           <div
-            className={cn("px-8 py-7 bg-card border-t border-white/5")}
+            className={cn("p-5 md:px-8 md:py-7 bg-card border-t border-white/5")}
             style={{
               opacity: animationPhase === "complete" && !isClosing ? 1 : 0,
               transform: animationPhase === "complete" && !isClosing ? "translateY(0)" : "translateY(40px)",
               transition: "opacity 500ms ease-out 500ms, transform 600ms cubic-bezier(0.16, 1, 0.3, 1) 500ms",
             }}
           >
-            <div className="flex items-center justify-between gap-6">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6">
               <div className="flex-1 min-w-0">
-                <h3 className="text-2xl font-bold text-foreground tracking-tight truncate">{currentProject?.title}</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-foreground tracking-tight truncate">{currentProject?.title}</h3>
                 <div className="flex items-center gap-4 mt-2">
                   <div className="flex items-center gap-1.5 px-2.5 py-1 bg-muted rounded-full border border-white/5">
                     {projects.map((_, idx) => (
@@ -360,7 +360,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
                 className={cn(
-                    "flex items-center gap-2 px-6 py-3 text-sm font-bold uppercase tracking-widest text-primary-foreground bg-primary hover:brightness-110 rounded-xl shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-105 active:scale-95",
+                    "flex items-center justify-center gap-2 px-6 py-3 text-sm font-bold uppercase tracking-widest text-primary-foreground bg-primary hover:brightness-110 rounded-xl shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-105 active:scale-95 w-full md:w-auto",
                     (!currentProject?.slug && !currentProject?.link) && "opacity-50 pointer-events-none"
                 )}
               >

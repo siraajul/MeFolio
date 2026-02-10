@@ -58,7 +58,7 @@ const PortableTextComponents = {
   types: {
     image: ({ value }: any) => {
       return (
-        <div className="relative w-full h-96 my-8 rounded-xl overflow-hidden shadow-lg border border-neutral-200 dark:border-neutral-800">
+        <div className="relative w-full aspect-video my-8 rounded-xl overflow-hidden shadow-lg border border-neutral-200 dark:border-neutral-800">
           <Image
             src={urlFor(value).url()}
             alt={value.alt || "Project Image"}
