@@ -62,7 +62,7 @@ export default function Hero({
     <div 
       className="min-h-screen text-foreground transition-colors bg-[#FAFAFA] dark:bg-black text-[#1a1a1a] dark:text-white"
     >
-      <main className="relative min-h-screen flex flex-col justify-center items-center pt-40 pb-20">
+      <main className="relative min-h-screen flex flex-col justify-center items-center pt-40 pb-20" role="main">
         {/* Centered Main Name */}
         <div className="relative w-full px-4 mb-12 sm:mb-16">
           <div className="relative text-center">
@@ -92,7 +92,7 @@ export default function Hero({
               <div className="w-[85px] h-[135px] sm:w-[120px] sm:h-[190px] md:w-[140px] md:h-[220px] lg:w-[160px] lg:h-[250px] rounded-full overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer relative">
                 <Image
                   src={profileImageUrl || "https://i.postimg.cc/y8DnKLyK/albert-dera-ILip77-Sbm-OE-unsplash.jpg"}
-                  alt="Profile"
+                  alt={`${firstName} ${lastName} profile photo`}
                   fill
                   sizes="(max-width: 640px) 85px, (max-width: 768px) 120px, (max-width: 1024px) 140px, 160px"
                   priority
@@ -140,6 +140,7 @@ export default function Hero({
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-neutral-500 hover:text-black dark:text-white/60 dark:hover:text-white transition-colors duration-300 transform hover:scale-110"
+                  aria-label={link.platform}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.color = "var(--brand)";
                   }}
@@ -178,10 +179,11 @@ export default function Hero({
                   onClick={(e) => e.stopPropagation()}
                   className="relative w-full max-w-5xl"
                 >
-                   <button
-                     onClick={() => setIsVideoOpen(false)}
-                     className="absolute -top-12 right-0 p-2 text-white/70 hover:text-white transition-colors"
-                   >
+                     <button
+                       onClick={() => setIsVideoOpen(false)}
+                       className="absolute -top-12 right-0 p-2 text-white/70 hover:text-white transition-colors"
+                       aria-label="Close video"
+                     >
                       <X className="w-8 h-8" />
                    </button>
                    <VideoPlayer src={cvVideo || "https://videos.pexels.com/video-files/30333849/13003128_2560_1440_25fps.mp4"} />

@@ -43,8 +43,8 @@ export const Footer = ({
   className,
 }: FooterProps) => {
   return (
-    <section className={cn("relative w-full mt-0 overflow-hidden", className)}>
-      <footer className="border-t bg-background mt-0 relative">
+    <footer className={cn("relative w-full mt-0 overflow-hidden", className)}>
+      <div className="border-t bg-background mt-0 relative">
         <div className="max-w-7xl flex flex-col justify-end mx-auto min-h-[15rem] sm:min-h-[20rem] md:min-h-[25rem] relative p-4 pb-10 pt-20">
           <div className="flex flex-col mb-12 sm:mb-20 md:mb-0 w-full">
             <div className="w-full flex flex-col items-center">
@@ -130,7 +130,7 @@ export const Footer = ({
 
         {/* Bottom shadow */}
         <div className="bg-gradient-to-t from-background via-background/80 blur-[1em] to-background/40 absolute bottom-12 w-full h-24"></div>
-      </footer>
-    </section>
+      </div>
+    </footer>
   );
 };

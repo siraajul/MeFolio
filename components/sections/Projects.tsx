@@ -252,6 +252,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
       />
       <button
         onClick={(e) => { e.stopPropagation(); handleClose(); }}
+        aria-label="Close project viewer"
         className={cn(
           "absolute top-6 right-6 z-50 w-12 h-12 flex items-center justify-center rounded-full bg-muted/30 backdrop-blur-xl border border-white/10 shadow-2xl text-foreground hover:bg-muted transition-all duration-300",
         )}
@@ -266,6 +267,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
       <button
         onClick={(e) => { e.stopPropagation(); navigatePrev(); }}
         disabled={!hasPrev || isSliding}
+        aria-label="Previous project"
         className={cn(
           "absolute left-4 md:left-10 z-50 w-14 h-14 flex items-center justify-center rounded-full bg-muted/30 backdrop-blur-xl border border-white/10 text-foreground hover:scale-110 active:scale-95 transition-all duration-300 disabled:opacity-0 disabled:pointer-events-none shadow-2xl",
         )}
@@ -280,6 +282,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
       <button
         onClick={(e) => { e.stopPropagation(); navigateNext(); }}
         disabled={!hasNext || isSliding}
+        aria-label="Next project"
         className={cn(
           "absolute right-4 md:right-10 z-50 w-14 h-14 flex items-center justify-center rounded-full bg-muted/30 backdrop-blur-xl border border-white/10 text-foreground hover:scale-110 active:scale-95 transition-all duration-300 disabled:opacity-0 disabled:pointer-events-none shadow-2xl",
         )}
@@ -342,6 +345,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
                       <button
                         key={idx}
                         onClick={() => handleDotClick(idx)}
+                        aria-label={`Go to project ${idx + 1}`}
                         className={cn("w-1.5 h-1.5 rounded-full transition-all duration-500", idx === internalIndex ? "bg-foreground scale-150" : "bg-muted-foreground/30 hover:bg-muted-foreground/60")}
                       />
                     ))}

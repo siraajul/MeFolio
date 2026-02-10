@@ -154,6 +154,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
   return (
     <div className="fixed top-5 left-0 right-0 z-[9999]">
       <div className="flex justify-center pt-6">
+        <nav aria-label="Main navigation">
         <motion.div 
           className="flex items-center gap-3 bg-black/50 border border-white/10 backdrop-blur-lg py-2 px-2 rounded-full shadow-lg relative"
           initial={{ y: -20, opacity: 0 }}
@@ -176,6 +177,8 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
                 onClick={(e) => handleLinkClick(item.name, item.url, e)}
                 onMouseEnter={() => setHoveredTab(item.name)}
                 onMouseLeave={() => setHoveredTab(null)}
+                aria-label={item.name}
+                aria-current={isActive ? "page" : undefined}
                 className={cn(
                   "relative cursor-pointer text-sm font-semibold px-6 py-3 rounded-full transition-all duration-300",
                   "text-white/70 hover:text-white",
@@ -243,6 +246,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
             )
           })}
         </motion.div>
+        </nav>
       </div>
     </div>
   )

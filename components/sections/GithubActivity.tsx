@@ -80,6 +80,7 @@ export function GithubActivity({ username = "siraajul" }: GitHubActivityProps) {
             href={`https://github.com/${username}`} 
             target="_blank" 
             rel="noopener noreferrer"
+            aria-label={`View ${username}'s GitHub profile`}
             className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-brand transition-colors"
           >
             @{username}
