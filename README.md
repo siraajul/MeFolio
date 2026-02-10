@@ -22,7 +22,7 @@ graph TD
     SanityDL[(Sanity Content Lake)]
     
     User -->|HTTPS Request| VercelEdge
-    VercelEdge -->|Cache Hit (Stale-While-Revalidate)| User
+    VercelEdge -->|Cache Hit - Stale While Revalidate| User
     VercelEdge -->|Cache Miss| NextServer
     
     subgraph "The Application"
