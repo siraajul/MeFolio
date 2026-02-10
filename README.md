@@ -16,6 +16,8 @@
 -   **Live Activity**: **GitHub Contribution Graph** to showcase coding consistency and activity.
 -   **Quality Assurance**: Comprehensive E2E testing with **Playwright** and CI/CD pipelines via GitHub Actions.
 -   **Dark Mode**: Native dark mode support with system preference detection.
+-   **Resume System**: dedicated **/resume** page with ATS-friendly layout, print optimization, and customizable content via Sanity.
+-   **Support Integration**: "Support Kori" call-to-action integrated into blog posts to engage readers.
 
 ## 📸 Gallery
 
