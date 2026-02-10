@@ -37,10 +37,26 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteSettings = await client.fetch(siteSettingsQuery);
 
   return {
-    title: "Sirajul Islam | SQA Automation Engineer",
+    title: {
+      default: "Sirajul Islam | SQA Automation Engineer & SDET in Bangladesh",
+      template: "%s | Sirajul Islam - SQA Expert"
+    },
     description: 
       siteSettings?.tagline || 
       "SQA Automation Engineer & SDET specializing in scalable test frameworks, performance testing, and quality assurance strategies.",
+    keywords: [
+      "SQA Engineer Bangladesh",
+      "Best SQA Engineer in Bangladesh",
+      "Top SDET Bangladesh",
+      "Test Automation Engineer Dhaka",
+      "Software Quality Assurance Expert",
+      "Playwright Automation Expert",
+      "QA Automation Portfolio",
+      "Sirajul Islam SQA",
+      "Remote SQA Engineer",
+      "Senior SDET Portfolio"
+    ],
+    metadataBase: new URL("https://siraajul.vercel.app"),
     icons: {
       icon: "/favicon.ico",
     },
@@ -57,6 +73,9 @@ export async function generateMetadata(): Promise<Metadata> {
       title: "Sirajul Islam | SQA Automation Engineer",
       description: siteSettings?.tagline || "Expert in Test Automation, SDET, and Quality Assurance strategies.",
       images: siteSettings?.ogImageUrl ? [siteSettings.ogImageUrl] : [],
+    },
+    verification: {
+      google: "google-site-verification-code", // Add your actual code here if you have one
     },
   };
 }
