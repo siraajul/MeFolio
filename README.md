@@ -26,7 +26,7 @@ graph TD
     VercelEdge -->|Cache Miss| NextServer
     
     subgraph "The Application"
-        NextServer -->|1. Fetch Content (GROQ)| SanityDL
+        NextServer -->|1. Fetch Content - GROQ| SanityDL
         SanityDL -->|2. Return JSON Data| NextServer
         NextServer -->|3. Render React Components| PageHTML[Static HTML + Hydration]
     end
@@ -48,8 +48,8 @@ sequenceDiagram
 
     You->>Studio: Creates new Project/Post
     Studio->>DB: Saves Document
-    DB-->>App: Webhook Trigger (Optional)
-    App->>DB: Fetches New Content (ISR/SSR)
+    DB-->>App: Webhook Trigger - Optional
+    App->>DB: Fetches New Content - ISR or SSR
     App->>Visitor: Delivers Updated Page
 ```
 
