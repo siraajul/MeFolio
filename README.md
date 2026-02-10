@@ -16,8 +16,20 @@
 -   **Live Activity**: **GitHub Contribution Graph** to showcase coding consistency and activity.
 -   **Quality Assurance**: Comprehensive E2E testing with **Playwright** and CI/CD pipelines via GitHub Actions.
 -   **Dark Mode**: Native dark mode support with system preference detection.
--   **Resume System**: dedicated **/resume** page with ATS-friendly layout, print optimization, and customizable content via Sanity.
--   **Support Integration**: "Support Kori" call-to-action integrated into blog posts to engage readers.
+
+### ✨ New Features (v2.0)
+
+-   **📄 Smart Resume System (`/resume`)**: 
+    -   Dedicated route optimizing content from Sanity.
+    -   **ATS-Friendly** layout.
+    -   **Print-Optimized**: Automatically formats perfectly for PDF export (Cmd+P).
+-   **💼 Deep Project Case Studies (`/projects/[slug]`)**: 
+    -   Rich text support for "Problem", "Solution", and "Tech Stack".
+    -   Image galleries and live demos.
+-   **🖼️ Dynamic Social Cards**: 
+    -   Auto-generated Open Graph images (`next/og`) for professional link sharing.
+-   **☕ Support Kori Integration**: 
+    -   Seamless "Buy Me a Coffee" integration in blog posts and footer.
 
 ## 📸 Gallery
 
@@ -68,7 +80,7 @@ graph TD
 
 | Category | Technology | Usage |
 | :--- | :--- | :--- |
-| **Framework** | [Next.js 16](https://nextjs.org/) | Core application framework (App Router) |
+| **Framework** | [Next.js 14 (App Router)](https://nextjs.org/) | Core application framework |
 | **Language** | [TypeScript](https://www.typescriptlang.org/) | Type safety and robust code patterns |
 | **Styling** | [Tailwind CSS v4](https://tailwindcss.com/) | Utility-first styling system |
 | **CMS** | [Sanity v3](https://www.sanity.io/) | Headless content backend |
@@ -145,18 +157,22 @@ npx playwright test tests/navbar.spec.ts
 ## 📂 Project Structure
 
 ```bash
-├── app/                  # Next.js App Router (Controllers)
-│   ├── page.tsx          # Main entry point / Home Controller
-│   ├── layout.tsx        # Root layout (Fonts, Metadata)
+├── app/                  # Next.js App Router
+│   ├── page.tsx          # Home Controller
+│   ├── resume/           # Resume Page
+│   ├── projects/         # Dynamic Case Study Pages
+│   ├── blog/             # Blog & Articles
+│   ├── layout.tsx        # Root layout
 │   └── studio/           # Sanity Studio route
-├── components/           # React Components (Views)
+├── components/           # React Components
 │   ├── ui/               # Reusable atomic components
-├── hooks/                # Custom React Hooks (`use-navigation.ts`)
-├── types/                # TypeScript Interfaces (`sanity.ts`)
-├── tests/                # Playwright E2E Tests (`navbar.spec.ts`, `home.spec.ts`)
-├── sanity/               # Backend Logic (Models)
-│   ├── lib/              # Client configuration & GROQ Queries
-│   ├── schemaTypes/      # Content Schema Definitions
+│   └── resume/           # Resume specific components
+├── hooks/                # Custom React Hooks
+├── types/                # TypeScript Interfaces
+├── tests/                # Playwright E2E Tests
+├── sanity/               # Backend Logic
+│   ├── lib/              # Client & Queries
+│   ├── schemaTypes/      # Schema Definitions
 └── public/               # Static assets
 ```
 
