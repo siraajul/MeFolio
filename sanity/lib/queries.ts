@@ -45,6 +45,7 @@ export const projectCategoriesQuery = groq`*[_type == "projectCategory"] | order
     "id": _key,
     title,
     "image": image.asset->url,
+    "slug": slug.current,
     link,
     description
   }

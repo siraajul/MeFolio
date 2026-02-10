@@ -32,9 +32,57 @@ export default defineType({
                     type: "object",
                     fields: [
                         { name: "title", title: "Project Title", type: "string" },
-                        { name: "image", title: "Project Image", type: "image", options: { hotspot: true } },
-                        { name: "link", title: "Project Link", type: "url" },
-                        { name: "description", title: "Description", type: "text" },
+                        {
+                            name: "slug",
+                            title: "Slug",
+                            type: "slug",
+                            options: { source: (doc: any, options: any) => options.parent?.title, maxLength: 96 },
+                            validation: (Rule) => Rule.required()
+                        },
+                        { name: "image", title: "Main Image", type: "image", options: { hotspot: true } },
+                        { name: "link", title: "Live Link", type: "url" },
+                        { name: "githubLink", title: "GitHub Repo", type: "url" },
+                        {
+                            name: "techStack",
+                            title: "Tech Stack",
+                            type: "array",
+                            of: [{ type: "string" }]
+                        },
+                        {
+                            name: "gallery",
+                            title: "Image Gallery",
+                            type: "array",
+                            of: [{ type: "image", options: { hotspot: true } }]
+                        },
+                        {
+                            name: "description",
+                            title: "Short Description",
+                            type: "text",
+                            rows: 3
+                        },
+                        {
+                            name: "content",
+                            title: "Case Study Content (Problem, Solution, Results)",
+                            type: "array",
+                            of: [
+                                { type: "block" },
+                                {
+                                    type: "image",
+                                    fields: [
+                                        {
+                                            name: 'caption',
+                                            type: 'string',
+                                            title: 'Caption',
+                                        },
+                                        {
+                                            name: 'alt',
+                                            type: 'string',
+                                            title: 'Alternative text',
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
                     ],
                 }),
             ],

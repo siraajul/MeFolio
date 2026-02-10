@@ -355,16 +355,16 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
                 </div>
               </div>
               <a 
-                href={currentProject?.link} 
-                target="_blank" 
+                href={currentProject?.slug ? `/projects/${currentProject.slug}` : currentProject?.link} 
+                target={currentProject?.slug ? "_self" : "_blank"} 
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
                 className={cn(
                     "flex items-center gap-2 px-6 py-3 text-sm font-bold uppercase tracking-widest text-primary-foreground bg-primary hover:brightness-110 rounded-xl shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-105 active:scale-95",
-                    !currentProject?.link && "opacity-50 pointer-events-none"
+                    (!currentProject?.slug && !currentProject?.link) && "opacity-50 pointer-events-none"
                 )}
               >
-                <span>View Project</span>
+                <span>{currentProject?.slug ? "View Case Study" : "View Project"}</span>
                 <ExternalLink className="w-4 h-4" />
               </a>
             </div>
@@ -450,6 +450,7 @@ export interface Project {
   title: string;
   link?: string;
   description?: string;
+  slug?: string;
 }
 
 export interface ProjectCategory {
