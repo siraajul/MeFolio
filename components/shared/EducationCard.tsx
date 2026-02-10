@@ -11,7 +11,7 @@ interface EducationCardProps {
   period: string;
   location: string;
   description: string;
-  logoUrl: string;
+  logoUrl?: string;
   className?: string;
 }
 

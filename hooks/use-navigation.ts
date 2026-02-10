@@ -20,6 +20,3 @@ export const NAV_ITEMS = [
     { name: "Contact", url: "/#contact", icon: Mail },
 ];
 
-export function useNavigation() {
-    return NAV_ITEMS;
-}

@@ -96,5 +96,21 @@ export interface Post extends SanityBody {
     imageUrl?: string;
     publishedAt: string;
     externalLink?: string;
-    content?: any; // portable text
+    content?: unknown; // portable text
+}
+
+export interface Recommendation extends SanityBody {
+    name: string;
+    position: string;
+    company?: string;
+    quote: string;
+    linkedin?: string;
+    email?: string;
+    photoUrl?: string;
+}
+
+export interface GitHubContribution {
+    date: string;
+    count: number;
+    level: number;
 }

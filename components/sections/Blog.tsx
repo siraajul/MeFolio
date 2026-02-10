@@ -108,19 +108,11 @@ export const Blog = ({ posts }: BlogProps) => {
             <motion.div 
                className="flex gap-6 will-change-transform"
                initial={false}
-               animate={{ x: `-${currentIndex * (100 / itemsPerPage)}%` }} // Move by percentage of container width? No, simpler to just assume equal width + gap consideration
-               // The gap handling in percent-based transform is tricky.
-               // Let's try explicit width calculation logic or simpler grid animation.
-               // Actually, flexible implementation:
-               // 100/itemsPerPage % width for each item.
-               // But we have gap-6 (24px).
-               // Let's use standard calc approach.
+               animate={{ x: `-${currentIndex * (100 / itemsPerPage)}%` }}
+
                transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
               {posts.map((post) => {
-                 // Calculate width percentage based on itemsPerPage
-                 // subtract gap space from width? 
-                 // Easier approach: flex-shrink-0 style={{ width: `calc((100% - ${(itemsPerPage - 1) * 24}px) / ${itemsPerPage})` }}
                  return (
                   <motion.div 
                     key={post.id}
@@ -139,6 +131,7 @@ export const Blog = ({ posts }: BlogProps) => {
                               src={post.image} 
                               alt={post.title} 
                               fill 
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                               className="object-cover transition-transform duration-500 group-hover:scale-105"
                             />
                         ) : (

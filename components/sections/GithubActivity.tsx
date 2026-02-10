@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { ActivityCalendar } from "react-activity-calendar";
 import { useTheme } from "next-themes";
 import { ExternalLink } from "lucide-react";
+import { GitHubContribution } from "@/types/sanity";
 
 interface GitHubActivityProps {
   username?: string;
@@ -11,7 +12,7 @@ interface GitHubActivityProps {
 
 export function GithubActivity({ username = "siraajul" }: GitHubActivityProps) {
   const { theme } = useTheme();
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<GitHubContribution[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

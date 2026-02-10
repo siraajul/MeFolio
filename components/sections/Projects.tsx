@@ -1,19 +1,10 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useLayoutEffect, useCallback, forwardRef } from 'react';
-import { Sun, Moon, X, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import { LoaderIcon } from "@/components/shared/Loader";
-import { type ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-// --- Utilities ---
-
-/**
- * Combines multiple class names and merges Tailwind classes correctly.
- */
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+import { cn } from "@/lib/utils";
+import { ProjectCategory } from "@/types/sanity";
 
 // --- Interfaces & Constants ---
 
@@ -21,6 +12,9 @@ export interface Project {
   id: string;
   image: string;
   title: string;
+  link?: string;
+  description?: string;
+  slug?: string;
 }
 
 const PLACEHOLDER_IMAGE = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200";
@@ -443,23 +437,6 @@ const AnimatedFolder: React.FC<AnimatedFolderProps> = ({ title, projects, classN
   );
 };
 
-// ... (interfaces)
-export interface Project {
-  id: string;
-  image: string; // URL from Sanity
-  title: string;
-  link?: string;
-  description?: string;
-  slug?: string;
-}
-
-export interface ProjectCategory {
-  _id: string;
-  title: string;
-  gradient?: string;
-  projects: Project[];
-}
-
 // ... (internal components remain mostly same)
 
 interface ProjectsProps {
@@ -467,23 +444,6 @@ interface ProjectsProps {
 }
 
 export default function Projects({ categories = [] }: ProjectsProps) {
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setIsDark(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDark]);
-
-  const toggleTheme = () => setIsDark(!isDark);
 
   return (
     <section className="bg-background text-foreground transition-colors duration-500 selection:bg-accent/30 selection:text-accent-foreground">

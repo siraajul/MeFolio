@@ -101,7 +101,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
        if (timeoutRef.current) clearTimeout(timeoutRef.current)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mounted, JSON.stringify(items), pathname])
+  }, [mounted, items, pathname])
 
   const lenis = useLenis()
 

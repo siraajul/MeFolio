@@ -22,14 +22,15 @@ export const metadata: Metadata = {
 export const revalidate = 60;
 
 export default async function ResumePage() {
-  const settings = await client.fetch(siteSettingsQuery);
-  const about = await client.fetch(aboutQuery);
-  const experiences = await client.fetch(experiencesQuery);
-  const educations = await client.fetch(educationsQuery);
-  const skills = await client.fetch(skillCategoriesQuery);
-  const certifications = await client.fetch(certificationsQuery);
-  // Fetch all recommendations
-  const references = await client.fetch(recommendationsQuery);
+  const [settings, about, experiences, educations, skills, certifications, references] = await Promise.all([
+    client.fetch(siteSettingsQuery),
+    client.fetch(aboutQuery),
+    client.fetch(experiencesQuery),
+    client.fetch(educationsQuery),
+    client.fetch(skillCategoriesQuery),
+    client.fetch(certificationsQuery),
+    client.fetch(recommendationsQuery),
+  ]);
 
   return (
     <main className="min-h-screen bg-neutral-100 dark:bg-neutral-950 py-10 print:bg-white print:py-0">

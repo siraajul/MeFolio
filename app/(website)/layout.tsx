@@ -29,7 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
       "Remote SQA Engineer",
       "Senior SDET Portfolio"
     ],
-    metadataBase: new URL("https://siraajul.vercel.app"),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://siraajul.vercel.app"),
     openGraph: {
       title: "Sirajul Islam | SQA Automation Engineer",
       description: 
@@ -47,11 +47,13 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function WebsiteLayout({
+export default async function WebsiteLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const siteSettings = await client.fetch(siteSettingsQuery);
+
   return (
     <>
       <SmoothScroll>
@@ -65,14 +67,15 @@ export default function WebsiteLayout({
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Person",
-            name: "Sirajul Islam",
-            jobTitle: "SQA Automation Engineer",
-            url: "https://mefolio.vercel.app",
+            name: siteSettings?.firstName ? `${siteSettings.firstName} ${siteSettings.lastName}` : "Sirajul Islam",
+            jobTitle: siteSettings?.tagline || "SQA Automation Engineer",
+            url: process.env.NEXT_PUBLIC_BASE_URL || "https://siraajul.vercel.app",
             sameAs: [
-              "https://github.com/sirajul-islam",
-              "https://linkedin.com/in/sirajul-islam-qa",
-            ],
-            description: "SQA Automation Engineer & SDET specializing in scalable test frameworks and quality assurance.",
+              ...(siteSettings?.github ? [siteSettings.github] : []),
+              ...(siteSettings?.linkedin ? [siteSettings.linkedin] : []),
+              ...(siteSettings?.socialLinks?.map((l: { url: string }) => l.url) || []),
+            ].filter(Boolean),
+            description: siteSettings?.brandDescription || "SQA Automation Engineer & SDET specializing in scalable test frameworks and quality assurance.",
           }),
         }}
       />

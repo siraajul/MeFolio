@@ -3,7 +3,7 @@ import { client } from '@/sanity/lib/client'
 import { groq } from 'next-sanity'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = 'https://siraajul.vercel.app'
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://siraajul.vercel.app'
 
     // Fetch all dynamic routes (projects and blog posts)
     const projects = await client.fetch(groq`*[_type == "projectCategory"].projects[].slug.current`)

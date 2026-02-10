@@ -32,22 +32,24 @@ import {
   ProjectCategory, 
   Education, 
   Certification, 
-  Post 
+  Post,
+  SocialLink,
 } from "@/types/sanity";
 
 // Revalidate every 60 seconds
 export const revalidate = 60;
 
 export default async function Home() {
-  const settings = await client.fetch<SiteSettings>(siteSettingsQuery);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const about = await client.fetch<About>(aboutQuery);
-  const experiences = await client.fetch<Experience[]>(experiencesQuery);
-  const skillCategories = await client.fetch<SkillCategory[]>(skillCategoriesQuery);
-  const projectCategories = await client.fetch<ProjectCategory[]>(projectCategoriesQuery);
-  const educations = await client.fetch<Education[]>(educationsQuery);
-  const certifications = await client.fetch<Certification[]>(certificationsQuery);
-  const posts = await client.fetch<Post[]>(postsQuery);
+  const [settings, about, experiences, skillCategories, projectCategories, educations, certifications, posts] = await Promise.all([
+    client.fetch<SiteSettings>(siteSettingsQuery),
+    client.fetch<About>(aboutQuery),
+    client.fetch<Experience[]>(experiencesQuery),
+    client.fetch<SkillCategory[]>(skillCategoriesQuery),
+    client.fetch<ProjectCategory[]>(projectCategoriesQuery),
+    client.fetch<Education[]>(educationsQuery),
+    client.fetch<Certification[]>(certificationsQuery),
+    client.fetch<Post[]>(postsQuery),
+  ]);
 
   // Map Certifications to Timeline Data
   const certificationTimelineData = certifications.map((cert: Certification) => ({
@@ -150,7 +152,7 @@ export default async function Home() {
 
         {/* GitHub Activity Section */}
         <GithubActivity username={
-            (settings?.github || settings?.socialLinks?.find((link: any) => link.platform.toLowerCase().includes("github"))?.url || "").split("/").pop() || "siraajul"
+            (settings?.github || settings?.socialLinks?.find((link: SocialLink) => link.platform.toLowerCase().includes("github"))?.url || "").split("/").pop() || "siraajul"
         } />
 
         {/* Education Section */}
@@ -166,7 +168,7 @@ export default async function Home() {
            
            <div className="flex flex-col gap-8 w-full max-w-4xl">
              {educations?.length > 0 ? (
-               educations.map((edu: any) => (
+               educations.map((edu: Education) => (
                  <EducationCard
                    key={edu._id}
                    universityName={edu.universityName}
@@ -194,7 +196,7 @@ export default async function Home() {
 
         {/* Blog Section */}
         <section id="writing" className="min-h-0 md:min-h-screen w-full flex flex-col justify-center bg-background">
-           <Blog posts={posts?.map((p: any) => ({
+           <Blog posts={posts?.map((p: Post) => ({
              id: p._id,
              title: p.title,
              summary: p.summary,
@@ -210,7 +212,7 @@ export default async function Home() {
             email={settings?.email}
             web={{
                 label: "LinkedIn",
-                url: settings?.linkedin || settings?.socialLinks?.find((link: any) => link.platform.toLowerCase().includes("linkedin"))?.url || "#"
+                url: settings?.linkedin || settings?.socialLinks?.find((link: SocialLink) => link.platform.toLowerCase().includes("linkedin"))?.url || "#"
             }}
           />
         </div>
@@ -222,10 +224,10 @@ export default async function Home() {
              ...(settings?.github ? [{ icon: <Github className="w-6 h-6" />, href: settings.github, label: "GitHub" }] : []),
              ...(settings?.linkedin ? [{ icon: <Linkedin className="w-6 h-6" />, href: settings.linkedin, label: "LinkedIn" }] : []),
              ...(settings?.email ? [{ icon: <Mail className="w-6 h-6" />, href: `mailto:${settings.email}`, label: "Email" }] : []),
-             ...(settings?.socialLinks?.filter((link: any) => {
+             ...(settings?.socialLinks?.filter((link: SocialLink) => {
                const p = link.platform.toLowerCase();
                return !p.includes('github') && !p.includes('linkedin');
-             }).map((link: any) => ({
+             }).map((link: SocialLink) => ({
                icon: <Mail className="w-6 h-6" />,
                href: link.url,
                label: link.platform,

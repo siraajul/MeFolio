@@ -5,93 +5,10 @@ import { Menu, X, ChevronDown, Github, Linkedin, Mail, FileText, Play } from "lu
 import { ParticleButton } from "@/components/shared/ParticleButton";
 import VideoPlayer from "@/components/shared/VideoPlayer";
 import { AnimatePresence, motion } from "framer-motion";
+import BlurText from "@/components/shared/BlurText";
+import { Button } from "@/components/ui/button";
+import { SocialLink } from "@/types/sanity";
 
-// Inline Button component
-const Button = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(
-  ({ className = "", children, ...props }, ref) => {
-    return (
-      <button
-        ref={ref}
-        className={`inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors ${className}`}
-        {...props}
-      >
-        {children}
-      </button>
-    );
-  }
-);
-Button.displayName = "Button";
-
-// BlurText animation component
-interface BlurTextProps {
-  text: string;
-  delay?: number;
-  animateBy?: "words" | "letters";
-  direction?: "top" | "bottom";
-  className?: string;
-  style?: React.CSSProperties;
-}
-
-const BlurText: React.FC<BlurTextProps> = ({
-  text,
-  delay = 50,
-  animateBy = "words",
-  direction = "top",
-  className = "",
-  style,
-}) => {
-  const [inView, setInView] = useState(false);
-  const ref = useRef<HTMLParagraphElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
-  }, []);
-
-  const segments = useMemo(() => {
-    return animateBy === "words" ? text.split(" ") : text.split("");
-  }, [text, animateBy]);
-
-  return (
-    <p ref={ref} className={`inline-flex flex-wrap ${className}`} style={style}>
-      {segments.map((segment, i) => (
-        <span
-          key={i}
-          style={{
-            display: "inline-block",
-            filter: inView ? "blur(0px)" : "blur(10px)",
-            opacity: inView ? 1 : 0,
-            transform: inView ? "translateY(0)" : `translateY(${direction === "top" ? "-20px" : "20px"})`,
-            transition: `all 0.5s ease-out ${i * delay}ms`,
-          }}
-        >
-          {segment}
-        </span>
-      ))}
-    </p>
-  );
-};
-
-interface SocialLink {
-  platform: string;
-  url: string;
-}
 
 interface PortfolioHeroProps {
   firstName: string;
