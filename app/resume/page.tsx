@@ -38,11 +38,7 @@ export default async function ResumePage() {
       <PrintButton />
       
       <div className="container mx-auto px-4 print:px-0 print:mx-0">
-         <div className="flex justify-center mb-6 print:hidden">
-            <p className="text-sm text-neutral-500">
-                Tip: Press <kbd className="font-sans px-1 py-0.5 bg-white border rounded">Cmd/Ctrl + P</kbd> and save as "PDF" for the best result.
-            </p>
-         </div>
+
 
          <ResumeTemplate 
             settings={settings}

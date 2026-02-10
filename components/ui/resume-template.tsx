@@ -139,11 +139,11 @@ export const ResumeTemplate = ({
         <h2 className="text-lg font-bold uppercase tracking-wider border-b border-neutral-300 mb-4 pb-1">
           Technical Skills
         </h2>
-        <div className="grid grid-cols-1 gap-y-2">
+        <div className="grid grid-cols-1 gap-y-3">
             {skills?.map((category: any) => (
-                <div key={category._id} className="flex flex-col sm:flex-row sm:items-baseline gap-2">
-                    <span className="text-sm font-bold min-w-[120px]">{category.title}:</span>
-                    <span className="text-sm text-neutral-700">{category.skills.join(", ")}</span>
+                <div key={category._id} className="grid grid-cols-[1fr] sm:grid-cols-[150px_1fr] items-baseline gap-2">
+                    <span className="text-sm font-bold">{category.title}:</span>
+                    <span className="text-sm text-neutral-700 leading-relaxed">{category.skills.join(", ")}</span>
                 </div>
             ))}
         </div>
