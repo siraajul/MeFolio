@@ -10,13 +10,37 @@ import {
   certificationsQuery,
   recommendationsQuery,
 } from "@/sanity/lib/queries";
+import { SiteSettings } from "@/types/sanity";
 import { ResumeTemplate } from "@/components/shared/ResumeTemplate";
 import { PrintButton } from "@/components/shared/PrintButton";
 
-export const metadata: Metadata = {
-  title: "Resume | Sirajul Islam",
-  description: "Professional Resume of Sirajul Islam - SQA Engineer & SDET",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await client.fetch<SiteSettings>(siteSettingsQuery);
+
+  const title = settings?.firstName
+    ? `Resume | ${settings.firstName} ${settings.lastName}`
+    : "Resume | Sirajul Islam";
+  const description = settings?.tagline
+    ? `Professional Resume – ${settings.tagline}`
+    : "Professional Resume of Sirajul Islam - SQA Engineer & SDET";
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "profile",
+      images: settings?.profileImageUrl ? [{ url: settings.profileImageUrl }] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: settings?.profileImageUrl ? [settings.profileImageUrl] : [],
+    },
+  };
+}
 
 // Revalidate every 60 seconds
 export const revalidate = 60;

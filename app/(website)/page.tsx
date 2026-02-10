@@ -11,18 +11,21 @@ import {
   postsQuery,
 } from "@/sanity/lib/queries";
 import Hero from "@/components/sections/Hero";
-import AboutSection from "@/components/sections/About";
-import Projects from "@/components/sections/Projects";
-import { EducationCard } from "@/components/shared/EducationCard";
-import { Experience as ExperienceSection } from "@/components/sections/Experience";
 import { Navbar } from "@/components/layout/Navbar";
-import { Timeline } from "@/components/ui/timeline";
-import { Blog } from "@/components/sections/Blog";
-import { Contact } from "@/components/sections/Contact";
-import { Footer } from "@/components/layout/Footer";
+import { EducationCard } from "@/components/shared/EducationCard";
 import { Github, Linkedin, Mail } from "lucide-react";
-import { Skills as SkillsSection } from "@/components/sections/Skills";
-import { GithubActivity } from "@/components/sections/GithubActivity";
+import dynamic from "next/dynamic";
+
+// Lazy-load below-fold sections for faster initial page load
+const AboutSection = dynamic(() => import("@/components/sections/About"));
+const Projects = dynamic(() => import("@/components/sections/Projects"));
+const ExperienceSection = dynamic(() => import("@/components/sections/Experience").then(m => ({ default: m.Experience })));
+const SkillsSection = dynamic(() => import("@/components/sections/Skills").then(m => ({ default: m.Skills })));
+const Blog = dynamic(() => import("@/components/sections/Blog").then(m => ({ default: m.Blog })));
+const Contact = dynamic(() => import("@/components/sections/Contact").then(m => ({ default: m.Contact })));
+const GithubActivity = dynamic(() => import("@/components/sections/GithubActivity").then(m => ({ default: m.GithubActivity })));
+const Timeline = dynamic(() => import("@/components/ui/timeline").then(m => ({ default: m.Timeline })));
+const Footer = dynamic(() => import("@/components/layout/Footer").then(m => ({ default: m.Footer })));
 
 import { 
   SiteSettings, 

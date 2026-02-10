@@ -5,6 +5,7 @@ import { Menu, X, ChevronDown, Github, Linkedin, Mail, FileText, Play } from "lu
 import { ParticleButton } from "@/components/shared/ParticleButton";
 import VideoPlayer from "@/components/shared/VideoPlayer";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import BlurText from "@/components/shared/BlurText";
 import { Button } from "@/components/ui/button";
 import { SocialLink } from "@/types/sanity";
@@ -88,11 +89,14 @@ export default function Hero({
 
             {/* Profile Picture */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-              <div className="w-[85px] h-[135px] sm:w-[120px] sm:h-[190px] md:w-[140px] md:h-[220px] lg:w-[160px] lg:h-[250px] rounded-full overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer">
-                <img
+              <div className="w-[85px] h-[135px] sm:w-[120px] sm:h-[190px] md:w-[140px] md:h-[220px] lg:w-[160px] lg:h-[250px] rounded-full overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer relative">
+                <Image
                   src={profileImageUrl || "https://i.postimg.cc/y8DnKLyK/albert-dera-ILip77-Sbm-OE-unsplash.jpg"}
                   alt="Profile"
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 640px) 85px, (max-width: 768px) 120px, (max-width: 1024px) 140px, 160px"
+                  priority
+                  className="object-cover"
                 />
               </div>
             </div>

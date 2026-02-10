@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
-import SmoothScroll from "@/components/ui/smooth-scroll";
-import { ThemeToggleFab } from "@/components/shared/ThemeToggle";
+import { ClientShell } from "@/components/layout/ClientShell";
 import { client } from "@/sanity/lib/client";
 import { siteSettingsQuery } from "@/sanity/lib/queries";
 
@@ -56,10 +55,9 @@ export default async function WebsiteLayout({
 
   return (
     <>
-      <SmoothScroll>
+      <ClientShell>
         {children}
-        <ThemeToggleFab />
-      </SmoothScroll>
+      </ClientShell>
       <Analytics />
       <script
         type="application/ld+json"

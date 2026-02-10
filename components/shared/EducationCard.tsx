@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Calendar, GraduationCap } from "lucide-react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface EducationCardProps {
@@ -46,11 +47,15 @@ export function EducationCard({
 
         {/* Logo */}
         <div className="relative w-24 h-24 md:w-32 md:h-32 mb-6 rounded-full bg-white p-4 shadow-lg flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
-          <img 
-            src={logoUrl} 
-            alt={`${universityName} Logo`} 
-            className="w-full h-full object-contain"
-          />
+          {logoUrl && (
+            <Image 
+              src={logoUrl} 
+              alt={`${universityName} Logo`} 
+              fill
+              sizes="(max-width: 768px) 96px, 128px"
+              className="object-contain p-2"
+            />
+          )}
         </div>
 
         {/* University Name */}

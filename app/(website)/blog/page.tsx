@@ -8,6 +8,16 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "All Articles | Sirajul Islam",
   description: "Browse all articles, tutorials, and insights on software quality assurance and automation.",
+  openGraph: {
+    title: "All Articles | Sirajul Islam",
+    description: "Browse all articles, tutorials, and insights on software quality assurance and automation.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "All Articles | Sirajul Islam",
+    description: "Browse all articles, tutorials, and insights on software quality assurance and automation.",
+  },
 };
 
 // Revalidate every 60 seconds

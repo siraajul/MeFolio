@@ -5,6 +5,7 @@ import { X, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import { LoaderIcon } from "@/components/shared/Loader";
 import { cn } from "@/lib/utils";
 import { ProjectCategory } from "@/types/sanity";
+import Image from "next/image";
 
 // --- Interfaces & Constants ---
 
@@ -76,15 +77,14 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
                 <LoaderIcon className="text-brand w-8 h-8" />
             </div>
           )}
-          <img 
+          <Image 
             src={image || PLACEHOLDER_IMAGE} 
             alt={title} 
-            className="w-full h-full object-cover"
+            fill
+            sizes="80px"
+            className="object-cover"
             onLoad={() => setIsLoading(false)}
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = PLACEHOLDER_IMAGE;
-              setIsLoading(false);
-            }}
+            onError={() => setIsLoading(false)}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
           <p className="absolute bottom-1.5 left-1.5 right-1.5 text-[9px] font-black uppercase tracking-tighter text-white truncate drop-shadow-md">
@@ -313,11 +313,12 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
             >
               {projects.map((project, idx) => (
                 <div key={project.id} className="min-w-full h-full relative">
-                  <img
+                  <Image
                     src={project.image || PLACEHOLDER_IMAGE}
                     alt={project.title}
-                    className="w-full h-full object-cover select-none"
-                    onError={(e) => { (e.target as HTMLImageElement).src = PLACEHOLDER_IMAGE; }}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 800px"
+                    className="object-cover select-none"
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 pointer-events-none" />
                 </div>

@@ -4,23 +4,27 @@ import { Geist, Geist_Mono, Fira_Code, Antic } from "next/font/google";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const firaCode = Fira_Code({
   variable: "--font-fira-code",
   subsets: ["latin"],
   weight: "700",
+  display: "swap",
 });
 
 const antic = Antic({
   variable: "--font-antic",
   subsets: ["latin"],
   weight: "400",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
