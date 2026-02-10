@@ -81,6 +81,17 @@ export const postsQuery = groq`*[_type == "post"] | order(publishedAt desc){
   publishedAt
 }`;
 
+export const recommendationsQuery = groq`*[_type == "recommendation"]{
+  _id,
+  name,
+  position,
+  company,
+  quote,
+  linkedin,
+  email,
+  "photoUrl": photo.asset->url
+}`;
+
 export const aboutQuery = groq`*[_type == "about"][0]{
   content
 }`;
