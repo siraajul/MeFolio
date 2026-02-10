@@ -7,20 +7,21 @@ test.describe('Navbar Component', () => {
 
     test('should display all navigation items', async ({ page, isMobile }) => {
         // Core items visible on all devices
-        // Note: Check site-navbar.tsx for these values
+        // Note: Check use-navigation.ts for these values
+        // Home uses "/" and others use "/#section" format
         const coreItems = [
-            { name: 'Home', href: '#home' },
-            { name: 'About', href: '#about' },
-            { name: 'Projects', href: '#projects' },
-            { name: 'Contact', href: '#contact' },
+            { name: 'Home', href: '/' },
+            { name: 'About', href: '/#about' },
+            { name: 'Projects', href: '/#projects' },
+            { name: 'Contact', href: '/#contact' },
         ];
 
         // Items only visible on desktop
         const desktopItems = [
-            { name: 'Skills', href: '#skills' },
-            { name: 'Experience', href: '#experience' },
-            { name: 'Education', href: '#education' },
-            { name: 'Writing', href: '#writing' },
+            { name: 'Skills', href: '/#skills' },
+            { name: 'Experience', href: '/#experience' },
+            { name: 'Education', href: '/#education' },
+            { name: 'Writing', href: '/#writing' },
         ];
 
         // Check core items
@@ -47,12 +48,12 @@ test.describe('Navbar Component', () => {
     });
 
     test('should highlight active tab on click', async ({ page }) => {
-        // Click on "About" using href locator
-        const aboutLink = page.locator('a[href="#about"]').first();
+        // Click on "About" using the correct href from use-navigation.ts
+        const aboutLink = page.locator('a[href="/#about"]').first();
         await aboutLink.click();
 
-        // Use regex for class check because specific classes depend on state (hover etc)
-        // We know 'text-white' is applied when active.
+        // The AnimeNavbar applies 'text-white' class when a tab is active.
+        // When inactive, it has 'text-white/70'.
         await expect(aboutLink).toHaveClass(/text-white/);
     });
 });
