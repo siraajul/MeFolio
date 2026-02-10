@@ -9,6 +9,7 @@ interface BlurTextProps {
   direction?: "top" | "bottom";
   className?: string;
   style?: React.CSSProperties;
+  priority?: boolean;
 }
 
 const BlurText: React.FC<BlurTextProps> = ({
@@ -18,13 +19,14 @@ const BlurText: React.FC<BlurTextProps> = ({
   direction = "top",
   className = "",
   style,
+  priority = false,
 }) => {
-  const [inView, setInView] = useState(false);
+  const [inView, setInView] = useState(priority);
   const ref = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     const node = ref.current;
-    if (!node) return;
+    if (!node || priority) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {

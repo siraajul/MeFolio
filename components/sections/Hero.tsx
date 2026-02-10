@@ -3,8 +3,9 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { Menu, X, ChevronDown, Github, Linkedin, Mail, FileText, Play } from "lucide-react";
 import { ParticleButton } from "@/components/shared/ParticleButton";
-import VideoPlayer from "@/components/shared/VideoPlayer";
 import { AnimatePresence, motion } from "framer-motion";
+import dynamic from "next/dynamic";
+const VideoPlayer = dynamic(() => import("@/components/shared/VideoPlayer"));
 import Image from "next/image";
 import BlurText from "@/components/shared/BlurText";
 import { Button } from "@/components/ui/button";
@@ -73,7 +74,8 @@ export default function Hero({
                 animateBy="letters"
                 direction="top"
                 className="font-bold text-[17vw] sm:text-[100px] md:text-[130px] lg:text-[180px] xl:text-[200px] 2xl:text-[260px] leading-[0.85] tracking-tighter 2xl:tracking-wide uppercase justify-center"
-                style={{ color: "var(--brand)", fontFamily: "'Fira Code', monospace" }}
+                style={{ color: "var(--brand)", fontFamily: "var(--font-fira-code), monospace" }}
+                priority={true}
               />
             </div>
             <div>
@@ -83,7 +85,8 @@ export default function Hero({
                 animateBy="letters"
                 direction="top"
                 className="font-bold text-[17vw] sm:text-[100px] md:text-[130px] lg:text-[180px] xl:text-[200px] 2xl:text-[260px] leading-[0.85] tracking-tighter 2xl:tracking-wide uppercase justify-center"
-                style={{ color: "var(--brand)", fontFamily: "'Fira Code', monospace" }}
+                style={{ color: "var(--brand)", fontFamily: "var(--font-fira-code), monospace" }}
+                priority={true}
               />
             </div>
 
@@ -112,7 +115,7 @@ export default function Hero({
               animateBy="words"
               direction="top"
               className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] text-center transition-colors duration-300 text-neutral-500 hover:text-black dark:text-neutral-400 dark:hover:text-white flex flex-wrap justify-center gap-[0.3em]"
-              style={{ fontFamily: "'Antic', sans-serif" }}
+              style={{ fontFamily: "var(--font-antic), sans-serif" }}
             />
           </div>
 
