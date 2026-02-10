@@ -3,7 +3,7 @@
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import { ArrowLeftIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Globe } from "@/components/ui/cosmic-404";
+import { Globe } from "@/components/sections/NotFound";
 import Link from "next/link";
 
 // 🎞️ Animation Variants

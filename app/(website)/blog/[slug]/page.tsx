@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { SupportKori } from "@/components/ui/support-kori";
+import { SupportKori } from "@/components/shared/SupportKori";
 
 // Force dynamic rendering to ensure fresh data
 export const dynamic = "force-dynamic";

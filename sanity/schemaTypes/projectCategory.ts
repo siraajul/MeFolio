@@ -36,7 +36,7 @@ export default defineType({
                             name: "slug",
                             title: "Slug",
                             type: "slug",
-                            options: { source: (doc: any, options: any) => options.parent?.title, maxLength: 96 },
+                            options: { source: (doc: any, options: any) => options?.parent?.title || '', maxLength: 96 },
                             validation: (Rule) => Rule.required()
                         },
                         { name: "image", title: "Main Image", type: "image", options: { hotspot: true } },

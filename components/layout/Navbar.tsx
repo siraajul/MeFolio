@@ -1,9 +1,9 @@
 "use client";
 
-import { AnimeNavBar } from "@/components/ui/anime-navbar";
+import { AnimeNavBar } from "@/components/layout/AnimeNavbar";
 import { useNavigation } from "@/hooks/use-navigation";
 
-export function SiteNavBar() {
+export function Navbar() {
   const items = useNavigation();
   return <AnimeNavBar items={items} defaultActive="Home" />;
 }

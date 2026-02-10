@@ -6,8 +6,8 @@ import Link from "next/link";
 import { ArrowLeft, Github, Globe, ExternalLink } from "lucide-react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { SiteNavBar } from "@/components/ui/site-navbar";
-import { Footer } from "@/components/ui/modem-animated-footer";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 import { SiteSettings } from "@/types/sanity";
 import { siteSettingsQuery } from "@/sanity/lib/queries";
 

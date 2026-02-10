@@ -2,12 +2,12 @@
 
 import React from "react";
 
-import { ParticleButton } from "@/components/ui/particle-button";
+import { ParticleButton } from "@/components/shared/ParticleButton";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-interface Contact2Props {
+interface ContactProps {
   title?: string;
   description?: string;
   phone?: string;
@@ -15,13 +15,13 @@ interface Contact2Props {
   web?: { label: string; url: string };
 }
 
-export const Contact2 = ({
+export const Contact = ({
   title = "Get in Touch",
   description = "I am available for questions, feedback, or collaboration opportunities. Let me know how I can help!",
   phone = "+1 (555) 000-0000",
   email = "hello@example.com",
   web = { label: "linkedin.com/in/sqa-engineer", url: "#" },
-}: Contact2Props) => {
+}: ContactProps) => {
   return (
     <section className="py-24 md:py-32 px-4 md:px-6 flex flex-col justify-center bg-white dark:bg-neutral-950">
       <div className="container mx-auto max-w-4xl text-center">

@@ -1,10 +1,10 @@
 "use client";
 import { TimelineContent } from "@/components/ui/timeline-animation";
-import { ParticleButton } from "@/components/ui/particle-button";
+import { ParticleButton } from "@/components/shared/ParticleButton";
 import { Zap } from "lucide-react";
 import { useRef } from "react";
 
-export default function AboutSection2() {
+export default function About() {
   const heroRef = useRef<HTMLDivElement>(null);
   const revealVariants = {
     visible: (i: number) => ({

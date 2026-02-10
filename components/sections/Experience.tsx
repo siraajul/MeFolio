@@ -50,7 +50,7 @@ export type ExperienceItemType = {
   isCurrentEmployer?: boolean;
 };
 
-export function WorkExperience({
+export function Experience({
   className,
   experiences,
 }: {

@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { Menu, X, ChevronDown, Github, Linkedin, Mail, FileText, Play } from "lucide-react";
-import { ParticleButton } from "@/components/ui/particle-button";
-import VideoPlayer from "@/components/ui/video-player";
+import { ParticleButton } from "@/components/shared/ParticleButton";
+import VideoPlayer from "@/components/shared/VideoPlayer";
 import { AnimatePresence, motion } from "framer-motion";
 
 // Inline Button component
@@ -102,7 +102,7 @@ interface PortfolioHeroProps {
   cvVideo?: string;
 }
 
-export default function PortfolioHero({
+export default function Hero({
   firstName = "SIRAJUL",
   lastName = "ISLAM",
   tagline = "Ensuring software reliability and quality through automation.",

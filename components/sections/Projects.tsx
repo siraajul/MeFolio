@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect, useLayoutEffect, useCallback, forwardRef } from 'react';
 import { Sun, Moon, X, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
-import { LoaderIcon } from "@/components/LoaderIcon";
+import { LoaderIcon } from "@/components/shared/Loader";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -462,11 +462,11 @@ export interface ProjectCategory {
 
 // ... (internal components remain mostly same)
 
-interface ProjectsSectionProps {
+interface ProjectsProps {
   categories?: ProjectCategory[];
 }
 
-export default function ProjectsSection({ categories = [] }: ProjectsSectionProps) {
+export default function Projects({ categories = [] }: ProjectsProps) {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {

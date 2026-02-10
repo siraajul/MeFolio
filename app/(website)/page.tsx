@@ -10,19 +10,19 @@ import {
   certificationsQuery,
   postsQuery,
 } from "@/sanity/lib/queries";
-import PortfolioHero from "@/components/ui/portfolio-hero";
-import AboutSection2 from "@/components/ui/about-section-2";
-import ProjectsSection from "@/components/ui/3d-folder";
-import { EducationCard } from "@/components/ui/education-card";
-import { WorkExperience } from "@/components/ui/work-experience";
-import { SiteNavBar } from "@/components/ui/site-navbar";
+import Hero from "@/components/sections/Hero";
+import AboutSection from "@/components/sections/About";
+import Projects from "@/components/sections/Projects";
+import { EducationCard } from "@/components/shared/EducationCard";
+import { Experience as ExperienceSection } from "@/components/sections/Experience";
+import { Navbar } from "@/components/layout/Navbar";
 import { Timeline } from "@/components/ui/timeline";
-import { Blog } from "@/components/ui/blog-section";
-import { Contact2 } from "@/components/ui/contact-2";
-import { Footer } from "@/components/ui/modem-animated-footer";
+import { Blog } from "@/components/sections/Blog";
+import { Contact } from "@/components/sections/Contact";
+import { Footer } from "@/components/layout/Footer";
 import { Github, Linkedin, Mail } from "lucide-react";
-import { SkillsSection } from "@/components/ui/skills-section";
-import { GitHubActivity } from "@/components/ui/github-activity";
+import { Skills as SkillsSection } from "@/components/sections/Skills";
+import { GithubActivity } from "@/components/sections/GithubActivity";
 
 import { 
   SiteSettings, 
@@ -117,14 +117,14 @@ export default async function Home() {
   return (
     <>
 
-      <SiteNavBar />
+      <Navbar />
       <div className="w-full" id="home">
-        <PortfolioHero {...heroProps} />
+        <Hero {...heroProps} />
         
         <div id="about">
-          {/* Note: AboutSection2 is complex and currently static. 
+          {/* Note: AboutSection is complex and currently static. 
               Future TODO: Pass dynamic 'about.content' if schema aligned. */}
-          <AboutSection2 />
+          <AboutSection />
         </div>
         
         <SkillsSection categories={skillCategories} />
@@ -135,7 +135,7 @@ export default async function Home() {
             Work <span className="text-brand italic">Experience</span>
           </h2>
           {experiences?.length > 0 ? (
-             <WorkExperience
+             <ExperienceSection
                className="w-full max-w-5xl mx-auto"
                experiences={experiences}
              />
@@ -145,11 +145,11 @@ export default async function Home() {
         </section>
 
         <div id="projects">
-          <ProjectsSection categories={projectCategories || []} />
+          <Projects categories={projectCategories || []} />
         </div>
 
         {/* GitHub Activity Section */}
-        <GitHubActivity username={
+        <GithubActivity username={
             settings?.socialLinks?.find((link: any) => link.platform.toLowerCase().includes("github"))?.url.split("/").pop() || "siraajul"
         } />
 
@@ -205,7 +205,7 @@ export default async function Home() {
 
         {/* Contact Section */}
         <div id="contact">
-          <Contact2 
+          <Contact 
             phone={settings?.phoneNumber}
             email={settings?.email}
             web={{

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { ExpandableSkillTags } from "@/components/ui/expandable-skill-tags";
+import { ExpandableSkillTags } from "@/components/shared/ExpandableSkillTags";
 import { SkillCategory } from "@/types/sanity";
 import { cn } from "@/lib/utils";
 
@@ -11,7 +11,7 @@ interface SkillsSectionProps {
   categories: SkillCategory[];
 }
 
-export function SkillsSection({ categories }: SkillsSectionProps) {
+export function Skills({ categories }: SkillsSectionProps) {
   return (
     <section id="skills" className="min-h-0 md:min-h-screen w-full flex flex-col justify-center max-w-7xl mx-auto py-12 md:py-16 px-4 md:px-6">
       <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 sm:mb-16 text-center uppercase tracking-tight">

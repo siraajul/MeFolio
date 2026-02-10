@@ -10,8 +10,8 @@ import {
   certificationsQuery,
   recommendationsQuery,
 } from "@/sanity/lib/queries";
-import { ResumeTemplate } from "@/components/ui/resume-template";
-import { PrintButton } from "@/components/ui/print-button";
+import { ResumeTemplate } from "@/components/shared/ResumeTemplate";
+import { PrintButton } from "@/components/shared/PrintButton";
 
 export const metadata: Metadata = {
   title: "Resume | Sirajul Islam",

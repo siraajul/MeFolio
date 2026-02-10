@@ -9,7 +9,7 @@ interface GitHubActivityProps {
   username?: string;
 }
 
-export function GitHubActivity({ username = "siraajul" }: GitHubActivityProps) {
+export function GithubActivity({ username = "siraajul" }: GitHubActivityProps) {
   const { theme } = useTheme();
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
