@@ -32,7 +32,7 @@ export default async function ResumePage() {
   const references = await client.fetch(recommendationsQuery);
 
   return (
-    <main className="min-h-screen bg-neutral-100 py-10 print:bg-white print:py-0">
+    <main className="min-h-screen bg-neutral-100 dark:bg-neutral-950 py-10 print:bg-white print:py-0">
       
       {/* Back to Home Button */}
       <a 
