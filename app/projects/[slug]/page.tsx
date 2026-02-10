@@ -89,10 +89,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <main className="min-h-screen bg-neutral-50 dark:bg-black text-neutral-900 dark:text-neutral-100">
-      <SiteNavBar />
-      
-      {/* Spacer for navbar */}
-      <div className="h-20" />
+
 
       <article className="max-w-4xl mx-auto px-6 py-10 md:py-20">
         
@@ -121,7 +118,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     {/* Fallback for old schema link used as Github if no githubLink */}
                     {project.githubLink ? (
                          <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 bg-neutral-900 dark:bg-neutral-800 text-white rounded-full font-medium hover:bg-neutral-800 dark:hover:bg-neutral-700 transition-all">
-                            <Github className="w-4 h-4" /> Authorization
+                            <Github className="w-4 h-4" /> GitHub Repo
                         </a>
                     ) : (
                          /* Old link might be github? Just in case */
