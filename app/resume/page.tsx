@@ -34,12 +34,19 @@ export default async function ResumePage() {
   return (
     <main className="min-h-screen bg-neutral-100 py-10 print:bg-white print:py-0">
       
+      {/* Back to Home Button */}
+      <a 
+        href="/"
+        className="fixed top-6 left-6 z-50 print:hidden flex items-center gap-2 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white px-4 py-2 rounded-full shadow-sm hover:shadow-md transition-all font-medium hover:scale-105 active:scale-95"
+      >
+        <span>←</span>
+        <span className="hidden sm:inline">Back to Home</span>
+      </a>
+
       {/* Print Button */}
       <PrintButton />
       
       <div className="container mx-auto px-4 print:px-0 print:mx-0">
-
-
          <ResumeTemplate 
             settings={settings}
             about={about}
