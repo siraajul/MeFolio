@@ -56,9 +56,19 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const id = entry.target.id
-            const navItem = items.find((item) => item.url === `#${id}`)
+            // Match / for home ID, or /#id for others
+            const navItem = items.find((item) => {
+                if (id === 'home') return item.url === '/';
+                return item.url === `/#${id}`;
+            })
+            
             if (navItem) {
               setActiveTab(navItem.name)
+              // Sync URL with active section
+              const newHash = navItem.url === "/" ? "" : navItem.url.replace("/", "")
+              if (typeof window !== "undefined" && window.history.replaceState) {
+                  window.history.replaceState(null, "", window.location.pathname + newHash)
+              }
             }
           }
         })
@@ -70,8 +80,15 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
     )
 
     items.forEach((item) => {
-      if (item.url.startsWith("#")) {
-        const id = item.url.replace("#", "")
+      // Observe targets if they exist (handling / for home)
+      let id = "";
+      if (item.url === "/") {
+          id = "home";
+      } else if (item.url.startsWith("/#")) {
+          id = item.url.replace("/#", "");
+      }
+
+      if (id) {
         const element = document.getElementById(id)
         if (element) {
           observer.observe(element)
@@ -83,7 +100,8 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
        observer.disconnect()
        if (timeoutRef.current) clearTimeout(timeoutRef.current)
     }
-  }, [mounted, items])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mounted, JSON.stringify(items), pathname])
 
   const lenis = useLenis()
 
@@ -91,10 +109,20 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
     setActiveTab(name)
     setHoveredTab(null)
 
-    // Handle smooth scrolling for anchor links
-    if (url.startsWith("#")) {
+    // Handle smooth scrolling only if we are on the home page and link is an anchor or root
+    const isHomePage = pathname === "/" || pathname === "";
+    const isAnchor = url.startsWith("/#") || url === "/";
+
+    if (isHomePage && isAnchor) {
       e.preventDefault()
-      const targetId = url.replace("#", "")
+      // Determine target ID
+      let targetId = "";
+      if (url === "/") {
+          targetId = "home";
+      } else {
+          targetId = url.replace("/#", "");
+      }
+
       const element = document.getElementById(targetId)
       
       if (element) {
@@ -103,6 +131,12 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
         } else {
           // Fallback if Lenis isn't ready or available
           element.scrollIntoView({ behavior: "smooth" })
+        }
+        
+        // Update URL immediately on click for better responsiveness
+        const newHash = url === "/" ? "" : url.replace("/", "");
+        if (typeof window !== "undefined" && window.history.replaceState) {
+            window.history.replaceState(null, "", window.location.pathname + newHash)
         }
       }
     }
