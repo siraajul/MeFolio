@@ -5,7 +5,8 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   firstName,
   lastName,
   tagline,
-  brandDescription,
+  location,
+  resumeTagline,
   "profileImageUrl": profileImage.asset->url,
   "ogImageUrl": ogImage.asset->url,
   socialLinks[]{platform, url},
@@ -98,3 +99,52 @@ export const recommendationsQuery = groq`*[_type == "recommendation"]{
 export const aboutQuery = groq`*[_type == "about"][0]{
   content
 }`;
+
+export const resumeQuery = groq`* [_type == "resume"][0]{
+  ...,
+  education[] -> {
+    _id,
+    universityName,
+    degree,
+    period,
+    location,
+    description,
+    "logoUrl": logo.asset -> url
+  },
+    experience[] -> {
+      "id": _id,
+      companyName,
+      "companyLogo": companyLogo.asset -> url,
+      isCurrentEmployer,
+      positions[]{
+        "_key": _key,
+        title,
+        employmentPeriod,
+        employmentType,
+        description,
+        skills,
+        isExpanded
+      }
+    },
+    skills[] -> {
+      _id,
+      title,
+      skills
+    },
+    certifications[] -> {
+      _id,
+      title,
+      providerName,
+      year,
+      description
+    },
+    references[] -> {
+      _id,
+      name,
+      position,
+      company,
+      quote,
+      email
+    },
+    resumeProjects
+} `;

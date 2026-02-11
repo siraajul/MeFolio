@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity'
+import { defineField, defineType, defineArrayMember } from 'sanity'
 
 export default defineType({
     name: 'resume',
@@ -80,6 +80,35 @@ export default defineType({
             type: 'array',
             of: [{ type: 'reference', to: { type: 'recommendation' } }],
             description: 'Select recommendations to show at the bottom of the resume.',
+        }),
+        defineField({
+            name: 'resumeProjects',
+            title: 'Resume Projects',
+            type: 'array',
+            description: 'Projects specific to the resume (points, links) - separate from main portfolio.',
+            of: [
+                defineArrayMember({
+                    type: 'object',
+                    fields: [
+                        { name: 'title', title: 'Project Title', type: 'string', validation: (Rule) => Rule.required() },
+                        { name: 'link', title: 'Project Link', type: 'url' },
+                        { name: 'date', title: 'Date / Period', type: 'string', initialValue: '2024' },
+                        {
+                            name: 'techStack',
+                            title: 'Tech Stack',
+                            type: 'array',
+                            of: [{ type: 'string' }],
+                            options: { layout: 'tags' }
+                        },
+                        {
+                            name: 'summary',
+                            title: 'Bullet Points (Summary)',
+                            type: 'array',
+                            of: [{ type: 'string' }]
+                        }
+                    ]
+                })
+            ]
         }),
     ],
 })

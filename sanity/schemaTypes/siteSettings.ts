@@ -13,6 +13,12 @@ export default defineType({
             validation: (Rule) => Rule.required(),
         }),
         defineField({
+            name: "location",
+            title: "Location",
+            type: "string",
+            description: "e.g. New York, USA",
+        }),
+        defineField({
             name: "lastName",
             title: "Last Name",
             type: "string",
@@ -29,6 +35,12 @@ export default defineType({
             title: "Tagline",
             type: "string",
             description: "Short description shown in the Hero section",
+        }),
+        defineField({
+            name: "resumeTagline",
+            title: "Resume Tagline",
+            type: "string",
+            description: "Tagline specifically for the resume. If empty, uses the main tagline.",
         }),
         defineField({
             name: "brandDescription",

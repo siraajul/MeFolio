@@ -10,8 +10,10 @@ export interface SiteSettings extends SanityBody {
     firstName: string;
     lastName: string;
     tagline: string;
+    resumeTagline?: string;
     profileImageUrl: string;
     brandDescription?: string;
+    location?: string;
     socialLinks?: SocialLink[];
     ogImageUrl?: string;
     cvVideo?: string;
@@ -113,4 +115,32 @@ export interface GitHubContribution {
     date: string;
     count: number;
     level: number;
+}
+
+export interface ResumeProject {
+    _key: string;
+    title: string;
+    link?: string;
+    date?: string;
+    techStack?: string[];
+    summary?: string[];
+}
+
+export interface Resume extends SanityBody {
+    title: string;
+    professionalSummary?: string;
+    contactInfo?: {
+        email?: string;
+        phone?: string;
+        location?: string;
+        website?: string;
+        linkedin?: string;
+        github?: string;
+    };
+    education?: Education[];
+    experience?: Experience[];
+    skills?: SkillCategory[];
+    certifications?: Certification[];
+    references?: Recommendation[];
+    resumeProjects?: ResumeProject[];
 }

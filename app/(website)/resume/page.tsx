@@ -8,11 +8,13 @@ import {
   educationsQuery,
   skillCategoriesQuery,
   certificationsQuery,
+
   recommendationsQuery,
+  resumeQuery,
 } from "@/sanity/lib/queries";
 import { SiteSettings } from "@/types/sanity";
 import { ResumeTemplate } from "@/components/shared/ResumeTemplate";
-import { PrintButton } from "@/components/shared/PrintButton";
+import { DownloadButton } from "@/components/shared/DownloadButton";
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await client.fetch<SiteSettings>(siteSettingsQuery);
@@ -46,7 +48,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export const revalidate = 60;
 
 export default async function ResumePage() {
-  const [settings, about, experiences, educations, skills, certifications, references] = await Promise.all([
+  const [settings, about, experiences, educations, skills, certifications, references, resume] = await Promise.all([
     client.fetch(siteSettingsQuery),
     client.fetch(aboutQuery),
     client.fetch(experiencesQuery),
@@ -54,6 +56,7 @@ export default async function ResumePage() {
     client.fetch(skillCategoriesQuery),
     client.fetch(certificationsQuery),
     client.fetch(recommendationsQuery),
+    client.fetch(resumeQuery),
   ]);
 
   return (
@@ -68,8 +71,8 @@ export default async function ResumePage() {
         <span className="hidden sm:inline">Back to Home</span>
       </a>
 
-      {/* Print Button */}
-      <PrintButton />
+      {/* Download Button */}
+      <DownloadButton />
       
       <div className="container mx-auto px-4 print:px-0 print:mx-0">
          <ResumeTemplate 
@@ -80,6 +83,7 @@ export default async function ResumePage() {
             skills={skills}
             certifications={certifications}
             references={references}
+            resumeProjects={resume?.resumeProjects}
          />
       </div>
     </main>
