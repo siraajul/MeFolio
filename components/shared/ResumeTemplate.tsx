@@ -32,7 +32,8 @@ export const ResumeTemplate = ({
 
   references,
   resumeProjects,
-}: ResumeProps & { resumeProjects?: any[] }) => {
+  coreCompetencies,
+}: ResumeProps & { resumeProjects?: any[]; coreCompetencies?: string[] }) => {
   return (
     <div className="w-full max-w-[210mm] mx-auto bg-white dark:bg-neutral-900 text-black dark:text-neutral-100 p-5 md:p-12 font-sans shadow-none print:shadow-none print:max-w-none print:w-full print:p-0 print:bg-white print:text-black">
       
@@ -124,6 +125,27 @@ export const ResumeTemplate = ({
              <p>{settings?.brandDescription || "Experienced Software Quality Assurance Engineer with a strong background in automation testing, performance optimization, and building scalable test frameworks. Dedicated to delivering high-quality software solutions through rigorous testing and continuous improvement."}</p>
         </div>
       </section>
+
+      {/* Core Competencies */}
+      {(() => {
+        const demoCompetencies = ["Test Automation Architecture", "Performance Engineering", "API Testing & Integration", "CI/CD Pipeline Design", "Mobile App Testing (iOS/Android)", "Agile & Scrum Methodologies"];
+        const competenciesToDisplay = (coreCompetencies && coreCompetencies.length > 0) ? coreCompetencies : demoCompetencies;
+        
+        return (
+            <section className="mb-6">
+                <h2 className="text-lg font-bold uppercase tracking-wider border-b border-neutral-300 dark:border-neutral-700 mb-3 pb-1">
+                Core Competencies
+                </h2>
+                <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-neutral-800 dark:text-neutral-200">
+                    {competenciesToDisplay.map((skill: string, idx: number) => (
+                        <div key={idx} className="flex items-center">
+                            <span className="font-medium">• {skill}</span>
+                        </div>
+                    ))}
+                </div>
+            </section>
+        );
+      })()}
 
       {/* Experience */}
       <section className="mb-6">

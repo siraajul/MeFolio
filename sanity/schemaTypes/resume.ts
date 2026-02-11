@@ -30,6 +30,16 @@ export default defineType({
             rows: 4,
         }),
         defineField({
+            name: 'coreCompetencies',
+            title: 'Core Competencies',
+            type: 'array',
+            of: [{ type: 'string' }],
+            description: 'List of key expertise areas (e.g., Test Automation, CI/CD, Performance Testing).',
+            options: {
+                layout: 'tags'
+            }
+        }),
+        defineField({
             name: 'contactInfo',
             title: 'Contact Information Override',
             type: 'object',

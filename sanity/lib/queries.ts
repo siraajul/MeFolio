@@ -101,8 +101,9 @@ export const aboutQuery = groq`*[_type == "about"][0]{
 }`;
 
 export const resumeQuery = groq`* [_type == "resume"][0]{
-  ...,
-  education[] -> {
+  contactInfo,
+  coreCompetencies,
+  "education": education[]->{
     _id,
     universityName,
     degree,

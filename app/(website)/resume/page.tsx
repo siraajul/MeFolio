@@ -84,6 +84,7 @@ export default async function ResumePage() {
             certifications={certifications}
             references={references}
             resumeProjects={resume?.resumeProjects}
+            coreCompetencies={resume?.coreCompetencies}
          />
       </div>
     </main>

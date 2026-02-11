@@ -129,6 +129,7 @@ export interface ResumeProject {
 export interface Resume extends SanityBody {
     title: string;
     professionalSummary?: string;
+    coreCompetencies?: string[];
     contactInfo?: {
         email?: string;
         phone?: string;
