@@ -71,6 +71,7 @@ sequenceDiagram
     *   Blog Posts
 *   **Markdown Support**: Write rich content for your case studies and blogs.
 *   **Smart Resume**: A dedicated `/resume` route that generates an ATS-friendly, print-optimized resume from your CMS data.
+*   **Lead Capture**: A built-in form that collects visitor details (Name, Email, Company) before they download your CV, saving leads directly to Sanity.
 
 ### 🎨 For End Users
 *   **Interactive UI**: Smooth animations using **Framer Motion** and **Lenis** for buttery smooth scrolling.
@@ -123,6 +124,9 @@ NEXT_PUBLIC_SANITY_PROJECT_ID="your_project_id"
 NEXT_PUBLIC_SANITY_DATASET="production"
 # Optional: Webhook secret for revalidation
 SANITY_REVALIDATE_SECRET="your_secret" 
+# Optional: API Token for saving leads (CV Downloads)
+# Generate this in Sanity Manage with "Editor" or "Write" permissions
+SANITY_API_TOKEN="sk_..." 
 ```
 
 ### 4. Run Locally
