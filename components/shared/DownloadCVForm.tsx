@@ -75,23 +75,23 @@ export function DownloadCVForm({ children }: DownloadCVFormProps) {
             Please provide your details to download the complete CV.
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
+        <form onSubmit={handleSubmit} className="grid gap-6 py-6">
+          <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-2 sm:gap-4">
+            <Label htmlFor="name" className="text-left sm:text-right">
               Name
             </Label>
             <Input
               id="name"
               name="name"
               placeholder="Your Name"
-              className="col-span-3"
+              className="col-span-1 sm:col-span-3"
               value={formData.name}
               onChange={handleChange}
               required
             />
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="email" className="text-right">
+          <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-2 sm:gap-4">
+            <Label htmlFor="email" className="text-left sm:text-right">
               Email
             </Label>
             <Input
@@ -99,21 +99,21 @@ export function DownloadCVForm({ children }: DownloadCVFormProps) {
               name="email"
               type="email"
               placeholder="your@email.com"
-              className="col-span-3"
+              className="col-span-1 sm:col-span-3"
               value={formData.email}
               onChange={handleChange}
               required
             />
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="company" className="text-right">
+          <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-2 sm:gap-4">
+            <Label htmlFor="company" className="text-left sm:text-right">
               Company
             </Label>
             <Input
               id="company"
               name="company"
               placeholder="Company Name (Optional)"
-              className="col-span-3"
+              className="col-span-1 sm:col-span-3"
               value={formData.company}
               onChange={handleChange}
             />
