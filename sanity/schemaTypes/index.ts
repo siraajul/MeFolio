@@ -10,6 +10,7 @@ import about from "./about";
 import series from "./series";
 import resume from "./resume";
 import recommendation from "./recommendation";
+import lead from "./lead";
 
 export const schemaTypes = [
     siteSettings,
@@ -23,4 +24,5 @@ export const schemaTypes = [
     series,
     resume,
     recommendation,
+    lead,
 ];
