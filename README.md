@@ -18,7 +18,7 @@ graph TD
     end
 
     subgraph "Application"
-        DB -->|Fetch Content (GROQ)| App[Next.js App]
+        DB -->|Fetch Content - GROQ| App[Next.js App]
         App -->|Render Pages| User[Visitor]
     end
 
