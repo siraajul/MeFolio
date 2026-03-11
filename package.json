@@ -33,6 +33,7 @@
     "react-activity-calendar": "^3.0.5",
     "react-dom": "19.2.3",
     "react-markdown": "^10.1.0",
+    "resend": "^6.9.3",
     "sanity": "^5.1.0",
     "tailwind-merge": "^3.4.0"
   },
