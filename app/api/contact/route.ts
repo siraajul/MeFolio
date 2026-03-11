@@ -4,7 +4,19 @@ import { client } from "@/sanity/lib/client";
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { name, email, company } = body;
+        const {
+            name,
+            email,
+            company,
+            projectType,
+            platform,
+            testingTypes,
+            automationFramework,
+            ciCdTools,
+            timeline,
+            budget,
+            additionalInfo,
+        } = body;
 
         const token = process.env.SANITY_API_TOKEN;
 
@@ -20,21 +32,28 @@ export async function POST(req: Request) {
         const writeClient = client.withConfig({ token });
 
         await writeClient.create({
-            _type: "lead",
+            _type: "contactRequest",
             name,
             email,
             company,
-            downloadedAt: new Date().toISOString(),
+            projectType,
+            platform,
+            testingTypes,
+            automationFramework,
+            ciCdTools,
+            timeline,
+            budget,
+            additionalInfo,
         });
 
         return NextResponse.json(
-            { message: "Form submitted and lead saved" },
+            { message: "QA Consultation requested successfully" },
             { status: 200 }
         );
     } catch (error) {
-        console.error("Error submitting form:", error);
+        console.error("Error submitting QA request:", error);
         return NextResponse.json(
-            { message: "Error submitting form" },
+            { message: "Error submitting QA request" },
             { status: 500 }
         );
     }
