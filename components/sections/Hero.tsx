@@ -119,8 +119,17 @@ export default function Hero({
             />
           </div>
 
-          {/* Video CV Button */}
-          <div className="flex justify-center">
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+             <Button
+                onClick={() => {
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="group relative inline-flex items-center gap-2 px-8 py-6 rounded-full bg-brand hover:bg-brand/90 text-brand-foreground text-base sm:text-lg font-bold shadow-[0_0_30px_rgba(255,107,0,0.3)] transition-all duration-300 hover:scale-105"
+             >
+                Book a Reality Check
+             </Button>
+
              <button
                 onClick={() => setIsVideoOpen(true)}
                 className="group relative inline-flex items-center gap-2 px-6 py-3 bg-secondary/50 dark:bg-white/5 backdrop-blur-sm border border-border/50 dark:border-white/10 rounded-full hover:bg-secondary/80 dark:hover:bg-white/10 transition-all duration-300 hover:scale-105"

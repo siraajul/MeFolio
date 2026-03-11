@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description: 
       siteSettings?.tagline || 
-      "SQA Automation Engineer & SDET specializing in scalable test frameworks, performance testing, and quality assurance strategies.",
+      "I help engineering teams ship faster without breaking production. Stop losing weekends to manual testing and hotfixes.",
     keywords: [
       "SQA Engineer Bangladesh",
       "Best SQA Engineer in Bangladesh",
@@ -35,7 +35,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: "Sirajul Islam | SQA Automation Engineer",
       description: 
         siteSettings?.tagline || 
-        "Expert in Test Automation, SDET, and Quality Assurance strategies.",
+        "I help engineering teams ship faster without breaking production. Stop losing weekends to manual testing and hotfixes.",
       type: "website",
       images: siteSettings?.ogImageUrl ? [{ 
         url: siteSettings.ogImageUrl,
@@ -47,7 +47,7 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title: "Sirajul Islam | SQA Automation Engineer",
-      description: siteSettings?.tagline || "Expert in Test Automation, SDET, and Quality Assurance strategies.",
+      description: siteSettings?.tagline || "I help engineering teams ship faster without breaking production. Stop losing weekends to manual testing and hotfixes.",
       images: siteSettings?.ogImageUrl ? [siteSettings.ogImageUrl] : [],
     },
   };

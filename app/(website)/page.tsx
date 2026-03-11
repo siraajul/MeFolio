@@ -113,7 +113,7 @@ export default async function Home() {
   const heroProps = {
     firstName: settings?.firstName || "SIRAJUL",
     lastName: settings?.lastName || "ISLAM",
-    tagline: settings?.tagline || "Ensuring software reliability and quality through automation.",
+    tagline: settings?.tagline || "I help engineering teams ship faster without breaking production. Stop losing weekends to manual testing and hotfixes.",
     profileImageUrl: settings?.profileImageUrl,
     socialLinks: settings?.socialLinks || [],
     cvVideo: settings?.cvVideo,
