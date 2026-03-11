@@ -166,7 +166,7 @@ export function DownloadCVForm({ children }: DownloadCVFormProps) {
                   Download CV
                 </h2>
                 <p className="text-white/60 text-sm leading-relaxed">
-                  Please provide your details. We&apos;ll send a
+                  Please provide your details. I will send a
                   <br />
                   verification code to your email.
                 </p>
