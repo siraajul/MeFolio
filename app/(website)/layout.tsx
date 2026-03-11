@@ -5,6 +5,8 @@ import { ClientShell } from "@/components/layout/ClientShell";
 import { client } from "@/sanity/lib/client";
 import { siteSettingsQuery } from "@/sanity/lib/queries";
 
+export const revalidate = 60;
+
 export async function generateMetadata(): Promise<Metadata> {
   const siteSettings = await client.fetch(siteSettingsQuery);
 
@@ -35,7 +37,12 @@ export async function generateMetadata(): Promise<Metadata> {
         siteSettings?.tagline || 
         "Expert in Test Automation, SDET, and Quality Assurance strategies.",
       type: "website",
-      images: siteSettings?.ogImageUrl ? [{ url: siteSettings.ogImageUrl }] : [],
+      images: siteSettings?.ogImageUrl ? [{ 
+        url: siteSettings.ogImageUrl,
+        width: 1200,
+        height: 630,
+        alt: "Sirajul Islam | SQA Automation Engineer" 
+      }] : [],
     },
     twitter: {
       card: "summary_large_image",
