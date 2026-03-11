@@ -487,22 +487,83 @@ const OnboardingForm = () => {
                         </RadioGroup>
                       </motion.div>
 
-                      <motion.div variants={fadeInUp} className="space-y-2 mt-4">
-                        <Label htmlFor="budget">Which QA Strategy Package Fits Your Needs?</Label>
-                        <Select
+                      <motion.div variants={fadeInUp} className="space-y-4 pt-4">
+                        <Label>Which QA Strategy Package Fits Your Needs?</Label>
+                        <RadioGroup
                           value={formData.budget}
                           onValueChange={(value) => updateFormData("budget", value)}
+                          className="flex flex-col gap-3"
                         >
-                          <SelectTrigger id="budget" className="bg-background/50">
-                            <SelectValue placeholder="Select a range" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="starter_reality_check">Starter Reality Check - $299</SelectItem>
-                            <SelectItem value="growth_fix">Growth Fix - $999</SelectItem>
-                            <SelectItem value="serious_scale">Serious Scale - $2,499</SelectItem>
-                            <SelectItem value="custom">Custom Need / Retainer</SelectItem>
-                          </SelectContent>
-                        </Select>
+                          {[
+                            { 
+                              value: "starter_reality_check", 
+                              title: "Starter Reality Check", 
+                              price: "$299", 
+                              desc: "One hour. Brutal clarity. See exactly what's broken." 
+                            },
+                            { 
+                              value: "growth_fix", 
+                              title: "Growth Fix", 
+                              price: "$999", 
+                              desc: "Deep product + QA correction. Systems rebuilt. Results follow.",
+                              popular: true
+                            },
+                            { 
+                              value: "serious_scale", 
+                              title: "Serious Scale", 
+                              price: "$2,499", 
+                              desc: "Full strategy. Clean execution. No more chaos. Only progress." 
+                            },
+                            { 
+                              value: "custom", 
+                              title: "Custom Need / Retainer", 
+                              price: "Flexible", 
+                              desc: "Looking for an ongoing QA partner or custom enterprise strategy." 
+                            },
+                          ].map((pkg, idx) => (
+                            <motion.div
+                              key={pkg.value}
+                              className={`relative flex items-center justify-between p-4 rounded-xl border cursor-pointer transition-all ${
+                                formData.budget === pkg.value 
+                                  ? "border-brand bg-brand/5 shadow-[0_0_20px_rgba(255,107,0,0.1)]" 
+                                  : "border-border/50 bg-background/50 hover:bg-muted/50 hover:border-border"
+                              }`}
+                              whileHover={{ scale: 1.01 }}
+                              whileTap={{ scale: 0.99 }}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0, transition: { delay: 0.1 * idx } }}
+                              onClick={() => updateFormData("budget", pkg.value)}
+                            >
+                              {pkg.popular && (
+                                <div className="absolute -top-2.5 right-4 bg-brand text-brand-foreground text-[10px] uppercase font-bold px-2 py-0.5 rounded-full z-10">
+                                  Popular
+                                </div>
+                              )}
+                              <div className="flex items-center gap-4 flex-1">
+                                <div className={`flex-shrink-0 w-5 h-5 rounded-full border flex items-center justify-center transition-colors ${
+                                  formData.budget === pkg.value ? "border-brand bg-brand" : "border-muted-foreground"
+                                }`}>
+                                  {formData.budget === pkg.value && <div className="w-2 h-2 rounded-full bg-white" />}
+                                </div>
+                                <RadioGroupItem value={pkg.value} id={`pkg-${pkg.value}`} className="hidden" />
+                                
+                                <div className="flex flex-col sm:flex-row sm:items-center justify-between w-full gap-2 sm:gap-4">
+                                  <div className="space-y-1">
+                                    <Label htmlFor={`pkg-${pkg.value}`} className="font-bold text-sm sm:text-base cursor-pointer">
+                                      {pkg.title}
+                                    </Label>
+                                    <p className="text-xs text-muted-foreground mr-2 leading-relaxed">
+                                      {pkg.desc}
+                                    </p>
+                                  </div>
+                                  <div className="text-base sm:text-lg font-black text-brand shrink-0">
+                                    {pkg.price}
+                                  </div>
+                                </div>
+                              </div>
+                            </motion.div>
+                          ))}
+                        </RadioGroup>
                       </motion.div>
                     </CardContent>
                   </>
