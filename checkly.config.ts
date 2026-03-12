@@ -18,9 +18,8 @@ const config = defineConfig({
     /* A list of locations where you want your checks to run from. */
     locations: ['us-east-1', 'eu-central-1'],
     /* How often should your check run? */
-    checkFrequencyLoop: 10, // minutes
+    frequency: 10, // minutes
     /* How long should Checkly wait for a check to complete? */
-    timeout: 30, // seconds
     /* The strategy to use when a check fails. */
     retryStrategy: RetryStrategyBuilder.fixedStrategy({
       baseBackoffSeconds: 60,
