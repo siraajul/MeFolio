@@ -15,7 +15,7 @@ test('Homepage loads correctly', async ({ page }) => {
 
   // Verify the Hero section text is visible
   // We look for "SIRAJUL" which is the main standout text
-  await expect(page.getByText('SIRAJUL')).toContainText('SIRAJUL')
+  await expect(page.getByText('SIRAJUL', { exact: true })).toContainText('SIRAJUL')
 
   // Verify the "Book a Reality Check" button exists
   await expect(page.getByRole('button', { name: /Book a Reality Check/i })).toBeVisible()
