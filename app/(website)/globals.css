@@ -59,7 +59,7 @@
 :root {
   --radius: 0.625rem;
   --brand: #FF6B00;
-  --brand-foreground: #000000;
+  --brand-foreground: #FFFFFF;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -95,7 +95,7 @@
 
 .dark {
   --brand: #FF6B00;
-  --brand-foreground: #000000;
+  --brand-foreground: #FFFFFF;
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
