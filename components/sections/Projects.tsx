@@ -453,9 +453,9 @@ export default function Projects({ categories = [] }: ProjectsProps) {
   return (
     <section className="bg-background text-foreground transition-colors duration-500 selection:bg-accent/30 selection:text-accent-foreground">
       <div className="max-w-7xl mx-auto pt-12 px-4 md:px-6 text-center">
-        <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
           QA <span className="text-brand italic">Projects</span>
-        </h1>
+        </h2>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
           A showcase of test automation frameworks, performance testing, and quality assurance strategies.
         </p>

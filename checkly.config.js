@@ -30,7 +30,7 @@ const config = defineConfig({
     /* The Playwright-specific check settings. */
     browserChecks: {
       /* The Playwright version to use. */
-      testMatch: '**/__checks__/**/*.check.ts',
+      testMatch: '**/__checks__/**/*.spec.ts',
     },
   },
   cli: {
