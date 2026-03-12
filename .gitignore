@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# testing
+/playwright-report/
+/test-results/
+/test-results-failed/
+*screenshot.png
+__checks__/*.png
+
+# checkly & npm
+/.npm-cache-temp/
+.checkly/
