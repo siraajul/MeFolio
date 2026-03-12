@@ -10,7 +10,8 @@ export async function register() {
 
 // Automatically captures all unhandled server-side request errors
 // Requires @sentry/nextjs >= 8.28.0
-export const onRequestError = async (err: unknown, context: any) => {
+// Next.js 15+ signature: (error, request, context)
+export const onRequestError = async (err: unknown, request: any, context: any) => {
   const Sentry = await import("@sentry/nextjs");
-  return Sentry.captureRequestError(err, context);
+  return Sentry.captureRequestError(err, request, context);
 };
