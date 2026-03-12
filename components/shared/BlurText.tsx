@@ -10,6 +10,7 @@ interface BlurTextProps {
   className?: string;
   style?: React.CSSProperties;
   priority?: boolean;
+  dataTestId?: string;
 }
 
 const BlurText: React.FC<BlurTextProps> = ({
@@ -20,6 +21,7 @@ const BlurText: React.FC<BlurTextProps> = ({
   className = "",
   style,
   priority = false,
+  dataTestId,
 }) => {
   const [inView, setInView] = useState(priority);
   const ref = useRef<HTMLParagraphElement>(null);
@@ -42,14 +44,19 @@ const BlurText: React.FC<BlurTextProps> = ({
     return () => {
       observer.unobserve(node);
     };
-  }, []);
+  }, [priority]);
 
   const segments = useMemo(() => {
     return animateBy === "words" ? text.split(" ") : text.split("");
   }, [text, animateBy]);
 
   return (
-    <p ref={ref} className={`inline-flex flex-wrap ${className}`} style={style}>
+    <p 
+      ref={ref} 
+      className={`inline-flex flex-wrap ${className}`} 
+      style={style}
+      data-testid={dataTestId}
+    >
       {segments.map((segment, i) => (
         <span
           key={i}

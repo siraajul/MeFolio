@@ -76,6 +76,7 @@ export default function Hero({
                 className="font-bold text-[17vw] sm:text-[100px] md:text-[130px] lg:text-[180px] xl:text-[200px] 2xl:text-[260px] leading-[0.85] tracking-tighter 2xl:tracking-wide uppercase justify-center"
                 style={{ color: "var(--brand)", fontFamily: "var(--font-fira-code), monospace" }}
                 priority={true}
+                dataTestId="hero-first-name"
               />
             </div>
             <div>
@@ -87,6 +88,7 @@ export default function Hero({
                 className="font-bold text-[17vw] sm:text-[100px] md:text-[130px] lg:text-[180px] xl:text-[200px] 2xl:text-[260px] leading-[0.85] tracking-tighter 2xl:tracking-wide uppercase justify-center"
                 style={{ color: "var(--brand)", fontFamily: "var(--font-fira-code), monospace" }}
                 priority={true}
+                dataTestId="hero-last-name"
               />
             </div>
 

@@ -9,9 +9,11 @@ test.describe('Home Page', () => {
         await expect(page).toHaveTitle(/Sirajul Islam/);
 
         // Check specific Hero text
-        // Note: Since we use BlurText, we check for presence using exact match and .first() to be safe
-        await expect(page.getByText('SIRAJUL', { exact: true }).first()).toBeVisible();
-        await expect(page.getByText('ISLAM', { exact: true }).first()).toBeVisible();
+        // We use getByTestId for absolute precision and to avoid strict-mode violations with footer/background text
+        await expect(page.getByTestId('hero-first-name')).toBeVisible();
+        await expect(page.getByTestId('hero-last-name')).toBeVisible();
+        await expect(page.getByTestId('hero-first-name')).toContainText('SIRAJUL');
+        await expect(page.getByTestId('hero-last-name')).toContainText('ISLAM');
         
         // Check for tagline presence using a more flexible approach (looking for either the Sanity content or the fallback)
         // We can just check for "software" which is likely present in both versions or better, check for the CTA button.
