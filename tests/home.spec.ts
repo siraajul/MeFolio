@@ -11,8 +11,8 @@ test.describe('Home Page', () => {
         // Check specific Hero text
         // Note: Since we use BlurText, we check for presence of the text content
         // Using .first() because BlurText might render multiple layers or the layout might have duplicates
-        await expect(page.getByText('SIRAJUL').first()).toBeVisible();
-        await expect(page.getByText('ISLAM').first()).toBeVisible();
+        await expect(page.getByText('SIRAJUL', { exact: true }).first()).toBeVisible();
+        await expect(page.getByText('ISLAM', { exact: true }).first()).toBeVisible();
 
         // Check for tagline presence (checking first word as BlurText splits words into spans without spaces in DOM)
         await expect(page.getByText('Ensuring').first()).toBeVisible();
