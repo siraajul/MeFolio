@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import OnboardingForm from "@/components/ui/multistep-form";
+import posthog from "posthog-js";
 
 interface ContactProps {
   title?: string;
@@ -12,6 +13,9 @@ export const Contact = ({
   title = "Hire QA Expert",
   description = "Ready to elevate your product's quality? Tell me about your project, and let's design a robust testing strategy that prevents bugs and accelerates your releases.",
 }: ContactProps) => {
+  useEffect(() => {
+    posthog.capture("view_contact_section");
+  }, []);
   return (
     <section id="contact" className="py-24 md:py-32 px-4 md:px-6 flex flex-col justify-center bg-white dark:bg-neutral-950">
       <div className="container mx-auto max-w-4xl text-center">
