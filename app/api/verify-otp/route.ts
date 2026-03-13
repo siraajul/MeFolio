@@ -1,18 +1,28 @@
 import { NextResponse } from "next/server";
 import { otpStore, cleanupExpiredOTPs } from "@/lib/otp-store";
 import { client } from "@/sanity/lib/client";
+import { z } from "zod";
+
+const VerifyOtpSchema = z.object({
+    email: z.string().email("Invalid email format"),
+    otp: z.string().min(6).max(6),
+    name: z.string().max(100).optional(),
+    company: z.string().max(100).optional(),
+});
 
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { email, otp, name, company } = body;
+        const parsed = VerifyOtpSchema.safeParse(body);
 
-        if (!email || !otp) {
+        if (!parsed.success) {
             return NextResponse.json(
-                { message: "Email and OTP are required" },
+                { message: "Invalid input data", errors: parsed.error.format() },
                 { status: 400 }
             );
         }
+
+        const { email, otp, name, company } = parsed.data;
 
         const normalizedEmail = email.trim().toLowerCase();
 

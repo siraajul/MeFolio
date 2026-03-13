@@ -1,9 +1,33 @@
 import { NextResponse } from "next/server";
 import { client } from "@/sanity/lib/client";
+import { z } from "zod";
+
+const ContactSchema = z.object({
+    name: z.string().min(1, "Name is required").max(100),
+    email: z.string().email("Invalid email address"),
+    company: z.string().max(100).optional(),
+    projectType: z.string().max(100).optional(),
+    platform: z.string().max(100).optional(),
+    testingTypes: z.array(z.string()).optional(),
+    automationFramework: z.array(z.string()).optional(),
+    ciCdTools: z.array(z.string()).optional(),
+    timeline: z.string().max(50).optional(),
+    budget: z.string().max(50).optional(),
+    additionalInfo: z.string().max(2000).optional(),
+});
 
 export async function POST(req: Request) {
     try {
         const body = await req.json();
+        const parsed = ContactSchema.safeParse(body);
+
+        if (!parsed.success) {
+            return NextResponse.json(
+                { message: "Invalid input data", errors: parsed.error.format() },
+                { status: 400 }
+            );
+        }
+
         const {
             name,
             email,
@@ -16,7 +40,7 @@ export async function POST(req: Request) {
             timeline,
             budget,
             additionalInfo,
-        } = body;
+        } = parsed.data;
 
         const token = process.env.SANITY_API_TOKEN;
 

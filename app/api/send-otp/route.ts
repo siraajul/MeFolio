@@ -3,6 +3,7 @@ import { promises as dns } from "dns";
 import { isDisposableEmail } from "@/lib/disposable-domains";
 import { otpStore, generateOTP, cleanupExpiredOTPs } from "@/lib/otp-store";
 import { Resend } from "resend";
+import { z } from "zod";
 
 // Check if domain has valid MX records
 async function hasMXRecords(domain: string): Promise<boolean> {
@@ -14,28 +15,23 @@ async function hasMXRecords(domain: string): Promise<boolean> {
     }
 }
 
+const SendOtpSchema = z.object({
+    email: z.string().email("Please enter a valid email address"),
+});
+
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { email } = body;
+        const parsed = SendOtpSchema.safeParse(body);
 
-        if (!email || typeof email !== "string") {
+        if (!parsed.success) {
             return NextResponse.json(
-                { message: "Email is required" },
+                { message: parsed.error.issues[0]?.message || "Invalid input data" },
                 { status: 400 }
             );
         }
 
-        const normalizedEmail = email.trim().toLowerCase();
-
-        // Basic format check
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(normalizedEmail)) {
-            return NextResponse.json(
-                { message: "Please enter a valid email address" },
-                { status: 400 }
-            );
-        }
+        const normalizedEmail = parsed.data.email.trim().toLowerCase();
 
         // Check disposable email
         if (isDisposableEmail(normalizedEmail)) {
