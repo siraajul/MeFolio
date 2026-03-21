@@ -49,8 +49,16 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
     openGraph: {
         title: project.title,
         description: project.description,
+        url: `/projects/${slug}`,
         type: "article",
-        images: project.image ? [{ url: project.image }] : [],
+        images: project.image ? [
+            {
+                url: project.image,
+                width: 1200,
+                height: 630,
+                alt: project.title,
+            }
+        ] : [],
     },
     twitter: {
         card: "summary_large_image",

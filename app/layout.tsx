@@ -31,6 +31,10 @@ const antic = Antic({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000")
+  ),
   title: "Sirajul Islam | SQA Automation Engineer",
   description: "SQA Automation Engineer & SDET specializing in scalable test frameworks and quality assurance.",
   icons: {

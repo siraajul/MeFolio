@@ -56,8 +56,18 @@ export async function generateMetadata({ params }: BlogPostProps): Promise<Metad
     openGraph: {
       title: post.title,
       description: post.summary,
+      url: `/blog/${slug}`,
       type: "article",
-      images: post.imageUrl ? [{ url: post.imageUrl }] : [],
+      images: post.imageUrl
+        ? [
+            {
+              url: post.imageUrl,
+              width: 1200,
+              height: 630,
+              alt: post.title,
+            },
+          ]
+        : [],
       publishedTime: post.publishedAt,
     },
     twitter: {
