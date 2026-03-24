@@ -35,10 +35,70 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_BASE_URL ||
     (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000")
   ),
-  title: "Sirajul Islam | SQA Automation Engineer",
-  description: "SQA Automation Engineer & SDET specializing in scalable test frameworks and quality assurance.",
+  title: {
+    default: "Sirajul Islam | SQA Automation Engineer & SDET",
+    template: "%s | Sirajul Islam",
+  },
+  description:
+    "Portfolio of Sirajul Islam — SQA Automation Engineer & SDET specializing in Cypress, Playwright, Selenium, CI/CD pipelines, and scalable test frameworks. Available for QA consulting and automation projects.",
+  keywords: [
+    "SQA Engineer",
+    "SDET",
+    "Automation Engineer",
+    "Playwright",
+    "Cypress",
+    "Selenium",
+    "Quality Assurance",
+    "Test Automation",
+    "CI/CD",
+    "Sirajul Islam",
+    "Software Testing",
+    "Next.js Portfolio",
+  ],
+  authors: [{ name: "Sirajul Islam", url: "https://siraajul.vercel.app" }],
+  creator: "Sirajul Islam",
+  publisher: "Sirajul Islam",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: process.env.NEXT_PUBLIC_BASE_URL || "https://siraajul.vercel.app",
+    siteName: "Sirajul Islam — SQA Engineer Portfolio",
+    title: "Sirajul Islam | SQA Automation Engineer & SDET",
+    description:
+      "SQA Automation Engineer & SDET specializing in Cypress, Playwright, Selenium, CI/CD pipelines, and scalable test frameworks.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Sirajul Islam — SQA Automation Engineer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sirajul Islam | SQA Automation Engineer",
+    description:
+      "SQA Automation Engineer & SDET specializing in Cypress, Playwright, Selenium, CI/CD pipelines, and scalable test frameworks.",
+    creator: "@sirajul_islam",
+    images: ["/og-image.png"],
+  },
   icons: {
     icon: "/favicon.ico",
+  },
+  alternates: {
+    canonical: process.env.NEXT_PUBLIC_BASE_URL || "https://siraajul.vercel.app",
   },
 };
 

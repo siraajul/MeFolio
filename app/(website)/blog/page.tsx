@@ -7,16 +7,18 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "All Articles | Sirajul Islam",
-  description: "Browse all articles, tutorials, and insights on software quality assurance and automation.",
+  description: "Browse all articles, tutorials, and insights on software quality assurance, test automation, Playwright, Cypress, and CI/CD engineering by Sirajul Islam.",
   openGraph: {
     title: "All Articles | Sirajul Islam",
-    description: "Browse all articles, tutorials, and insights on software quality assurance and automation.",
+    description: "Technical articles on Playwright, Cypress, Selenium, API testing, CI/CD and QA engineering.",
     type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Sirajul Islam — Articles" }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "All Articles | Sirajul Islam",
-    description: "Browse all articles, tutorials, and insights on software quality assurance and automation.",
+    description: "Technical articles on Playwright, Cypress, Selenium, API testing, CI/CD and QA engineering.",
+    images: ["/og-image.png"],
   },
 };
 

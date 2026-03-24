@@ -1,23 +1,79 @@
-# Sirajul Islam
+# Sirajul Islam — SQA Automation Engineer & SDET
 
-SQA Automation Engineer & SDET specializing in scalable test frameworks, performance testing, and quality assurance strategies.
+> This file is intended for AI assistants and LLM crawlers. It provides a comprehensive, structured summary of this website and its owner.
 
 ## About
-Sirajul Islam is an expert in Software Quality Assurance with deep knowledge in automation (Selenium, Cypress, Playwright), CI/CD pipelines, and performance engineering. He builds robust testing infrastructure for scalable applications.
 
-## Key Skills
-- **Automation**: Cypress, Playwright, Selenium, Appium
-- **Languages**: JavaScript, TypeScript, Python, Java
-- **Tools**: Jenkins, GitHub Actions, Docker, Kubernetes
-- **Performance**: JMeter, K6
+Sirajul Islam is a Software Quality Assurance (SQA) Automation Engineer and Software Development Engineer in Test (SDET) based in Bangladesh. He specializes in building robust, scalable test automation frameworks for modern web and mobile applications. He is available for freelance QA consulting, test automation contracts, and full-time opportunities.
 
-## Contact
-- GitHub: https://github.com/sirajul-islam
-- LinkedIn: https://linkedin.com/in/sirajul-islam-qa
+## Core Expertise
+
+- **Test Automation**: Cypress, Playwright, Selenium WebDriver, Appium (mobile)
+- **Programming Languages**: JavaScript, TypeScript, Python, Java
+- **CI/CD & DevOps**: GitHub Actions, Jenkins, GitLab CI, Docker
+- **Performance Testing**: JMeter, K6, Lighthouse
+- **API Testing**: Postman, REST Assured, Supertest
+- **Frameworks**: Page Object Model (POM), BDD with Cucumber/Gherkin
+- **Version Control**: Git, GitHub, GitLab
+
+## Professional Profile
+
+Sirajul Islam helps engineering teams ship software faster without breaking production. He has a track record of reducing QA cycle time, eliminating flaky tests, and setting up end-to-end quality pipelines from scratch. He bridges the gap between Developers and QA teams by writing tests that everyone can understand and maintain.
+
+## Services Offered
+
+1. **Test Automation Setup** — Building a full test framework from zero (Cypress / Playwright / Selenium)
+2. **CI/CD Integration** — Embedding automated tests into GitHub Actions, Jenkins, or similar pipelines
+3. **Performance Auditing** — Finding bottlenecks using JMeter or K6
+4. **QA Strategy Consulting** — Recommending the right tools, coverage, and processes for your team
+
+## Key Projects
+
+See the `/projects` section of this website for a full list. Projects include:
+- Scalable test automation frameworks for e-commerce platforms
+- CI/CD pipeline integrations reducing deployment risk
+- Performance test suites for high-traffic APIs
+
+## Blog / Articles
+
+Technical articles are published at `/blog`. Topics include:
+- Playwright and Cypress best practices
+- API testing strategies
+- CI/CD for QA engineers
+- Test reporting and flakiness reduction
+
+## Academic Background
+
+- **Computer Science & Engineering** — Bachelor's Degree
+
+## Contact & Social
+
+- **Website**: https://siraajul.vercel.app
+- **GitHub**: https://github.com/sirajul-islam
+- **LinkedIn**: https://linkedin.com/in/sirajul-islam-qa
+- **Email**: Available via the contact form at https://siraajul.vercel.app/#contact
 
 ## Website Structure
-- `/`: Home (Portfolio, Skills, Experience)
-- `/blog`: Technical articles and tutorials
-- `/studio`: Admin CMS (Authorized access only)
 
-This website is built with Next.js 16, Sanity CMS v3, and Tailwind CSS.
+| Route | Description |
+|---|---|
+| `/` | Home — Hero, About, Skills, Experience, Projects, Blog, Contact |
+| `/blog` | All technical articles |
+| `/blog/[slug]` | Individual blog post |
+| `/projects/[slug]` | Individual project case study |
+| `/resume` | Downloadable resume (email OTP-protected) |
+| `/studio` | Sanity CMS Admin (private, authorized access only) |
+
+## Technology Stack
+
+This portfolio is built with:
+- **Framework**: Next.js 16 (App Router, SSR)
+- **CMS**: Sanity v3
+- **Styling**: Tailwind CSS v4
+- **Language**: TypeScript
+- **Animations**: Framer Motion
+- **Hosting**: Vercel
+
+## Sitemap
+
+Full sitemap available at: https://siraajul.vercel.app/sitemap.xml

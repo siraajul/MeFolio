@@ -7,14 +7,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // Fetch all dynamic routes (projects and blog posts)
     const projects = await client.fetch(groq`*[_type == "projectCategory"].projects[].slug.current`)
-    // Assuming posts are in a similar structure or check your query for blog posts
-    // const posts = await client.fetch(groq`*[_type == "post"].slug.current`) 
+    const posts = await client.fetch(groq`*[_type == "post" && defined(slug.current)].slug.current`)
 
     const projectUrls = (projects || []).map((slug: string) => ({
         url: `${baseUrl}/projects/${slug}`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.8,
+    }))
+
+    const postUrls = (posts || []).map((slug: string) => ({
+        url: `${baseUrl}/blog/${slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.7,
     }))
 
     return [
@@ -37,5 +43,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: 0.8,
         },
         ...projectUrls,
+        ...postUrls,
     ]
 }
