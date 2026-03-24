@@ -10,6 +10,7 @@
 interface OTPEntry {
     otp: string;
     expiresAt: number;
+    attempts: number;
 }
 
 // Global store to persist across hot reloads in dev

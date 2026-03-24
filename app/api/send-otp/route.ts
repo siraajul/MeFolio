@@ -74,6 +74,7 @@ export async function POST(req: Request) {
         otpStore.set(normalizedEmail, {
             otp,
             expiresAt: Date.now() + 5 * 60 * 1000,
+            attempts: 0,
         });
 
         // Cleanup expired entries

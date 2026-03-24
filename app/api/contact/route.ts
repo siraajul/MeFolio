@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { client } from "@/sanity/lib/client";
 import { z } from "zod";
 
+import { contactLimiter, cleanupExpiredLimits } from "@/lib/contact-rate-limit";
+
 const ContactSchema = z.object({
     name: z.string().min(1, "Name is required").max(100),
     email: z.string().email("Invalid email address"),
@@ -18,6 +20,25 @@ const ContactSchema = z.object({
 
 export async function POST(req: Request) {
     try {
+        const ip = req.headers.get("x-forwarded-for") || "unknown-ip";
+        cleanupExpiredLimits();
+
+        const limit = contactLimiter.get(ip);
+        if (limit && Date.now() < limit.resetAt) {
+            if (limit.count >= 3) {
+                return NextResponse.json(
+                    { message: "Too many requests. Please try again tomorrow." },
+                    { status: 429 }
+                );
+            }
+            limit.count += 1;
+        } else {
+            contactLimiter.set(ip, {
+                count: 1,
+                resetAt: Date.now() + 24 * 60 * 60 * 1000, // 24 hours
+            });
+        }
+
         const body = await req.json();
         const parsed = ContactSchema.safeParse(body);
 

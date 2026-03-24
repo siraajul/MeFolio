@@ -100,6 +100,16 @@ npm run dev
 
 ---
 
+## 🔒 Security
+
+Built with security in mind for public-facing deployments:
+*   **OTP Brute-Force Protection**: Automatic tracking and invalidation of OTPs after 3 failed attempts to prevent unauthorized resume downloads.
+*   **API Rate Limiting**: In-memory IP/Email-based rate limiters protect the contact form and OTP endpoints from spam and abuse (e.g., max 3 requests per 24 hours).
+*   **Disposable Email Blocking**: Integration with disposable domain lists to ensure high-quality lead capture.
+*   **MX Record Validation**: On-the-fly DNS resolution to verify if an email address can actually receive mail before sending OTPs.
+
+---
+
 ## ✅ Quality Assurance
 
 Run the test suite to ensure stability:

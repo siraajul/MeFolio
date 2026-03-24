@@ -50,7 +50,16 @@ export async function POST(req: Request) {
             );
         }
 
+        if (stored.attempts >= 3) {
+            otpStore.delete(normalizedEmail);
+            return NextResponse.json(
+                { message: "Too many failed attempts. Please request a new OTP." },
+                { status: 429 }
+            );
+        }
+
         if (stored.otp !== otp.trim()) {
+            stored.attempts += 1;
             return NextResponse.json(
                 { message: "Incorrect OTP. Please try again." },
                 { status: 400 }
