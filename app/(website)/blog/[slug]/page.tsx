@@ -138,8 +138,20 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
 
   return (
     <article className="min-h-screen bg-white dark:bg-black text-foreground pb-20">
-      {/* ... Hero Section ... */}
-      <div className="w-full h-[40vh] md:h-[50vh] relative bg-neutral-100 dark:bg-neutral-900">
+
+      {/* Back button — sits ABOVE the image on mobile, inside on desktop */}
+      <div className="md:hidden px-4 py-4 bg-white dark:bg-black border-b border-neutral-100 dark:border-neutral-900">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm font-medium"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Back to Home
+        </Link>
+      </div>
+
+      {/* Hero Image */}
+      <div className="w-full h-[30vh] sm:h-[40vh] md:h-[50vh] relative bg-neutral-100 dark:bg-neutral-900">
         {post.imageUrl ? (
           <Image
             src={post.imageUrl}
@@ -149,15 +161,15 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
             priority
           />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+          <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-sm">
             No Featured Image
           </div>
         )}
-        <div className="absolute inset-0 bg-black/40" />
-        
-        {/* Back Button */}
-        <div className="absolute top-6 left-6 md:top-10 md:left-10 z-10">
-          <Link 
+        <div className="absolute inset-0 bg-black/50" />
+
+        {/* Back Button — desktop only (hidden on mobile, shown above) */}
+        <div className="hidden md:block absolute top-10 left-10 z-10">
+          <Link
             href="/"
             className="flex items-center gap-2 text-white/80 hover:text-white transition-colors bg-black/20 hover:bg-black/40 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10"
           >
@@ -166,26 +178,28 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
           </Link>
         </div>
 
-        <div className="absolute bottom-0 left-0 w-full p-6 md:p-12 lg:p-20 bg-gradient-to-t from-black/80 to-transparent">
+        {/* Title + Summary overlay */}
+        <div className="absolute bottom-0 left-0 w-full px-4 py-5 sm:p-6 md:p-12 lg:p-20 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
+            <h1 className="text-xl sm:text-2xl md:text-5xl lg:text-6xl font-bold text-white mb-2 md:mb-4 tracking-tight leading-tight line-clamp-3 md:line-clamp-none">
               {post.title}
             </h1>
-            <p className="text-white/80 text-lg md:text-xl max-w-2xl">
+            {/* Summary hidden on very small screens to avoid overflow */}
+            <p className="hidden sm:block text-white/80 text-sm md:text-xl max-w-2xl line-clamp-2 md:line-clamp-none">
               {post.summary}
             </p>
-            <div className="flex items-center gap-4 mt-6">
+            <div className="flex items-center gap-2 md:gap-4 mt-3 md:mt-6 flex-wrap">
               {post.publishedAt && (
-                <p className="text-brand font-mono text-sm">
+                <p className="text-brand font-mono text-xs md:text-sm">
                   {new Date(post.publishedAt).toLocaleDateString("en-US", {
                     year: "numeric",
-                    month: "long",
+                    month: "short",
                     day: "numeric",
                   })}
                 </p>
               )}
-              <span className="text-white/40 text-sm">•</span>
-              <p className="text-white/80 font-mono text-sm">
+              <span className="text-white/40 text-xs">•</span>
+              <p className="text-white/80 font-mono text-xs md:text-sm">
                 {estimateReadingTime(post.content)}
               </p>
             </div>
@@ -193,8 +207,15 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto px-6 py-12 md:py-20">
-        <div className="prose prose-lg dark:prose-invert prose-neutral max-w-none prose-a:text-brand prose-img:rounded-2xl">
+      {/* Summary shown below image on mobile (since it's hidden inside the hero) */}
+      {post.summary && (
+        <div className="sm:hidden px-4 pt-5 pb-1">
+          <p className="text-muted-foreground text-sm leading-relaxed">{post.summary}</p>
+        </div>
+      )}
+
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 md:py-20">
+        <div className="prose prose-sm sm:prose-base prose-lg dark:prose-invert prose-neutral max-w-none prose-a:text-brand prose-img:rounded-2xl">
           {post.content ? (
              <PortableText value={post.content} components={PortableTextComponents} />
           ) : (
