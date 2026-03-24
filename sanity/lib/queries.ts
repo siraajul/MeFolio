@@ -75,14 +75,14 @@ export const certificationsQuery = groq`*[_type == "certification"] | order(year
   description
 }`;
 
-export const postsQuery = groq`*[_type == "post"] | order(publishedAt desc){
+export const postsQuery = groq`*[_type == "post"] | order(coalesce(publishedAt, _createdAt) desc){
   _id,
   title,
   "slug": slug.current,
   summary,
   "imageUrl": image.asset->url,
   externalLink,
-  publishedAt
+  "publishedAt": coalesce(publishedAt, _createdAt)
 }`;
 
 export const recommendationsQuery = groq`*[_type == "recommendation"]{
