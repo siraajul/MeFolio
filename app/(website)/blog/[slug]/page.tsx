@@ -8,11 +8,16 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { SupportKori } from "@/components/shared/SupportKori";
 
-// Force dynamic rendering to ensure fresh data
-export const dynamic = "force-dynamic";
-
-// Revalidate every 60 seconds
+// Use ISR: pre-render at build time, refresh every 60 seconds from Sanity
 export const revalidate = 60;
+
+// Pre-render all blog slugs at build time for instant first load
+export async function generateStaticParams() {
+  const slugs: string[] = await client.fetch(
+    groq`*[_type == "post" && defined(slug.current)].slug.current`
+  );
+  return (slugs || []).map((slug) => ({ slug }));
+}
 
 interface BlogPostProps {
   params: Promise<{ slug: string }>;

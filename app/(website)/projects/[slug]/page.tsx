@@ -11,9 +11,16 @@ import { Footer } from "@/components/layout/Footer";
 import { SiteSettings } from "@/types/sanity";
 import { siteSettingsQuery } from "@/sanity/lib/queries";
 
-// Force dynamic rendering
-export const dynamic = "force-dynamic";
+// Use ISR: pre-render at build time, refresh every 60 seconds
 export const revalidate = 60;
+
+// Pre-render all project slugs at build time for instant first load
+export async function generateStaticParams() {
+  const slugs: string[] = await client.fetch(
+    groq`*[_type == "projectCategory"].projects[defined(slug.current)].slug.current`
+  );
+  return (slugs || []).map((slug) => ({ slug }));
+}
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
