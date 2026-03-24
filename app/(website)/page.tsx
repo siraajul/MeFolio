@@ -43,8 +43,12 @@ import {
 export const revalidate = 60;
 
 export default async function Home() {
-  const [settings, about, experiences, skillCategories, projectCategories, educations, certifications, posts] = await Promise.all([
-    client.fetch<SiteSettings>(siteSettingsQuery),
+  // Stage 1: Fetch only above-fold data first (Hero + Navbar)
+  // This unblocks the initial paint as fast as possible
+  const settings = await client.fetch<SiteSettings>(siteSettingsQuery);
+
+  // Stage 2: Kick off all below-fold queries in parallel while page starts rendering
+  const [about, experiences, skillCategories, projectCategories, educations, certifications, posts] = await Promise.all([
     client.fetch<About>(aboutQuery),
     client.fetch<Experience[]>(experiencesQuery),
     client.fetch<SkillCategory[]>(skillCategoriesQuery),

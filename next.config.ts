@@ -2,30 +2,17 @@ import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   reactCompiler: false,
   images: {
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 3600,
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-      {
-        protocol: "https",
-        hostname: "i.postimg.cc",
-      },
-      {
-        protocol: "https",
-        hostname: "assets.aceternity.com",
-      },
-      {
-        protocol: "https",
-        hostname: "assets.chanhdai.com",
-      },
-      {
-        protocol: "https",
-        hostname: "cdn.sanity.io",
-      },
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "i.postimg.cc" },
+      { protocol: "https", hostname: "assets.aceternity.com" },
+      { protocol: "https", hostname: "assets.chanhdai.com" },
+      { protocol: "https", hostname: "cdn.sanity.io" },
     ],
   },
 };
