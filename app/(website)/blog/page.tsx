@@ -31,7 +31,7 @@ export default async function BlogArchivePage() {
   return (
     <div className="min-h-screen bg-background text-foreground pb-20">
       {/* Header */}
-      <div className="bg-neutral-100 dark:bg-neutral-900 py-16 px-6 md:px-12 border-b border-neutral-200 dark:border-neutral-800">
+      <div className="bg-neutral-100 dark:bg-neutral-900 py-12 md:py-16 px-4 md:px-8 lg:px-12 border-b border-neutral-200 dark:border-neutral-800">
         <div className="max-w-7xl mx-auto flex flex-col gap-6">
           <Link 
             href="/"
@@ -52,8 +52,8 @@ export default async function BlogArchivePage() {
       </div>
 
       {/* Grid */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-10 md:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
           {posts.map((post: any) => (
             <Link 
               href={`/blog/${post.slug}`} 
