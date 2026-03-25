@@ -24,14 +24,20 @@ export const Blog = ({ posts }: BlogProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(4);
 
-  // Responsive items per page
-  // Breakpoints aligned with navbar: < 640 = mobile (1), < 900 = tablet/iPad (2), >= 900 = desktop (4)
+  // Responsive items per page — 4-tier system covering all tablet sizes
+  // < 640px   = 1 item  (phones)
+  // 640–899px = 2 items (small/medium tablet portrait: Samsung A7, Oppo Pad, iPad mini, iPad standard)
+  // 900–1199px= 3 items (large tablet portrait + medium tablet landscape: iPad Air, iPad Pro 11, Samsung S9)
+  // >= 1200px = 4 items (desktop + large tablet landscape: iPad Air 13 landscape, Samsung S9+, OnePlus Pad)
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 640) {
+      const w = window.innerWidth;
+      if (w < 640) {
         setItemsPerPage(1);
-      } else if (window.innerWidth < 900) {
+      } else if (w < 900) {
         setItemsPerPage(2);
+      } else if (w < 1200) {
+        setItemsPerPage(3);
       } else {
         setItemsPerPage(4);
       }

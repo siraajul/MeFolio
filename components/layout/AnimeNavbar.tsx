@@ -184,7 +184,9 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
                   "relative cursor-pointer text-sm font-semibold px-3 py-2 rounded-full transition-all duration-300",
                   "text-white/70 hover:text-white",
                   isActive && "text-white",
-                  item.hiddenOnMobile && "hidden md:flex"
+                  // hiddenOnMobile: only show when text labels are ALSO visible (lg: = 992px+)
+                  // Avoids the icon-only orphan state at 768–991px
+                  item.hiddenOnMobile && "hidden lg:flex"
                 )}
               >
                 {isActive && (

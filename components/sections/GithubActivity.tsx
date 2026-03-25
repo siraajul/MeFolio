@@ -14,6 +14,24 @@ export function GithubActivity({ username = "siraajul" }: GitHubActivityProps) {
   const { theme } = useTheme();
   const [data, setData] = useState<GitHubContribution[]>([]);
   const [loading, setLoading] = useState(true);
+  // Responsive calendar block size: shrinks on smaller tablet/phone viewports
+  const [calendarConfig, setCalendarConfig] = useState({ blockSize: 14, blockMargin: 4 });
+
+  useEffect(() => {
+    const updateCalendarConfig = () => {
+      const w = window.innerWidth;
+      if (w < 640) {
+        setCalendarConfig({ blockSize: 9, blockMargin: 2 });
+      } else if (w < 900) {
+        setCalendarConfig({ blockSize: 11, blockMargin: 3 });
+      } else {
+        setCalendarConfig({ blockSize: 14, blockMargin: 4 });
+      }
+    };
+    updateCalendarConfig();
+    window.addEventListener("resize", updateCalendarConfig);
+    return () => window.removeEventListener("resize", updateCalendarConfig);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -93,8 +111,8 @@ export function GithubActivity({ username = "siraajul" }: GitHubActivityProps) {
           {data && data.length > 0 ? (
             <ActivityCalendar 
               data={data}
-              blockMargin={4}
-              blockSize={14}
+              blockMargin={calendarConfig.blockMargin}
+              blockSize={calendarConfig.blockSize}
               fontSize={12}
               colorScheme={theme === "dark" ? "dark" : "light"}
               theme={{
