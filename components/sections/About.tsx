@@ -37,7 +37,7 @@ export default function About() {
     },
   };
   return (
-    <section className="py-32 px-4 bg-background min-h-screen transition-colors duration-300 flex flex-col justify-center">
+    <section className="py-20 md:py-28 lg:py-32 px-4 bg-background min-h-screen transition-colors duration-300 flex flex-col justify-center">
       <div className="max-w-6xl mx-auto" ref={heroRef}>
         <div className="flex flex-col lg:flex-row items-start gap-8">
           {/* Right side - Content */}

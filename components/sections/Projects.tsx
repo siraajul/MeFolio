@@ -408,7 +408,7 @@ const AnimatedFolder: React.FC<AnimatedFolderProps> = ({ title, projects, classN
   return (
     <>
       <div
-        className={cn("relative flex flex-col items-center justify-center p-2 md:p-8 rounded-2xl cursor-pointer bg-card border border-border transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:shadow-2xl hover:shadow-accent/20 hover:border-accent/40 group w-full max-w-full md:max-w-none h-[240px] md:h-[320px]", className)}
+        className={cn("relative flex flex-col items-center justify-center p-2 md:p-6 lg:p-8 rounded-2xl cursor-pointer bg-card border border-border transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:shadow-2xl hover:shadow-accent/20 hover:border-accent/40 group w-full max-w-full md:max-w-none h-[240px] md:h-[280px] lg:h-[320px]", className)}
         style={{ perspective: "1200px", transform: isHovered ? "scale(1.04) rotate(-1.5deg)" : "scale(1) rotate(0deg)" }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -463,7 +463,7 @@ export default function Projects({ categories = [] }: ProjectsProps) {
 
       <section className="max-w-7xl mx-auto px-4 md:px-6 pt-12 pb-16">
         {categories.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-12 justify-items-center">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 lg:gap-12 justify-items-center">
             {categories.map((folder, index) => (
               <div 
                 key={folder._id || folder.title} 

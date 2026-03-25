@@ -25,11 +25,12 @@ export const Blog = ({ posts }: BlogProps) => {
   const [itemsPerPage, setItemsPerPage] = useState(4);
 
   // Responsive items per page
+  // Breakpoints aligned with navbar: < 640 = mobile (1), < 900 = tablet/iPad (2), >= 900 = desktop (4)
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
         setItemsPerPage(1);
-      } else if (window.innerWidth < 1024) {
+      } else if (window.innerWidth < 900) {
         setItemsPerPage(2);
       } else {
         setItemsPerPage(4);
@@ -104,7 +105,7 @@ export const Blog = ({ posts }: BlogProps) => {
         </div>
 
         {/* Carousel Viewport */}
-        <div className="overflow-hidden w-full relative">
+        <div className="overflow-hidden w-full max-w-full relative">
             <motion.div 
                className="flex gap-6 will-change-transform"
                initial={false}

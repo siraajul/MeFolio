@@ -34,7 +34,8 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768)
+      // Use 900px so iPad portrait (768px) gets icon-only layout
+      setIsMobile(window.innerWidth < 900)
     }
 
     handleResize()
@@ -152,11 +153,11 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
   if (!mounted) return null
 
   return (
-    <div className="fixed top-5 left-0 right-0 z-[9999]">
+    <div className="fixed top-5 left-0 right-0 z-[9999] px-3">
       <div className="flex justify-center pt-6">
-        <nav aria-label="Main navigation">
+        <nav aria-label="Main navigation" className="max-w-full">
         <motion.div 
-          className="flex items-center gap-3 bg-black/50 border border-white/10 backdrop-blur-lg py-2 px-2 rounded-full shadow-lg relative"
+          className="flex items-center gap-1 sm:gap-2 md:gap-3 bg-black/50 border border-white/10 backdrop-blur-lg py-2 px-2 rounded-full shadow-lg relative max-w-[95vw] overflow-hidden"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{
@@ -180,7 +181,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
                 aria-label={item.name}
                 aria-current={isActive ? "page" : undefined}
                 className={cn(
-                  "relative cursor-pointer text-sm font-semibold px-6 py-3 rounded-full transition-all duration-300",
+                  "relative cursor-pointer text-sm font-semibold px-3 py-2 rounded-full transition-all duration-300",
                   "text-white/70 hover:text-white",
                   isActive && "text-white",
                   item.hiddenOnMobile && "hidden md:flex"
@@ -215,7 +216,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
                 )}
 
                 <motion.span
-                  className="hidden md:inline relative z-10"
+                  className="hidden lg:inline relative z-10"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.2 }}
@@ -223,7 +224,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
                   {item.name}
                 </motion.span>
                 <motion.span 
-                  className="md:hidden relative z-10"
+                  className="lg:hidden relative z-10"
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
                 >
