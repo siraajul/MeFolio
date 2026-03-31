@@ -84,9 +84,33 @@ export async function generateMetadata({ params }: BlogPostProps): Promise<Metad
   };
 }
 
+// Type definitions for PortableText components
+interface PortableTextImage {
+  alt?: string;
+  asset: {
+    _ref: string;
+  };
+}
+
+interface PortableTextCode {
+  code: string;
+  language?: string;
+  filename?: string;
+}
+
+// Escape HTML to prevent XSS attacks
+function escapeHtml(unsafe: string): string {
+  return unsafe
+    .replace(/\u0026/g, "\u0026amp;")
+    .replace(/\u003c/g, "\u0026lt;")
+    .replace(/\u003e/g, "\u0026gt;")
+    .replace(/"/g, "\u0026quot;")
+    .replace(/'/g, "\u0026#039;");
+}
+
 const PortableTextComponents = {
   types: {
-    image: ({ value }: any) => {
+    image: ({ value }: { value: PortableTextImage }) => {
       return (
         <div className="relative w-full h-96 my-8 rounded-lg overflow-hidden">
           <Image
@@ -99,23 +123,40 @@ const PortableTextComponents = {
         </div>
       );
     },
-    code: ({ value }: any) => {
+    code: ({ value }: { value: PortableTextCode }) => {
+      // Escape the code content to prevent XSS
+      const safeCode = escapeHtml(value.code);
       return (
         <pre className="bg-neutral-900 text-neutral-100 p-4 rounded-lg overflow-x-auto my-6 font-mono text-sm max-w-full">
-          <code>{value.code}</code>
+          {value.language && (
+            <div className="text-xs text-neutral-500 mb-2 border-b border-neutral-700 pb-2">
+              {value.language}
+            </div>
+          )}
+          <code dangerouslySetInnerHTML={{ __html: safeCode }} />
         </pre>
       );
     },
   },
 };
 
-function estimateReadingTime(blocks: any[]): string {
+// Type definitions for content blocks
+interface PortableTextChild {
+  text?: string;
+}
+
+interface PortableTextBlock {
+  _type: string;
+  children?: PortableTextChild[];
+}
+
+function estimateReadingTime(blocks: PortableTextBlock[]): string {
   if (!blocks || !Array.isArray(blocks)) return "1 min read";
 
   let wordCount = 0;
   blocks.forEach((block) => {
     if (block._type === "block" && block.children) {
-      block.children.forEach((child: any) => {
+      block.children.forEach((child) => {
         if (child.text) {
           wordCount += child.text.split(/\s+/).length;
         }
