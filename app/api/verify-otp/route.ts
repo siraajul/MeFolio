@@ -1,17 +1,40 @@
 import { NextResponse } from "next/server";
 import { otpStore, cleanupExpiredOTPs } from "@/lib/otp-store";
+import { checkRateLimit, rateLimits } from "@/lib/rate-limit";
 import { client } from "@/sanity/lib/client";
 import { z } from "zod";
 
 const VerifyOtpSchema = z.object({
-    email: z.string().email("Invalid email format"),
-    otp: z.string().min(6).max(6),
-    name: z.string().max(100).optional(),
-    company: z.string().max(100).optional(),
+    email: z.string().email("Invalid email format").max(254).trim().toLowerCase(),
+    otp: z.string().length(6).regex(/^\d+$/, "OTP must contain only numbers"),
+    name: z.string().max(100).trim().optional(),
+    company: z.string().max(100).trim().optional(),
 });
 
 export async function POST(req: Request) {
     try {
+        // Get IP address for rate limiting
+        const forwardedFor = req.headers.get("x-forwarded-for");
+        const ip = forwardedFor ? forwardedFor.split(",")[0].trim() : "unknown-ip";
+
+        // Apply strict rate limit per IP
+        const rateLimitResult = await checkRateLimit(ip, {
+            ...rateLimits.strict,
+            keyPrefix: "verify-otp",
+        });
+
+        if (!rateLimitResult.success) {
+            return NextResponse.json(
+                { message: "Too many verification attempts. Please try again later." },
+                {
+                    status: 429,
+                    headers: {
+                        "Retry-After": Math.ceil((rateLimitResult.resetAt - Date.now()) / 1000).toString(),
+                    },
+                }
+            );
+        }
+
         const body = await req.json();
         const parsed = VerifyOtpSchema.safeParse(body);
 
@@ -24,13 +47,11 @@ export async function POST(req: Request) {
 
         const { email, otp, name, company } = parsed.data;
 
-        const normalizedEmail = email.trim().toLowerCase();
-
         // Cleanup expired OTPs
         cleanupExpiredOTPs();
 
         // Check OTP
-        const stored = otpStore.get(normalizedEmail);
+        const stored = otpStore.get(email);
 
         if (!stored) {
             return NextResponse.json(
@@ -43,7 +64,7 @@ export async function POST(req: Request) {
         }
 
         if (Date.now() > stored.expiresAt) {
-            otpStore.delete(normalizedEmail);
+            otpStore.delete(email);
             return NextResponse.json(
                 { message: "OTP has expired. Please request a new one." },
                 { status: 400 }
@@ -51,14 +72,19 @@ export async function POST(req: Request) {
         }
 
         if (stored.attempts >= 3) {
-            otpStore.delete(normalizedEmail);
+            otpStore.delete(email);
             return NextResponse.json(
                 { message: "Too many failed attempts. Please request a new OTP." },
-                { status: 429 }
+                {
+                    status: 429,
+                    headers: {
+                        "Retry-After": "60",
+                    },
+                }
             );
         }
 
-        if (stored.otp !== otp.trim()) {
+        if (stored.otp !== otp) {
             stored.attempts += 1;
             return NextResponse.json(
                 { message: "Incorrect OTP. Please try again." },
@@ -67,7 +93,7 @@ export async function POST(req: Request) {
         }
 
         // OTP is valid — remove it (single use)
-        otpStore.delete(normalizedEmail);
+        otpStore.delete(email);
 
         // Save lead to Sanity
         const token = process.env.SANITY_API_TOKEN;
@@ -77,7 +103,7 @@ export async function POST(req: Request) {
                 await writeClient.create({
                     _type: "lead",
                     name: name || "Unknown",
-                    email: normalizedEmail,
+                    email: email,
                     company: company || "",
                     downloadedAt: new Date().toISOString(),
                 });
