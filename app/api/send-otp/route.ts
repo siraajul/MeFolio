@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { promises as dns } from "dns";
 import { isDisposableEmail } from "@/lib/disposable-domains";
 import { otpStore, generateOTP, cleanupExpiredOTPs } from "@/lib/otp-store";
+import { checkRateLimit, rateLimits } from "@/lib/rate-limit";
 import { Resend } from "resend";
 import { z } from "zod";
 
@@ -16,11 +17,36 @@ async function hasMXRecords(domain: string): Promise<boolean> {
 }
 
 const SendOtpSchema = z.object({
-    email: z.string().email("Please enter a valid email address"),
+    email: z.string().email("Please enter a valid email address").max(254).trim().toLowerCase(),
 });
 
 export async function POST(req: Request) {
     try {
+        // Get IP address for rate limiting
+        const forwardedFor = req.headers.get("x-forwarded-for");
+        const ip = forwardedFor ? forwardedFor.split(",")[0].trim() : "unknown-ip";
+
+        // Apply strict rate limit per IP (3 requests per minute)
+        const ipRateLimit = await checkRateLimit(ip, {
+            ...rateLimits.strict,
+            keyPrefix: "otp-ip",
+        });
+
+        if (!ipRateLimit.success) {
+            return NextResponse.json(
+                { message: "Too many requests from this IP. Please try again later." },
+                {
+                    status: 429,
+                    headers: {
+                        "X-RateLimit-Limit": ipRateLimit.limit.toString(),
+                        "X-RateLimit-Remaining": "0",
+                        "X-RateLimit-Reset": Math.ceil(ipRateLimit.resetAt / 1000).toString(),
+                        "Retry-After": Math.ceil((ipRateLimit.resetAt - Date.now()) / 1000).toString(),
+                    },
+                }
+            );
+        }
+
         const body = await req.json();
         const parsed = SendOtpSchema.safeParse(body);
 
@@ -31,7 +57,7 @@ export async function POST(req: Request) {
             );
         }
 
-        const normalizedEmail = parsed.data.email.trim().toLowerCase();
+        const normalizedEmail = parsed.data.email;
 
         // Check disposable email
         if (isDisposableEmail(normalizedEmail)) {
@@ -57,17 +83,30 @@ export async function POST(req: Request) {
             );
         }
 
-        // Rate limit: max 1 OTP per email per 60 seconds
-        const existing = otpStore.get(normalizedEmail);
-        if (existing && Date.now() < existing.expiresAt - 4 * 60 * 1000) {
+        // Check email-based rate limit (1 OTP per email per 60 seconds)
+        const emailRateLimit = await checkRateLimit(normalizedEmail, {
+            windowMs: 60 * 1000, // 1 minute
+            maxRequests: 1,
+            keyPrefix: "otp-email",
+        });
+
+        if (!emailRateLimit.success) {
             return NextResponse.json(
                 {
                     message:
                         "An OTP was recently sent. Please wait a minute before requesting a new one.",
                 },
-                { status: 429 }
+                {
+                    status: 429,
+                    headers: {
+                        "Retry-After": Math.ceil((emailRateLimit.resetAt - Date.now()) / 1000).toString(),
+                    },
+                }
             );
         }
+
+        // Cleanup expired entries
+        cleanupExpiredOTPs();
 
         // Generate and store OTP (5-minute expiry)
         const otp = generateOTP();
@@ -77,9 +116,6 @@ export async function POST(req: Request) {
             attempts: 0,
         });
 
-        // Cleanup expired entries
-        cleanupExpiredOTPs();
-
         // Send OTP email via Resend
         const resendApiKey = process.env.RESEND_API_KEY;
         if (!resendApiKey) {
@@ -87,7 +123,12 @@ export async function POST(req: Request) {
             console.log(`[DEV] OTP for ${normalizedEmail}: ${otp}`);
             return NextResponse.json(
                 { message: "OTP sent successfully (simulation mode)", dev_otp: process.env.NODE_ENV === "development" ? otp : undefined },
-                { status: 200 }
+                {
+                    status: 200,
+                    headers: {
+                        "X-RateLimit-Remaining": ipRateLimit.remaining.toString(),
+                    },
+                }
             );
         }
 
@@ -115,7 +156,12 @@ export async function POST(req: Request) {
 
         return NextResponse.json(
             { message: "OTP sent successfully" },
-            { status: 200 }
+            {
+                status: 200,
+                headers: {
+                    "X-RateLimit-Remaining": ipRateLimit.remaining.toString(),
+                },
+            }
         );
     } catch (error) {
         console.error("Error sending OTP:", error);
