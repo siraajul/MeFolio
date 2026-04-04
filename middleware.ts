@@ -73,7 +73,7 @@ export function middleware(request: NextRequest) {
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
     img-src 'self' https: data: blob: https://i.postimg.cc https://images.unsplash.com https://assets.aceternity.com https://assets.chanhdai.com https://cdn.sanity.io;
     font-src 'self' https://fonts.gstatic.com;
-    connect-src 'self' https://cdn.sanity.io https://o4510738392809472.ingest.us.sentry.io https://us.i.posthog.com https://www.clarity.ms https://api.github.com https://*.ingest.sentry.io https://github-contributions-api.jogruber.de;
+    connect-src 'self' https://cdn.sanity.io https://api.sanity.io https://*.api.sanity.io https://o4510738392809472.ingest.us.sentry.io https://us.i.posthog.com https://www.clarity.ms https://api.github.com https://*.ingest.sentry.io https://github-contributions-api.jogruber.de;
     media-src 'self' https://videos.pexels.com https://*.cloudfront.net;
     frame-src 'self' https://player.vimeo.com https://www.youtube.com https://www.youtube-nocookie.com;
     object-src 'none';
