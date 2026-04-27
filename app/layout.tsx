@@ -95,7 +95,7 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/icon.svg",
   },
   alternates: {
     canonical: process.env.NEXT_PUBLIC_BASE_URL || "https://siraajul.vercel.app",
