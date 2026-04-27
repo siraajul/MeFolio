@@ -48,10 +48,10 @@ Technical articles are published at `/blog`. Topics include:
 
 ## Contact & Social
 
-- **Website**: https://siraajul.vercel.app
+- **Website**: https://siraajul.com
 - **GitHub**: https://github.com/sirajul-islam
 - **LinkedIn**: https://linkedin.com/in/sirajul-islam-qa
-- **Email**: Available via the contact form at https://siraajul.vercel.app/#contact
+- **Email**: Available via the contact form at https://siraajul.com/#contact
 
 ## Website Structure
 
@@ -76,4 +76,4 @@ This portfolio is built with:
 
 ## Sitemap
 
-Full sitemap available at: https://siraajul.vercel.app/sitemap.xml
+Full sitemap available at: https://siraajul.com/sitemap.xml

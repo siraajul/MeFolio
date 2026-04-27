@@ -102,7 +102,7 @@ export const ResumeTemplate = ({
           })}
           <div className="flex items-center gap-1">
               <Globe className="w-4 h-4" />
-              <span>{process.env.NEXT_PUBLIC_BASE_URL?.replace(/^https?:\/\//, '').replace('siraajul.vercel.app', 'siraajul.com') || "siraajul.com"}</span>
+              <span>{process.env.NEXT_PUBLIC_BASE_URL?.replace(/^https?:\/\//, '') || "siraajul.com"}</span>
           </div>
           {settings?.location && (
             <>

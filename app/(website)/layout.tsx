@@ -12,8 +12,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: {
-      default: "Sirajul Islam | SQA Automation Engineer & SDET in Bangladesh",
-      template: "%s | Sirajul Islam - SQA Expert"
+      absolute: "Sirajul | SQA - SDET",
+      template: "%s | Sirajul Islam"
     },
     description: 
       siteSettings?.tagline || 
@@ -30,25 +30,29 @@ export async function generateMetadata(): Promise<Metadata> {
       "Remote SQA Engineer",
       "Senior SDET Portfolio"
     ],
-    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://siraajul.vercel.app"),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://siraajul.com"),
     openGraph: {
-      title: "Sirajul Islam | SQA Automation Engineer",
+      title: "Sirajul | SQA - SDET",
       description: 
         siteSettings?.tagline || 
         "I help engineering teams ship faster without breaking production. Stop losing weekends to manual testing and hotfixes.",
       type: "website",
-      images: siteSettings?.ogImageUrl ? [{ 
-        url: siteSettings.ogImageUrl,
-        width: 1200,
-        height: 630,
-        alt: "Sirajul Islam | SQA Automation Engineer" 
-      }] : [],
+      ...(siteSettings?.ogImageUrl && {
+        images: [{ 
+          url: siteSettings.ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: "Sirajul | SQA - SDET" 
+        }]
+      }),
     },
     twitter: {
       card: "summary_large_image",
-      title: "Sirajul Islam | SQA Automation Engineer",
+      title: "Sirajul | SQA - SDET",
       description: siteSettings?.tagline || "I help engineering teams ship faster without breaking production. Stop losing weekends to manual testing and hotfixes.",
-      images: siteSettings?.ogImageUrl ? [siteSettings.ogImageUrl] : [],
+      ...(siteSettings?.ogImageUrl && {
+        images: [siteSettings.ogImageUrl]
+      }),
     },
   };
 }
@@ -74,7 +78,7 @@ export default async function WebsiteLayout({
             "@type": "Person",
             name: siteSettings?.firstName ? `${siteSettings.firstName} ${siteSettings.lastName}` : "Sirajul Islam",
             jobTitle: siteSettings?.tagline || "SQA Automation Engineer",
-            url: process.env.NEXT_PUBLIC_BASE_URL || "https://siraajul.vercel.app",
+            url: process.env.NEXT_PUBLIC_BASE_URL || "https://siraajul.com",
             sameAs: [
               ...(siteSettings?.github ? [siteSettings.github] : []),
               ...(siteSettings?.linkedin ? [siteSettings.linkedin] : []),

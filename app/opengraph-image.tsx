@@ -64,7 +64,7 @@ export default async function Image() {
             
             {/* Domain */}
             <div style={{ marginTop: 40, padding: '10px 24px', background: '#171717', border: '1px solid #262626', borderRadius: 9999, display: 'flex', alignItems: 'center' }}>
-               <span style={{ fontSize: 20, color: '#FF9900', fontWeight: 600 }}>siraajul.vercel.app</span>
+               <span style={{ fontSize: 20, color: '#FF9900', fontWeight: 600 }}>siraajul.com</span>
             </div>
         </div>
       </div>

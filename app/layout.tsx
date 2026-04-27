@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     "Software Testing",
     "Next.js Portfolio",
   ],
-  authors: [{ name: "Sirajul Islam", url: "https://siraajul.vercel.app" }],
+  authors: [{ name: "Sirajul Islam", url: "https://siraajul.com" }],
   creator: "Sirajul Islam",
   publisher: "Sirajul Islam",
   robots: {
@@ -72,33 +72,23 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: process.env.NEXT_PUBLIC_BASE_URL || "https://siraajul.vercel.app",
+    url: process.env.NEXT_PUBLIC_BASE_URL || "https://siraajul.com",
     siteName: "Sirajul Islam — SQA Engineer Portfolio",
-    title: "Sirajul Islam | SQA Automation Engineer & SDET",
-    description:
-      "SQA Automation Engineer & SDET specializing in Cypress, Playwright, Selenium, CI/CD pipelines, and scalable test frameworks.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Sirajul Islam — SQA Automation Engineer",
-      },
-    ],
+    title: "Sirajul | SQA - SDET",
+    description: "SQA Automation Engineer & SDET specializing in Cypress, Playwright, Selenium, CI/CD pipelines, and scalable test frameworks.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sirajul Islam | SQA Automation Engineer",
+    title: "Sirajul | SQA - SDET",
     description:
       "SQA Automation Engineer & SDET specializing in Cypress, Playwright, Selenium, CI/CD pipelines, and scalable test frameworks.",
     creator: "@sirajul_islam",
-    images: ["/og-image.png"],
   },
   icons: {
     icon: "/icon.svg",
   },
   alternates: {
-    canonical: process.env.NEXT_PUBLIC_BASE_URL || "https://siraajul.vercel.app",
+    canonical: process.env.NEXT_PUBLIC_BASE_URL || "https://siraajul.com",
   },
 };
 
