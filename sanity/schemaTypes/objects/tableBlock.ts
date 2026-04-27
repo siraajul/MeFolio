@@ -37,9 +37,9 @@ export default defineType({
                     ],
                     preview: {
                         select: { cells: "cells" },
-                        prepare({ cells }: { cells: string[] }) {
+                        prepare(selection) {
                             return {
-                                title: cells?.join(" | ") || "Empty row",
+                                title: selection.cells?.join(" | ") || "Empty row",
                             };
                         },
                     },
