@@ -11,6 +11,13 @@ import { Footer } from "@/components/layout/Footer";
 import { SiteSettings } from "@/types/sanity";
 import { siteSettingsQuery } from "@/sanity/lib/queries";
 import { CodeBlock } from "@/components/shared/CodeBlock";
+import { Callout } from "@/components/shared/Callout";
+import { YouTubeEmbed } from "@/components/shared/YouTubeEmbed";
+import { MetricBlock } from "@/components/shared/MetricBlock";
+import { DividerBlock } from "@/components/shared/DividerBlock";
+import { CtaButton } from "@/components/shared/CtaButton";
+import { FileDownload } from "@/components/shared/FileDownload";
+import { TableBlock } from "@/components/shared/TableBlock";
 
 // Use ISR: pre-render at build time, refresh every 60 seconds
 export const revalidate = 60;
@@ -104,6 +111,30 @@ const PortableTextComponents = {
           filename={value.filename}
         />
       );
+    },
+    callout: ({ value }: { value: any }) => {
+      return <Callout style={value.style} title={value.title} body={value.body} />;
+    },
+    youtubeEmbed: ({ value }: { value: any }) => {
+      return <YouTubeEmbed url={value.url} caption={value.caption} />;
+    },
+    metricBlock: ({ value }: { value: any }) => {
+      return <MetricBlock metrics={value.metrics} />;
+    },
+    dividerBlock: ({ value }: { value: any }) => {
+      return <DividerBlock style={value.style} />;
+    },
+    ctaButton: ({ value }: { value: any }) => {
+      return <CtaButton text={value.text} url={value.url} style={value.style} />;
+    },
+    fileDownload: ({ value }: { value: any }) => {
+      const fileUrl = value.file?.asset?._ref
+        ? `https://cdn.sanity.io/files/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/${process.env.NEXT_PUBLIC_SANITY_DATASET}/${value.file.asset._ref.replace('file-', '').replace('-', '.')}`
+        : '#';
+      return <FileDownload title={value.title} description={value.description} fileUrl={fileUrl} />;
+    },
+    tableBlock: ({ value }: { value: any }) => {
+      return <TableBlock caption={value.caption} hasHeader={value.hasHeader} rows={value.rows} />;
     },
   },
 };

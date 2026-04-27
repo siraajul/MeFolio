@@ -83,7 +83,14 @@ export default defineType({
                                 },
                                 {
                                     type: "code",
-                                }
+                                },
+                                { type: "callout" },
+                                { type: "youtubeEmbed" },
+                                { type: "metricBlock" },
+                                { type: "dividerBlock" },
+                                { type: "ctaButton" },
+                                { type: "fileDownload" },
+                                { type: "tableBlock" },
                             ]
                         }
                     ],

@@ -32,8 +32,15 @@ export function CodeBlock({ code, language, filename }: CodeBlockProps) {
 
   // Syntax-highlight the code using sugar-high
   const highlightedHtml = useMemo(() => highlight(code), [code]);
-  const lines = highlightedHtml.split("\n");
+
+  // Build line-by-line HTML with line numbers using a table layout
+  // This preserves the span tags from sugar-high while adding line numbers
+  const lines = code.split("\n");
+  const lineCount = lines.length;
   const displayLabel = filename || language || "";
+
+  // Build line numbers HTML
+  const lineNumbersHtml = lines.map((_, i) => `<span>${i + 1}</span>`).join("\n");
 
   return (
     <div className="code-block-wrapper group relative my-8 rounded-xl overflow-hidden border border-neutral-800 bg-[#0d1117] shadow-2xl">
@@ -80,30 +87,22 @@ export function CodeBlock({ code, language, filename }: CodeBlockProps) {
 
       {/* Code content with syntax highlighting */}
       <div className="overflow-x-auto">
-        <pre className="p-0 m-0 bg-transparent">
-          <code className="block text-sm font-mono leading-relaxed">
-            {lines.map((line, i) => (
-              <div
-                key={i}
-                className="flex hover:bg-white/[0.03] transition-colors"
-              >
-                {/* Line number */}
-                <span className="select-none text-neutral-600 text-right w-12 shrink-0 px-3 py-0.5 border-r border-neutral-800/50 text-xs leading-relaxed">
-                  {i + 1}
-                </span>
-                {/* Syntax-highlighted line content */}
-                <span
-                  className="sh-line px-4 py-0.5 whitespace-pre leading-relaxed min-w-0"
-                  dangerouslySetInnerHTML={{ __html: line || " " }}
-                />
-              </div>
-            ))}
-          </code>
-        </pre>
+        <div className="sh-code-table flex text-sm font-mono leading-[1.7]">
+          {/* Line numbers column */}
+          <div
+            className="sh-line-numbers select-none text-neutral-600 text-right shrink-0 border-r border-neutral-800/50 py-4 px-0"
+            aria-hidden="true"
+            dangerouslySetInnerHTML={{ __html: lineNumbersHtml }}
+          />
+          {/* Highlighted code column — single dangerouslySetInnerHTML to preserve sugar-high spans */}
+          <pre className="sh-code-content p-0 m-0 bg-transparent py-4 px-4 overflow-visible">
+            <code dangerouslySetInnerHTML={{ __html: highlightedHtml }} />
+          </pre>
+        </div>
       </div>
 
       {/* Bottom fade effect */}
-      {lines.length > 20 && (
+      {lineCount > 20 && (
         <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[#0d1117] to-transparent pointer-events-none" />
       )}
     </div>

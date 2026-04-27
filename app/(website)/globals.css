@@ -207,4 +207,36 @@
   --sh-keyword: #ff7b72;
   --sh-comment: #8b949e;
   --sh-multi: #7ee787;
+  --sh-space: inherit;
+}
+
+/* Line numbers styling */
+.sh-line-numbers {
+  counter-reset: sh-line;
+}
+
+.sh-line-numbers > span {
+  display: block;
+  padding: 0 12px;
+  min-width: 3rem;
+  font-size: 0.75rem;
+  line-height: 1.7;
+}
+
+/* Code content styling */
+.sh-code-content code {
+  display: block;
+  white-space: pre;
+  word-wrap: normal;
+}
+
+/* Each sugar-high line */
+.sh-code-content .sh__line {
+  display: block;
+  min-height: 1.7em;
+}
+
+/* Line hover effect */
+.sh-code-content .sh__line:hover {
+  background: rgba(255, 255, 255, 0.03);
 }

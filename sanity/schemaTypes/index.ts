@@ -13,6 +13,15 @@ import recommendation from "./recommendation";
 import lead from "./lead";
 import contactRequest from "./contactRequest";
 
+// Content block object types
+import callout from "./objects/callout";
+import youtubeEmbed from "./objects/youtubeEmbed";
+import metricBlock from "./objects/metricBlock";
+import dividerBlock from "./objects/dividerBlock";
+import ctaButton from "./objects/ctaButton";
+import fileDownload from "./objects/fileDownload";
+import tableBlock from "./objects/tableBlock";
+
 export const schemaTypes = [
     siteSettings,
     about,
@@ -27,4 +36,12 @@ export const schemaTypes = [
     recommendation,
     lead,
     contactRequest,
+    // Content block objects
+    callout,
+    youtubeEmbed,
+    metricBlock,
+    dividerBlock,
+    ctaButton,
+    fileDownload,
+    tableBlock,
 ];
