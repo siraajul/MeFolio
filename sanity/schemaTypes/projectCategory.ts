@@ -80,6 +80,9 @@ export default defineType({
                                             title: 'Alternative text',
                                         }
                                     ]
+                                },
+                                {
+                                    type: "code",
                                 }
                             ]
                         }

@@ -10,6 +10,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SiteSettings } from "@/types/sanity";
 import { siteSettingsQuery } from "@/sanity/lib/queries";
+import { CodeBlock } from "@/components/shared/CodeBlock";
 
 // Use ISR: pre-render at build time, refresh every 60 seconds
 export const revalidate = 60;
@@ -93,6 +94,15 @@ const PortableTextComponents = {
              </div>
           )}
         </div>
+      );
+    },
+    code: ({ value }: { value: { code: string; language?: string; filename?: string } }) => {
+      return (
+        <CodeBlock
+          code={value.code}
+          language={value.language}
+          filename={value.filename}
+        />
       );
     },
   },

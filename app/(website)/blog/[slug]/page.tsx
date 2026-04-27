@@ -7,6 +7,7 @@ import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { SupportKori } from "@/components/shared/SupportKori";
+import { CodeBlock } from "@/components/shared/CodeBlock";
 
 // Use ISR: pre-render at build time, refresh every 60 seconds from Sanity
 export const revalidate = 60;
@@ -98,16 +99,6 @@ interface PortableTextCode {
   filename?: string;
 }
 
-// Escape HTML to prevent XSS attacks
-function escapeHtml(unsafe: string): string {
-  return unsafe
-    .replace(/\u0026/g, "\u0026amp;")
-    .replace(/\u003c/g, "\u0026lt;")
-    .replace(/\u003e/g, "\u0026gt;")
-    .replace(/"/g, "\u0026quot;")
-    .replace(/'/g, "\u0026#039;");
-}
-
 const PortableTextComponents = {
   types: {
     image: ({ value }: { value: PortableTextImage }) => {
@@ -124,17 +115,12 @@ const PortableTextComponents = {
       );
     },
     code: ({ value }: { value: PortableTextCode }) => {
-      // Escape the code content to prevent XSS
-      const safeCode = escapeHtml(value.code);
       return (
-        <pre className="bg-neutral-900 text-neutral-100 p-4 rounded-lg overflow-x-auto my-6 font-mono text-sm max-w-full">
-          {value.language && (
-            <div className="text-xs text-neutral-500 mb-2 border-b border-neutral-700 pb-2">
-              {value.language}
-            </div>
-          )}
-          <code dangerouslySetInnerHTML={{ __html: safeCode }} />
-        </pre>
+        <CodeBlock
+          code={value.code}
+          language={value.language}
+          filename={value.filename}
+        />
       );
     },
   },
