@@ -32,8 +32,8 @@ export default defineType({
                     ],
                     preview: {
                         select: { value: "value", label: "label" },
-                        prepare({ value, label }: { value: string; label: string }) {
-                            return { title: `${value} — ${label}` };
+                        prepare(selection) {
+                            return { title: `${selection.value} — ${selection.label}` };
                         },
                     },
                 },
