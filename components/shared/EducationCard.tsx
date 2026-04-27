@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Calendar, GraduationCap } from "lucide-react";
+import { GraduationCap } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
@@ -69,13 +69,8 @@ export function EducationCard({
           <span>{degree}</span>
         </div>
 
-        {/* Period & Location */}
+        {/* Location */}
         <div className="flex flex-wrap justify-center gap-4 text-sm text-neutral-600 dark:text-neutral-400 mb-6 uppercase tracking-wider">
-          <span className="flex items-center gap-1.5">
-            <Calendar className="w-4 h-4" />
-            {period}
-          </span>
-          <span className="w-1.5 h-1.5 rounded-full bg-neutral-300 dark:bg-neutral-700 self-center" />
           <span>{location}</span>
         </div>
 
