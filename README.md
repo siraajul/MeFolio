@@ -1,6 +1,6 @@
 # MeFolio - Modern Developer Portfolio 🚀
 
-![MeFolio Banner](https://img.shields.io/badge/Status-Production%20Ready-success?style=for-the-badge) ![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js) ![Sanity](https://img.shields.io/badge/Sanity-v3-e34c26?style=for-the-badge&logo=sanity) ![Tailwind](https://img.shields.io/badge/Tailwind-v4-38bdf8?style=for-the-badge&logo=tailwind-css) ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript) ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+![MeFolio Banner](https://img.shields.io/badge/Status-Production%20Ready-success?style=for-the-badge) ![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js) ![Sanity](https://img.shields.io/badge/Sanity-v3-e34c26?style=for-the-badge&logo=sanity) ![Tailwind](https://img.shields.io/badge/Tailwind-v4-38bdf8?style=for-the-badge&logo=tailwind-css) ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript) ![Sugar High](https://img.shields.io/badge/Sugar%20High-Syntax-7ee787?style=for-the-badge) ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
 **MeFolio** is a high-performance, aesthetically pleasing portfolio template tailored for **Software Engineers** and **Designers**. It bridges the gap between a stunning visual presentation and a powerful Headless CMS, solving "Portfolio Paralysis" by managing your content in a dedicated dashboard while the frontend remains a blazing-fast Next.js application.
 
@@ -45,6 +45,8 @@ graph TD
 
 ### ✍️ For Content Creators
 *   **Headless CMS**: Sanity.io for managing Projects, Experience, Skills, and Blogs.
+*   **Rich Content Blocks**: 8 custom block types for professional case studies and blog posts (see below).
+*   **Syntax Highlighting**: Code blocks with `sugar-high` — GitHub Dark theme, line numbers, and copy button.
 *   **Auto Sitemap**: Dynamically generated sitemap including all blog posts and projects.
 *   **Smart Resume**: Auto-generated ATS-friendly resume from CMS data.
 *   **Lead Capture**: OTP-verified form to collect visitor details before CV download.
@@ -53,6 +55,23 @@ graph TD
 *   **Interactive UI**: Smooth animations with Framer Motion and Lenis scrolling.
 *   **Dark Mode**: System-preference aware theme switching.
 *   **Responsive**: Optimised for Mobile (5"), Tablet, and Desktop.
+
+---
+
+## 📝 Rich Content Blocks
+
+Blog posts and Case Studies support **8 custom content blocks** — all manageable from the Sanity Studio editor:
+
+| Block | Description | Use Case |
+|-------|-------------|----------|
+| 💻 **Code Block** | Syntax-highlighted code with line numbers, language label, and copy button (powered by `sugar-high`) | Code snippets, API examples, config files |
+| 📢 **Callout** | 5 styles — Tip, Note, Warning, Caution, Success | Highlight key information, warnings, best practices |
+| 🎬 **YouTube Embed** | Privacy-enhanced embed with lazy loading and optional caption | Demo videos, tutorials, walkthroughs |
+| 📈 **Metrics** | 1–4 stat cards with brand-colored values and hover glow | Test coverage, performance stats, KPIs |
+| 📊 **Table** | Styled table with optional header row and caption | Test results, comparison data, feature matrices |
+| ➗ **Divider** | 3 styles — gradient line, centered dots, whitespace | Visual section breaks within content |
+| 🔗 **CTA Button** | 3 styles — Primary, Secondary, Outline with arrow icon | Link to repos, live demos, external resources |
+| 📁 **File Download** | Card with icon, title, description, and download button | Share reports, PDFs, Postman collections |
 
 ---
 
