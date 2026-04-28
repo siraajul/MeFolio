@@ -49,8 +49,8 @@ Technical articles are published at `/blog`. Topics include:
 ## Contact & Social
 
 - **Website**: https://siraajul.com
-- **GitHub**: https://github.com/sirajul-islam
-- **LinkedIn**: https://linkedin.com/in/sirajul-islam-qa
+- **GitHub**: https://github.com/siraajul
+- **LinkedIn**: https://linkedin.com/in/siraajul
 - **Email**: Available via the contact form at https://siraajul.com/#contact
 
 ## Website Structure
