@@ -175,8 +175,8 @@
 /* Override Tailwind Typography's code/pre styles for custom CodeBlock component */
 .prose .code-block-wrapper pre {
   background: transparent;
-  padding: 0;
-  margin: 0;
+  padding: 1rem !important;
+  margin: 0 !important;
   border: none;
   border-radius: 0;
   font-size: inherit;
@@ -219,7 +219,7 @@
   display: block;
   padding: 0 12px;
   min-width: 3rem;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   line-height: 1.7;
 }
 
