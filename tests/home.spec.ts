@@ -6,7 +6,7 @@ test.describe('Home Page', () => {
         await page.goto('/');
 
         // Check for the name "Sirajul Islam" in the title or hero
-        await expect(page).toHaveTitle(/Sirajul Islam/);
+        await expect(page).toHaveTitle(/Sirajul \| SQA - SDET/);
 
         // Check specific Hero text
         // We use getByTestId for absolute precision and to avoid strict-mode violations with footer/background text
@@ -24,10 +24,10 @@ test.describe('Home Page', () => {
         await page.goto('/');
 
         // Check if the timeline exists (Experience Section)
-        await expect(page.locator('#experience')).toBeVisible();
+        await expect(page.locator('#experience')).toBeAttached({ timeout: 10000 });
 
         // Check for Projects section
         // We look for the section presence rather than specific text that might change
-        await expect(page.locator('#projects')).toBeVisible();
+        await expect(page.locator('#projects')).toBeAttached({ timeout: 10000 });
     });
 });

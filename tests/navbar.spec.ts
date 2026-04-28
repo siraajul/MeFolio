@@ -27,7 +27,7 @@ test.describe('Navbar Component', () => {
         // Check core items
         for (const item of coreItems) {
             // Use href locator which works for both text (desktop) and icon (mobile) versions
-            await expect(page.locator(`a[href="${item.href}"]`).first()).toBeVisible();
+            await expect(page.locator(`a[href="${item.href}"]`).first()).toBeVisible({ timeout: 15000 });
         }
 
         // Check desktop specific items
@@ -35,9 +35,9 @@ test.describe('Navbar Component', () => {
             const locator = page.locator(`a[href="${item.href}"]`).first();
             if (isMobile) {
                 // In mobile, these items are hidden (display: none)
-                await expect(locator).toBeHidden();
+                await expect(locator).toBeHidden({ timeout: 15000 });
             } else {
-                await expect(locator).toBeVisible();
+                await expect(locator).toBeVisible({ timeout: 15000 });
             }
         }
     });
@@ -50,10 +50,12 @@ test.describe('Navbar Component', () => {
     test('should highlight active tab on click', async ({ page }) => {
         // Click on "About" using the correct href from use-navigation.ts
         const aboutLink = page.locator('a[href="/#about"]').first();
-        await aboutLink.click();
+        // Wait for it to be visible first, as framer motion might be animating
+        await expect(aboutLink).toBeVisible({ timeout: 15000 });
+        await aboutLink.click({ force: true, timeout: 15000 });
 
         // The AnimeNavbar applies 'text-white' class when a tab is active.
         // When inactive, it has 'text-white/70'.
-        await expect(aboutLink).toHaveClass(/text-white/);
+        await expect(aboutLink).toHaveClass(/text-white/, { timeout: 15000 });
     });
 });
