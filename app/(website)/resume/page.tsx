@@ -26,12 +26,18 @@ export async function generateMetadata(): Promise<Metadata> {
     ? `Professional Resume – ${settings.tagline}`
     : "Professional Resume of Sirajul Islam - SQA Engineer & SDET";
 
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL || "https://siraajul.com"}/resume`;
+
   return {
     title,
     description,
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title,
       description,
+      url,
       type: "profile",
     },
     twitter: {
