@@ -1,6 +1,7 @@
 import { ImageResponse } from 'next/og';
 import { client } from '@/sanity/lib/client';
-import { groq } from 'next-sanity';
+import { siteSettingsQuery } from "@/sanity/lib/queries";
+import { SiteSettings } from "@/types/sanity";
 
 export const runtime = 'edge';
 export const revalidate = 0;
@@ -14,17 +15,9 @@ export const size = {
 };
 export const contentType = 'image/png';
 
-// Query to get site settings
-const settingsQuery = groq`*[_type == "siteSettings"][0]{
-  firstName,
-  lastName,
-  tagline,
-  "profileImageUrl": profileImage.asset->url
-}`;
-
 export default async function Image() {
   // Fetch data
-  const settings = await client.fetch(settingsQuery);
+  const settings = await client.fetch<SiteSettings>(siteSettingsQuery);
 
   const firstName = settings?.firstName || 'SIRAJUL';
   const lastName = settings?.lastName || 'ISLAM';
