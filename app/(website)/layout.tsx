@@ -37,22 +37,12 @@ export async function generateMetadata(): Promise<Metadata> {
         siteSettings?.tagline || 
         "I help engineering teams ship faster without breaking production. Stop losing weekends to manual testing and hotfixes.",
       type: "website",
-      ...(siteSettings?.ogImageUrl && {
-        images: [{ 
-          url: siteSettings.ogImageUrl,
-          width: 1200,
-          height: 630,
-          alt: "Sirajul | SQA - SDET" 
-        }]
-      }),
+      siteName: "Sirajul Islam",
     },
     twitter: {
       card: "summary_large_image",
       title: "Sirajul | SQA - SDET",
       description: siteSettings?.tagline || "I help engineering teams ship faster without breaking production. Stop losing weekends to manual testing and hotfixes.",
-      ...(siteSettings?.ogImageUrl && {
-        images: [siteSettings.ogImageUrl]
-      }),
     },
   };
 }
@@ -70,6 +60,18 @@ export default async function WebsiteLayout({
         {children}
       </ClientShell>
       <Analytics />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Sirajul Islam",
+            alternateName: ["Sirajul", "siraajul"],
+            url: process.env.NEXT_PUBLIC_BASE_URL || "https://siraajul.com",
+          }),
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
