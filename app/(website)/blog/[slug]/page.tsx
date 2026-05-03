@@ -195,10 +195,10 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
   }
 
   return (
-    <article className="min-h-screen bg-white dark:bg-black text-foreground pb-20">
+    <article className="min-h-screen bg-background text-foreground pb-20">
 
       {/* Back button — sits ABOVE the image on mobile, inside on desktop */}
-      <div className="lg:hidden px-4 py-4 bg-white dark:bg-black border-b border-neutral-100 dark:border-neutral-900">
+      <div className="lg:hidden px-4 py-4 bg-background border-b border-neutral-100 dark:border-neutral-900">
         <Link
           href="/"
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm font-medium"

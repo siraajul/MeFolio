@@ -17,7 +17,7 @@ export const Contact = ({
     posthog.capture("view_contact_section");
   }, []);
   return (
-    <section id="contact" className="py-24 md:py-32 px-4 md:px-6 flex flex-col justify-center bg-white dark:bg-neutral-950">
+    <section id="contact" className="py-24 md:py-32 px-4 md:px-6 flex flex-col justify-center bg-background">
       <div className="container mx-auto max-w-4xl text-center">
         <h2 className="mb-6 text-5xl md:text-6xl font-black uppercase tracking-tighter text-foreground">
           {title.split(" ")[0]} <span className="text-brand italic">{title.split(" ").slice(1).join(" ")}</span>

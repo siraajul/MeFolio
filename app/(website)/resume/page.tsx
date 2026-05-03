@@ -64,7 +64,7 @@ export default async function ResumePage() {
   ]);
 
   return (
-    <main className="min-h-screen bg-neutral-100 dark:bg-neutral-950 py-10 print:bg-white print:py-0">
+    <main className="min-h-screen bg-background dark:bg-neutral-950 py-10 print:bg-white print:py-0">
       
       {/* Back to Home Button */}
       <a 
