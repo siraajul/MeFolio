@@ -1,6 +1,7 @@
 import { ImageResponse } from 'next/og';
 import { client } from '@/sanity/lib/client';
-import { groq } from 'next-sanity';
+import { siteSettingsQuery } from "@/sanity/lib/queries";
+import { SiteSettings } from "@/types/sanity";
 
 export const runtime = 'edge';
 export const revalidate = 0;
@@ -14,18 +15,9 @@ export const size = {
 };
 export const contentType = 'image/png';
 
-// Query to get site settings
-const settingsQuery = groq`*[_type == "siteSettings"][0]{
-  firstName,
-  lastName,
-  resumeTagline,
-  tagline,
-  "profileImageUrl": profileImage.asset->url
-}`;
-
 export default async function Image() {
   // Fetch data
-  const settings = await client.fetch(settingsQuery);
+  const settings = await client.fetch<SiteSettings>(siteSettingsQuery);
 
   const firstName = settings?.firstName || 'SIRAJUL';
   const lastName = settings?.lastName || 'ISLAM';
@@ -36,7 +28,6 @@ export default async function Image() {
   let imageSrc: ArrayBuffer | null = null;
   if (profileImageUrl) {
     try {
-      // Fetch the remote image and convert it to ArrayBuffer for the Edge runtime
       const res = await fetch(profileImageUrl);
       imageSrc = await res.arrayBuffer();
     } catch (e) {
@@ -54,7 +45,7 @@ export default async function Image() {
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: imageSrc ? 'space-between' : 'center',
-          backgroundColor: '#0a0a0a', // Dark background
+          backgroundColor: '#0a0a0a',
           backgroundImage: 'radial-gradient(circle at 25px 25px, #262626 2%, transparent 0%), radial-gradient(circle at 75px 75px, #262626 2%, transparent 0%)',
           backgroundSize: '100px 100px',
           color: 'white',
