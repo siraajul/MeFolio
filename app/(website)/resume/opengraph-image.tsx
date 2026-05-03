@@ -17,7 +17,8 @@ const settingsQuery = groq`*[_type == "siteSettings"][0]{
   firstName,
   lastName,
   resumeTagline,
-  tagline
+  tagline,
+  "profileImageUrl": profileImage.asset->url
 }`;
 
 export default async function Image() {
@@ -28,6 +29,21 @@ export default async function Image() {
   const lastName = settings?.lastName || 'ISLAM';
   const tagline = settings?.resumeTagline || settings?.tagline || 'Software Quality Assurance Engineer & SDET';
   const fullName = `${firstName} ${lastName}`;
+  const profileImageUrl = settings?.profileImageUrl;
+
+  let imageSrc = null;
+  if (profileImageUrl) {
+    try {
+      // Fetch the remote image and convert it to ArrayBuffer for the Edge runtime
+      const res = await fetch(profileImageUrl);
+      const arrayBuffer = await res.arrayBuffer();
+      const base64Image = Buffer.from(arrayBuffer).toString('base64');
+      const mimeType = res.headers.get('content-type') || 'image/jpeg';
+      imageSrc = `data:${mimeType};base64,${base64Image}`;
+    } catch (e) {
+      console.error("Failed to fetch profile image for OG:", e);
+    }
+  }
 
   return new ImageResponse(
     (
@@ -36,22 +52,23 @@ export default async function Image() {
           height: '100%',
           width: '100%',
           display: 'flex',
-          flexDirection: 'column',
+          flexDirection: 'row',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: imageSrc ? 'space-between' : 'center',
           backgroundColor: '#0a0a0a', // Dark background
           backgroundImage: 'radial-gradient(circle at 25px 25px, #262626 2%, transparent 0%), radial-gradient(circle at 75px 75px, #262626 2%, transparent 0%)',
           backgroundSize: '100px 100px',
           color: 'white',
           fontFamily: 'sans-serif',
           position: 'relative',
+          padding: '0 80px',
         }}
       >
         {/* Decorative Elements */}
         <div style={{ position: 'absolute', top: -100, left: -100, width: 400, height: 400, background: '#FF9900', filter: 'blur(200px)', opacity: 0.15, borderRadius: '50%' }}></div>
         <div style={{ position: 'absolute', bottom: -100, right: -100, width: 400, height: 400, background: '#00FFFF', filter: 'blur(200px)', opacity: 0.15, borderRadius: '50%' }}></div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', maxWidth: '80%' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: imageSrc ? 'flex-start' : 'center', textAlign: imageSrc ? 'left' : 'center', maxWidth: imageSrc ? '60%' : '80%', zIndex: 10 }}>
             {/* Resume Badge */}
             <div style={{ marginBottom: 20, padding: '8px 24px', background: 'rgba(255, 153, 0, 0.1)', border: '1px solid rgba(255, 153, 0, 0.3)', borderRadius: 9999, display: 'flex', alignItems: 'center' }}>
                <span style={{ fontSize: 18, color: '#FF9900', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Resume</span>
@@ -72,6 +89,16 @@ export default async function Image() {
                <span style={{ fontSize: 20, color: '#00FFFF', fontWeight: 600 }}>siraajul.com</span>
             </div>
         </div>
+
+        {imageSrc && (
+          <div style={{ display: 'flex', zIndex: 10 }}>
+            <img 
+              src={imageSrc} 
+              alt="Profile" 
+              style={{ width: '380px', height: '380px', borderRadius: '50%', objectFit: 'cover', border: '8px solid #262626' }}
+            />
+          </div>
+        )}
       </div>
     ),
     {
