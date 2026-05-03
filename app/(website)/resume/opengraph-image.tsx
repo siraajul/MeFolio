@@ -1,92 +1,81 @@
-import { ImageResponse } from 'next/og'
-import { client } from "@/sanity/lib/client";
-import { siteSettingsQuery } from "@/sanity/lib/queries";
-import { SiteSettings } from "@/types/sanity";
+import { ImageResponse } from 'next/og';
+import { client } from '@/sanity/lib/client';
+import { groq } from 'next-sanity';
 
-export const alt = 'Resume'
+export const runtime = 'edge';
+
+// Image metadata
+export const alt = 'Professional Resume - SQA Engineer & SDET';
 export const size = {
   width: 1200,
   height: 630,
-}
-export const contentType = 'image/png'
-export const revalidate = 60; // Revalidate every 60 seconds
+};
+export const contentType = 'image/png';
+
+// Query to get site settings
+const settingsQuery = groq`*[_type == "siteSettings"][0]{
+  firstName,
+  lastName,
+  resumeTagline,
+  tagline
+}`;
 
 export default async function Image() {
-  const settings = await client.fetch<SiteSettings>(siteSettingsQuery);
+  // Fetch data
+  const settings = await client.fetch(settingsQuery);
 
-  const firstName = settings?.firstName || "Sirajul";
-  const lastName = settings?.lastName || "Islam";
-  const tagline = settings?.resumeTagline || settings?.tagline || "SQA Engineer & SDET";
-  const profileImageUrl = settings?.profileImageUrl;
+  const firstName = settings?.firstName || 'SIRAJUL';
+  const lastName = settings?.lastName || 'ISLAM';
+  const tagline = settings?.resumeTagline || settings?.tagline || 'Software Quality Assurance Engineer & SDET';
+  const fullName = `${firstName} ${lastName}`;
 
   return new ImageResponse(
     (
       <div
         style={{
-          background: 'linear-gradient(to bottom right, #171717, #0a0a0a)',
-          width: '100%',
           height: '100%',
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: 'white',
-          fontFamily: 'sans-serif',
-          padding: '40px',
-        }}
-      >
-        <div style={{
+          width: '100%',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'flex-start',
+          alignItems: 'center',
           justifyContent: 'center',
-          flex: 1,
-          paddingLeft: '80px',
-        }}>
-          <div style={{
-            fontSize: 32,
-            textTransform: 'uppercase',
-            letterSpacing: '0.1em',
-            color: '#a3a3a3',
-            marginBottom: '20px',
-            display: 'flex',
-          }}>
-            Resume
-          </div>
-          <h1 style={{ 
-            fontSize: 80, 
-            fontWeight: 'bold', 
-            margin: 0, 
-            padding: 0, 
-            lineHeight: 1.1,
-            display: 'flex',
-            flexDirection: 'column'
-          }}>
-            <span style={{ display: 'flex' }}>{firstName}</span>
-            <span style={{ display: 'flex' }}>{lastName}</span>
-          </h1>
-          <p style={{ 
-            fontSize: 40, 
-            color: '#d4d4d4', 
-            marginTop: '20px',
-            display: 'flex'
-          }}>
-            {tagline}
-          </p>
+          backgroundColor: '#0a0a0a', // Dark background
+          backgroundImage: 'radial-gradient(circle at 25px 25px, #262626 2%, transparent 0%), radial-gradient(circle at 75px 75px, #262626 2%, transparent 0%)',
+          backgroundSize: '100px 100px',
+          color: 'white',
+          fontFamily: 'sans-serif',
+          position: 'relative',
+        }}
+      >
+        {/* Decorative Elements */}
+        <div style={{ position: 'absolute', top: -100, left: -100, width: 400, height: 400, background: '#FF9900', filter: 'blur(200px)', opacity: 0.15, borderRadius: '50%' }}></div>
+        <div style={{ position: 'absolute', bottom: -100, right: -100, width: 400, height: 400, background: '#00FFFF', filter: 'blur(200px)', opacity: 0.15, borderRadius: '50%' }}></div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', maxWidth: '80%' }}>
+            {/* Resume Badge */}
+            <div style={{ marginBottom: 20, padding: '8px 24px', background: 'rgba(255, 153, 0, 0.1)', border: '1px solid rgba(255, 153, 0, 0.3)', borderRadius: 9999, display: 'flex', alignItems: 'center' }}>
+               <span style={{ fontSize: 18, color: '#FF9900', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Resume</span>
+            </div>
+
+            {/* Name */}
+            <h1 style={{ fontSize: 80, fontWeight: 800, margin: 0, letterSpacing: '-0.02em', background: 'linear-gradient(to right, #ffffff, #a3a3a3)', backgroundClip: 'text', color: 'transparent' }}>
+              {fullName}
+            </h1>
+            
+            {/* Tagline */}
+            <p style={{ fontSize: 32, color: '#a3a3a3', marginTop: 20, lineHeight: 1.4 }}>
+              {tagline}
+            </p>
+            
+            {/* Domain */}
+            <div style={{ marginTop: 40, padding: '10px 24px', background: '#171717', border: '1px solid #262626', borderRadius: 9999, display: 'flex', alignItems: 'center' }}>
+               <span style={{ fontSize: 20, color: '#00FFFF', fontWeight: 600 }}>siraajul.com</span>
+            </div>
         </div>
-        {profileImageUrl && (
-          <div style={{ display: 'flex', paddingRight: '80px' }}>
-            <img 
-              src={profileImageUrl} 
-              alt="Profile" 
-              style={{ width: '400px', height: '400px', borderRadius: '50%', objectFit: 'cover', border: '8px solid #262626' }}
-            />
-          </div>
-        )}
       </div>
     ),
     {
       ...size,
     }
-  )
+  );
 }
