@@ -2,11 +2,17 @@ import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
     return {
-        rules: {
-            userAgent: '*',
-            allow: '/',
-            disallow: ['/studio/', '/private/'],
-        },
+        rules: [
+            {
+                userAgent: '*',
+                allow: '/',
+                disallow: ['/studio/', '/private/'],
+            },
+            {
+                userAgent: 'facebookexternalhit',
+                allow: '/',
+            }
+        ],
         sitemap: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://siraajul.com'}/sitemap.xml`,
     }
 }
