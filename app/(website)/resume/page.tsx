@@ -33,13 +33,11 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       type: "profile",
-      images: settings?.profileImageUrl ? [{ url: settings.profileImageUrl }] : [],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: settings?.profileImageUrl ? [settings.profileImageUrl] : [],
     },
   };
 }
