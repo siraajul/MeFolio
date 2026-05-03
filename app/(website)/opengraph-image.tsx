@@ -60,11 +60,6 @@ export default async function Image() {
         <div style={{ position: 'absolute', bottom: -100, right: -100, width: 400, height: 400, background: '#00FFFF', filter: 'blur(200px)', opacity: 0.15, borderRadius: '50%' }}></div>
 
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: imageSrc ? 'flex-start' : 'center', textAlign: imageSrc ? 'left' : 'center', maxWidth: imageSrc ? '60%' : '80%', zIndex: 10 }}>
-            {/* Portfolio Badge */}
-            <div style={{ marginBottom: 20, padding: '8px 24px', background: 'rgba(255, 153, 0, 0.1)', border: '1px solid rgba(255, 153, 0, 0.3)', borderRadius: 9999, display: 'flex', alignItems: 'center' }}>
-               <span style={{ fontSize: 18, color: '#FF9900', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Portfolio</span>
-            </div>
-
             {/* Name */}
             <h1 style={{ fontSize: 80, fontWeight: 800, margin: 0, letterSpacing: '-0.02em', background: 'linear-gradient(to right, #ffffff, #a3a3a3)', backgroundClip: 'text', color: 'transparent' }}>
               {fullName}
