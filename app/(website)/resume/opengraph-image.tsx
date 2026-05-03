@@ -3,6 +3,8 @@ import { client } from '@/sanity/lib/client';
 import { groq } from 'next-sanity';
 
 export const runtime = 'edge';
+export const revalidate = 0;
+export const dynamic = 'force-dynamic';
 
 // Image metadata
 export const alt = 'Professional Resume - SQA Engineer & SDET';
@@ -31,15 +33,12 @@ export default async function Image() {
   const fullName = `${firstName} ${lastName}`;
   const profileImageUrl = settings?.profileImageUrl;
 
-  let imageSrc = null;
+  let imageSrc: ArrayBuffer | null = null;
   if (profileImageUrl) {
     try {
       // Fetch the remote image and convert it to ArrayBuffer for the Edge runtime
       const res = await fetch(profileImageUrl);
-      const arrayBuffer = await res.arrayBuffer();
-      const base64Image = Buffer.from(arrayBuffer).toString('base64');
-      const mimeType = res.headers.get('content-type') || 'image/jpeg';
-      imageSrc = `data:${mimeType};base64,${base64Image}`;
+      imageSrc = await res.arrayBuffer();
     } catch (e) {
       console.error("Failed to fetch profile image for OG:", e);
     }
@@ -93,7 +92,7 @@ export default async function Image() {
         {imageSrc && (
           <div style={{ display: 'flex', zIndex: 10 }}>
             <img 
-              src={imageSrc} 
+              src={imageSrc as any} 
               alt="Profile" 
               style={{ width: '380px', height: '380px', borderRadius: '50%', objectFit: 'cover', border: '8px solid #262626' }}
             />
