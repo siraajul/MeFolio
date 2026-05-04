@@ -62,7 +62,7 @@ export function Callout({ style, title, body }: CalloutProps) {
           <p className={`font-semibold text-sm uppercase tracking-wider ${config.textColor} mb-1`}>
             {title || config.label}
           </p>
-          <p className="text-neutral-300 text-sm leading-relaxed whitespace-pre-line">
+          <p className="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed whitespace-pre-line">
             {body}
           </p>
         </div>

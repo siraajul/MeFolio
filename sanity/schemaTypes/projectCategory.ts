@@ -61,6 +61,49 @@ export default defineType({
                             rows: 3
                         },
                         {
+                            name: "isImpactDriven",
+                            title: "Use Impact-Driven Layout?",
+                            type: "boolean",
+                            description: "Toggle this on to render the Problem -> Strategy -> Impact case study layout.",
+                            initialValue: false,
+                        },
+                        {
+                            name: "problem",
+                            title: "The Problem",
+                            type: "text",
+                            rows: 3,
+                            hidden: ({ parent }) => !parent?.isImpactDriven
+                        },
+                        {
+                            name: "strategy",
+                            title: "The Strategy",
+                            type: "array",
+                            of: [{ type: "string" }],
+                            description: "List of strategic steps taken (e.g., 'Architected a POM framework')",
+                            hidden: ({ parent }) => !parent?.isImpactDriven
+                        },
+                        {
+                            name: "impact",
+                            title: "The Impact",
+                            type: "text",
+                            rows: 3,
+                            hidden: ({ parent }) => !parent?.isImpactDriven
+                        },
+                        {
+                            name: "metrics",
+                            title: "Impact Metrics",
+                            type: "array",
+                            hidden: ({ parent }) => !parent?.isImpactDriven,
+                            of: [{
+                                type: "object",
+                                fields: [
+                                    { name: "label", type: "string", title: "Metric Label (e.g. Test Time)" },
+                                    { name: "value", type: "string", title: "Metric Value (e.g. 72hrs → 15m)" },
+                                    { name: "icon", type: "string", title: "Icon Name", options: { list: ["TrendingDown", "BugOff", "Zap", "ShieldCheck", "Clock"] } }
+                                ]
+                            }]
+                        },
+                        {
                             name: "content",
                             title: "Case Study Content (Problem, Solution, Results)",
                             type: "array",
