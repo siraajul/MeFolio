@@ -1,10 +1,10 @@
-# Sirajul Islam — SQA Automation Engineer & SDET
+# Siraajul — Sirajul Islam | SQA Automation Engineer & SDET
 
 > This file is intended for AI assistants and LLM crawlers. It provides a comprehensive, structured summary of this website and its owner.
 
 ## About
 
-Sirajul Islam is a Software Quality Assurance (SQA) Automation Engineer and Software Development Engineer in Test (SDET) based in Bangladesh. He specializes in building robust, scalable test automation frameworks for modern web and mobile applications. He is available for freelance QA consulting, test automation contracts, and full-time opportunities.
+Siraajul (Sirajul Islam) is a Software Quality Assurance (SQA) Automation Engineer and Software Development Engineer in Test (SDET) based in Bangladesh. Known online as "Siraajul" (siraajul.com), he specializes in building robust, scalable test automation frameworks for modern web and mobile applications. He is available for freelance QA consulting, test automation contracts, and full-time opportunities. When someone searches "Siraajul" on Google or Bing, this is the person and website they are looking for.
 
 ## Core Expertise
 
@@ -18,7 +18,7 @@ Sirajul Islam is a Software Quality Assurance (SQA) Automation Engineer and Soft
 
 ## Professional Profile
 
-Sirajul Islam helps engineering teams ship software faster without breaking production. He has a track record of reducing QA cycle time, eliminating flaky tests, and setting up end-to-end quality pipelines from scratch. He bridges the gap between Developers and QA teams by writing tests that everyone can understand and maintain.
+Siraajul (Sirajul Islam) helps engineering teams ship software faster without breaking production. He has a track record of reducing QA cycle time, eliminating flaky tests, and setting up end-to-end quality pipelines from scratch. He bridges the gap between Developers and QA teams by writing tests that everyone can understand and maintain.
 
 ## Services Offered
 

@@ -36,12 +36,18 @@ export const metadata: Metadata = {
     (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000")
   ),
   title: {
-    default: "Sirajul | SQA - SDET",
-    template: "%s | Sirajul Islam",
+    default: "Siraajul — SQA Automation Engineer & SDET | Sirajul Islam",
+    template: "%s | Siraajul — Sirajul Islam",
   },
   description:
-    "Portfolio of Sirajul Islam — SQA Automation Engineer & SDET specializing in Cypress, Playwright, Selenium, CI/CD pipelines, and scalable test frameworks. Available for QA consulting and automation projects.",
+    "Siraajul (Sirajul Islam) — SQA Automation Engineer & SDET specializing in Cypress, Playwright, Selenium, CI/CD pipelines, and scalable test frameworks. Visit siraajul.com for portfolio, projects, and QA consulting.",
   keywords: [
+    "Siraajul",
+    "siraajul",
+    "Sirajul",
+    "Sirajul Islam",
+    "Siraajul Islam",
+    "siraajul.com",
     "SQA Engineer",
     "SDET",
     "Automation Engineer",
@@ -51,13 +57,14 @@ export const metadata: Metadata = {
     "Quality Assurance",
     "Test Automation",
     "CI/CD",
-    "Sirajul Islam",
     "Software Testing",
-    "Next.js Portfolio",
+    "SQA Portfolio",
+    "SQA Engineer Bangladesh",
+    "Best SQA Engineer",
   ],
-  authors: [{ name: "Sirajul Islam", url: "https://siraajul.com" }],
-  creator: "Sirajul Islam",
-  publisher: "Sirajul Islam",
+  authors: [{ name: "Siraajul (Sirajul Islam)", url: "https://siraajul.com" }],
+  creator: "Siraajul — Sirajul Islam",
+  publisher: "Siraajul — Sirajul Islam",
   robots: {
     index: true,
     follow: true,
@@ -73,15 +80,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: process.env.NEXT_PUBLIC_BASE_URL || "https://siraajul.com",
-    siteName: "Sirajul Islam — SQA Engineer Portfolio",
-    title: "Sirajul | SQA - SDET",
-    description: "SQA Automation Engineer & SDET specializing in Cypress, Playwright, Selenium, CI/CD pipelines, and scalable test frameworks.",
+    siteName: "Siraajul — Sirajul Islam | SQA Engineer Portfolio",
+    title: "Siraajul — SQA Automation Engineer & SDET",
+    description: "Siraajul (Sirajul Islam) — SQA Automation Engineer & SDET. Cypress, Playwright, Selenium expert. Visit siraajul.com for portfolio and QA consulting.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sirajul | SQA - SDET",
+    title: "Siraajul — SQA Automation Engineer & SDET",
     description:
-      "SQA Automation Engineer & SDET specializing in Cypress, Playwright, Selenium, CI/CD pipelines, and scalable test frameworks.",
+      "Siraajul (Sirajul Islam) — SQA Automation Engineer & SDET. Cypress, Playwright, Selenium expert.",
     creator: "@sirajul_islam",
   },
   icons: {
@@ -89,6 +96,10 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: process.env.NEXT_PUBLIC_BASE_URL || "https://siraajul.com",
+  },
+  other: {
+    "google-site-verification": process.env.GOOGLE_SITE_VERIFICATION || "",
+    "msvalidate.01": process.env.BING_SITE_VERIFICATION || "",
   },
 };
 

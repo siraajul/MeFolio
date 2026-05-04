@@ -8,7 +8,7 @@ export const revalidate = 0;
 export const dynamic = 'force-dynamic';
 
 // Image metadata
-export const alt = 'Sirajul Islam - SQA Engineer & SDET';
+export const alt = 'Siraajul — Sirajul Islam | SQA Engineer & SDET Portfolio';
 export const size = {
   width: 1200,
   height: 630,
