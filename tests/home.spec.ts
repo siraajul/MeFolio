@@ -6,7 +6,7 @@ test.describe('Home Page', () => {
         await page.goto('/');
 
         // Check for the name "Sirajul Islam" in the title or hero
-        await expect(page).toHaveTitle(/Sirajul \| SQA - SDET/);
+        await expect(page).toHaveTitle(/Siraajul — SQA Automation Engineer & SDET/);
 
         // Check specific Hero text
         // We use getByTestId for absolute precision and to avoid strict-mode violations with footer/background text
