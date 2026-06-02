@@ -112,11 +112,31 @@ App degrades gracefully when optional keys are missing (analytics scripts skip; 
 
 ## SEO / GEO / LLM
 
-The site is **SEO/GEO-heavy by design** (personal-brand search + AI-assistant citation for "Siraajul / Sirajul Islam"). Preserve all of this when touching layouts/pages:
-- Server-rendered content (see Gotchas), per-page canonicals, single semantic `<h1>` per page, clean `<title>` templates, meta-description fallbacks.
-- JSON-LD: global `@graph` (WebSite/ProfilePage/Person+address) in `(website)/layout.tsx`; per-page `BlogPosting`/`CreativeWork` + `BreadcrumbList` via `lib/structured-data.ts`.
-- `app/robots.ts` explicitly allows AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended…). `public/llms.txt` is served for LLM discovery. `app/sitemap.ts` is dynamic.
-- New external script/img/connect/media origins must be added to the CSP in `middleware.ts` AND, for images, to `next.config.ts` `images.remotePatterns`.
+This is fundamentally a **personal-brand SEO/GEO project** — the whole point is that "Sirajul Islam" ranks on Google **and** gets surfaced by LLMs (ChatGPT/Claude/Gemini/Perplexity). Preserve all of this when touching layouts/pages.
+
+### Technical foundation (built; don't regress)
+- Server-rendered content (see Gotchas — the `ssr:false` trap nearly killed this), per-page self-referencing canonicals, one semantic `<h1>` per page, clean `<title>` templates, meta-description fallbacks.
+- JSON-LD: global `@graph` (WebSite/ProfilePage/Person) in `(website)/layout.tsx`; per-page `BlogPosting`/`CreativeWork` + `BreadcrumbList` via `lib/structured-data.ts` (author/publisher reference the Person by `@id`).
+- `app/robots.ts` allows AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended…). `public/llms.txt` is the LLM-facing summary. `app/sitemap.ts` is dynamic with real per-content `lastmod` (post `publishedAt` / category `_updatedAt`).
+- New external script/img/connect/media origins must be added to the CSP in `middleware.ts` AND (for images) `next.config.ts` `images.remotePatterns`.
+
+### Ranking targets & on-page strategy
+Primary money queries are **location + role/tool in Bangladesh**: "SQA Engineer / Software Tester / SDET / automation engineer / Playwright expert / Appium expert **in Bangladesh** (Dhaka)".
+- **Rule: target phrases must live in VISIBLE, indexable content** — `<meta keywords>` is ignored by Google. These phrases are wired into: the homepage `<h1>` (Hero), a natural About paragraph, the Person JSON-LD (`areaServed` Bangladesh/Dhaka/remote + `hasOccupation.occupationLocation` = Bangladesh + `knowsAbout`), and `llms.txt`'s "Location & Availability" section.
+- **Never keyword-stuff** — Google penalizes it. Keep new copy natural.
+- The Person entity is linked to LinkedIn + GitHub via `sameAs` (driven by the `linkedin`/`github` siteSettings fields) — this is the main entity-recognition signal for Google and LLMs.
+
+### Off-page (NOT code — the larger half of actually ranking)
+On-page is maxed; rankings/LLM-mentions are then earned over weeks–months via: backlinks & mentions (LinkedIn, GitHub, dev.to/Medium, BD tech directories), consistent NAP (same name/role/Dhaka, Bangladesh everywhere), and publishing + sharing content so the web associates "Sirajul Islam ↔ QA Bangladesh" (this is also how you enter LLM training data).
+
+### Operational workflow
+- **Deploy = `git push origin main`** → Vercel auto-deploys production. Nothing is live until pushed. Always `npx tsc --noEmit` + `npx eslint .` + `npm run build` before pushing.
+- After deploy: **GSC** → submit `sitemap.xml` (once) and URL-Inspect → Request Indexing key pages. Validate structured data with Google's Rich Results Test.
+- **Bing matters for GEO**: ChatGPT Search / Copilot read Bing's index. Verify in Bing Webmaster Tools (import from GSC). **IndexNow** (Bing/Yandex/Naver — NOT Google) is a TODO worth adding for instant Bing indexing → faster ChatGPT discovery; would be a `public/<key>.txt` + a Sanity-publish webhook → `api.indexnow.org`.
+
+### Known content gaps (hurt SEO/GEO until filled — in Sanity Studio)
+- 3 projects have **no description** (`Appium 101`, `testcart`, `Performance 101`); the `about` document is **empty**.
+- `GOOGLE_SITE_VERIFICATION` env is unset (site is verified another way — DNS/GSC). The `tagline` field had stray double spaces (code normalizes whitespace defensively).
 
 ## Notes
 
