@@ -24,6 +24,9 @@
 .DS_Store
 *.pem
 
+# local tooling (Puku semantic-search DB/config — keep local, don't version)
+/.puku/
+
 # debug
 npm-debug.log*
 yarn-debug.log*
@@ -50,3 +53,6 @@ __checks__/*.png
 # checkly & npm
 /.npm-cache-temp/
 .checkly/
+
+# macOS custom folder icon
+Icon
