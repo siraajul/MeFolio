@@ -3,6 +3,8 @@ import { groq } from "next-sanity";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { BlogArticle, type BlogPost } from "./BlogArticle";
+import { JsonLd } from "@/components/shared/JsonLd";
+import { blogPostingJsonLd, breadcrumbJsonLd } from "@/lib/structured-data";
 
 // Use ISR: pre-render at build time, refresh every 60 seconds from Sanity
 export const revalidate = 60;
@@ -90,5 +92,25 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
     notFound();
   }
 
-  return <BlogArticle post={post} />;
+  const jsonLd = [
+    breadcrumbJsonLd([
+      { name: "Home", url: "/" },
+      { name: "Blog", url: "/blog" },
+      { name: post.title, url: `/blog/${slug}` },
+    ]),
+    blogPostingJsonLd({
+      title: post.title,
+      description: post.summary,
+      slug,
+      image: post.imageUrl,
+      datePublished: post.publishedAt,
+    }),
+  ];
+
+  return (
+    <>
+      <JsonLd data={jsonLd} />
+      <BlogArticle post={post} />
+    </>
+  );
 }

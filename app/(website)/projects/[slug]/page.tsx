@@ -5,6 +5,8 @@ import { Metadata } from "next";
 import { SiteSettings } from "@/types/sanity";
 import { siteSettingsQuery } from "@/sanity/lib/queries";
 import { ProjectCaseStudy, type ProjectDetail } from "./ProjectCaseStudy";
+import { JsonLd } from "@/components/shared/JsonLd";
+import { projectJsonLd, breadcrumbJsonLd } from "@/lib/structured-data";
 
 // Use ISR: pre-render at build time, refresh every 60 seconds
 export const revalidate = 60;
@@ -89,5 +91,26 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     notFound();
   }
 
-  return <ProjectCaseStudy project={data.project} settings={settings} />;
+  const { project } = data;
+  const jsonLd = [
+    breadcrumbJsonLd([
+      { name: "Home", url: "/" },
+      { name: "Projects", url: "/#projects" },
+      { name: project.title, url: `/projects/${slug}` },
+    ]),
+    projectJsonLd({
+      title: project.title,
+      description: project.description,
+      slug,
+      image: project.image,
+      techStack: project.techStack,
+    }),
+  ];
+
+  return (
+    <>
+      <JsonLd data={jsonLd} />
+      <ProjectCaseStudy project={project} settings={settings} />
+    </>
+  );
 }
