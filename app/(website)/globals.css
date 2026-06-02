@@ -240,3 +240,49 @@
 .sh-code-content .sh__line:hover {
   background: rgba(255, 255, 255, 0.03);
 }
+
+/* ===================== Accessibility & Performance ===================== */
+
+/*
+ * Respect prefers-reduced-motion: neutralize CSS animations/transitions/smooth-scroll.
+ * (Framer Motion is handled separately via <MotionConfig reducedMotion="user">, and Lenis
+ * smooth-scroll is skipped in smooth-scroll.tsx when this preference is set.)
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Skip-to-content link: off-screen until focused by keyboard. */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  transform: translateY(-150%);
+  transition: transform 0.2s ease;
+  background: var(--brand, #ff6b00);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Visible keyboard focus ring across the app. */
+:focus-visible {
+  outline: 2px solid var(--brand, #ff6b00);
+  outline-offset: 2px;
+}
