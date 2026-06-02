@@ -83,8 +83,14 @@ export function middleware(request: NextRequest) {
     upgrade-insecure-requests;
   `.replace(/\s+/g, " ").trim();
 
-  // Set security headers
-  response.headers.set("Content-Security-Policy", cspHeader);
+  // Set security headers.
+  // /studio is the authenticated Sanity admin route. It needs broad network access (Sanity's
+  // module CDN, version checks, multiple *.sanity.io services, web workers) that the strict
+  // public-site CSP blocks — e.g. "Failed to fetch version for package sanity". So we skip the
+  // CSP there; it's gated behind Sanity auth, and the other hardening headers still apply.
+  if (!pathname.startsWith("/studio")) {
+    response.headers.set("Content-Security-Policy", cspHeader);
+  }
   response.headers.set("X-Frame-Options", "DENY");
   response.headers.set("X-Content-Type-Options", "nosniff");
   response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
