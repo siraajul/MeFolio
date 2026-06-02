@@ -123,14 +123,29 @@ export default async function WebsiteLayout({
         sameAs: socialLinks,
         knowsAbout: [
           "Software Quality Assurance",
+          "Software Testing",
           "Test Automation",
           "Cypress",
           "Playwright",
           "Selenium",
+          "Appium",
+          "Mobile App Testing",
+          "API Testing",
+          "Performance Testing",
           "CI/CD",
           "SDET",
-          "Performance Testing",
-          "API Testing",
+        ],
+        // Occupation + service area tie the role to Bangladesh for "<role> in Bangladesh" queries.
+        hasOccupation: {
+          "@type": "Occupation",
+          name: "SQA Automation Engineer & SDET",
+          occupationLocation: { "@type": "Country", name: "Bangladesh" },
+          skills: "Playwright, Cypress, Selenium, Appium, API testing, performance testing, CI/CD",
+        },
+        areaServed: [
+          { "@type": "Country", name: "Bangladesh" },
+          { "@type": "City", name: "Dhaka" },
+          "Remote / Worldwide",
         ],
         worksFor: {
           "@type": "Organization",

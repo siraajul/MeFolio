@@ -81,6 +81,19 @@ export default function About() {
               </TimelineContent>
             </TimelineContent>
 
+            <TimelineContent
+              as="p"
+              animationNum={4}
+              timelineRef={heroRef}
+              customVariants={textVariants}
+              className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl"
+            >
+              I&apos;m an SQA Automation Engineer &amp; SDET based in Dhaka, Bangladesh, helping
+              teams ship faster with reliable end-to-end testing. I build automation frameworks
+              in Playwright, Cypress, Selenium and Appium, wired into CI/CD pipelines — and work
+              with clients across Bangladesh and remotely worldwide.
+            </TimelineContent>
+
             <div className="mt-12 flex gap-2 justify-between items-center sm:flex-row flex-col">
               <TimelineContent
                 as="div"
@@ -90,10 +103,10 @@ export default function About() {
                 className="mb-4 sm:text-xl text-xs sm:mb-0"
               >
                 <div className=" font-medium text-foreground mb-1 capitalize">
-                  Quality Assurance Specialist
+                  SQA Automation Engineer &amp; SDET
                 </div>
                 <div className=" text-muted-foreground font-semibold uppercase">
-                  Based in Dhaka
+                  Based in Dhaka, Bangladesh
                 </div>
               </TimelineContent>
 

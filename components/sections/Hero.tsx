@@ -67,7 +67,7 @@ export default function Hero({
             (rendered as <p>), so this screen-reader-only heading gives the page a single,
             keyword-rich H1 that crawlers and AI assistants can read. */}
         <h1 className="sr-only">
-          {firstName} {lastName} — SQA Automation Engineer &amp; SDET (Software Development Engineer in Test)
+          {firstName} {lastName} — SQA Automation Engineer &amp; SDET (Software Development Engineer in Test) based in Dhaka, Bangladesh
         </h1>
         {/* Centered Main Name */}
         <div className="relative w-full px-4 mb-12 sm:mb-16">
