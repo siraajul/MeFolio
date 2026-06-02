@@ -2,7 +2,6 @@ import { client } from "@/sanity/lib/client";
 import Image from "next/image";
 import {
   siteSettingsQuery,
-  aboutQuery,
   experiencesQuery,
   skillCategoriesQuery,
   projectCategoriesQuery,
@@ -14,23 +13,22 @@ import Hero from "@/components/sections/Hero";
 import { Navbar } from "@/components/layout/Navbar";
 import { EducationCard } from "@/components/shared/EducationCard";
 import { Github, Linkedin, Mail } from "lucide-react";
-import dynamic from "next/dynamic";
+// Static imports (not next/dynamic): these sections are server-rendered for SEO, and a
+// dynamic() lazy boundary would only exist on the client — shifting React's useId counter
+// and causing hydration mismatches in Radix components (Collapsible/Select/etc.).
+import AboutSection from "@/components/sections/About";
+import Projects from "@/components/sections/Projects";
+import { Experience as ExperienceSection } from "@/components/sections/Experience";
+import { Skills as SkillsSection } from "@/components/sections/Skills";
+import { Blog } from "@/components/sections/Blog";
+import { Contact } from "@/components/sections/Contact";
+import { GithubActivity } from "@/components/sections/GithubActivity";
+import { Timeline } from "@/components/ui/timeline";
+import { Footer } from "@/components/layout/Footer";
 
-// Lazy-load below-fold sections for faster initial page load
-const AboutSection = dynamic(() => import("@/components/sections/About"));
-const Projects = dynamic(() => import("@/components/sections/Projects"));
-const ExperienceSection = dynamic(() => import("@/components/sections/Experience").then(m => ({ default: m.Experience })));
-const SkillsSection = dynamic(() => import("@/components/sections/Skills").then(m => ({ default: m.Skills })));
-const Blog = dynamic(() => import("@/components/sections/Blog").then(m => ({ default: m.Blog })));
-const Contact = dynamic(() => import("@/components/sections/Contact").then(m => ({ default: m.Contact })));
-const GithubActivity = dynamic(() => import("@/components/sections/GithubActivity").then(m => ({ default: m.GithubActivity })));
-const Timeline = dynamic(() => import("@/components/ui/timeline").then(m => ({ default: m.Timeline })));
-const Footer = dynamic(() => import("@/components/layout/Footer").then(m => ({ default: m.Footer })));
-
-import { 
-  SiteSettings, 
-  About, 
-  Experience, 
+import {
+  SiteSettings,
+  Experience,
   SkillCategory, 
   ProjectCategory, 
   Education, 
@@ -48,8 +46,7 @@ export default async function Home() {
   const settings = await client.fetch<SiteSettings>(siteSettingsQuery);
 
   // Stage 2: Kick off all below-fold queries in parallel while page starts rendering
-  const [about, experiences, skillCategories, projectCategories, educations, certifications, posts] = await Promise.all([
-    client.fetch<About>(aboutQuery),
+  const [experiences, skillCategories, projectCategories, educations, certifications, posts] = await Promise.all([
     client.fetch<Experience[]>(experiencesQuery),
     client.fetch<SkillCategory[]>(skillCategoriesQuery),
     client.fetch<ProjectCategory[]>(projectCategoriesQuery),

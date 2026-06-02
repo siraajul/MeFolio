@@ -1,5 +1,5 @@
 import { client } from "@/sanity/lib/client";
-import { groq } from "next-sanity";
+import Link from "next/link";
 import { Metadata } from "next";
 import {
   siteSettingsQuery,
@@ -22,8 +22,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = settings?.firstName
     ? `Resume | ${settings.firstName} ${settings.lastName}`
     : "Resume | Sirajul Islam";
-  const description = settings?.tagline
-    ? `Professional Resume – ${settings.tagline}`
+  // Match the resume OG image + visible template, which use resumeTagline (falling back to tagline).
+  const resumeTagline = (settings?.resumeTagline || settings?.tagline || "").replace(/\s+/g, " ").trim();
+  const description = resumeTagline
+    ? `Professional Resume – ${resumeTagline}`
     : "Professional Resume of Sirajul Islam - SQA Engineer & SDET";
 
   const url = `${process.env.NEXT_PUBLIC_BASE_URL || "https://siraajul.com"}/resume`;
@@ -64,16 +66,16 @@ export default async function ResumePage() {
   ]);
 
   return (
-    <main className="min-h-screen bg-background dark:bg-neutral-950 py-10 print:bg-white print:py-0">
+    <main id="main-content" tabIndex={-1} className="min-h-screen bg-background dark:bg-neutral-950 py-10 print:bg-white print:py-0">
       
       {/* Back to Home Button */}
-      <a 
+      <Link
         href="/"
         className="fixed top-6 left-6 z-50 print:hidden flex items-center gap-2 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white px-4 py-2 rounded-full shadow-sm hover:shadow-md transition-all font-medium hover:scale-105 active:scale-95"
       >
         <span>←</span>
         <span className="hidden sm:inline">Back to Home</span>
-      </a>
+      </Link>
 
       {/* Download Button */}
       <DownloadButton />

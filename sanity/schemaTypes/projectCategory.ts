@@ -36,10 +36,18 @@ export default defineType({
                             name: "slug",
                             title: "Slug",
                             type: "slug",
-                            options: { source: (doc: any, options: any) => options?.parent?.title || '', maxLength: 96 },
+                            options: { source: (_doc: unknown, options?: { parent?: { title?: string } }) => options?.parent?.title || '', maxLength: 96 },
                             validation: (Rule) => Rule.required()
                         },
-                        { name: "image", title: "Main Image", type: "image", options: { hotspot: true } },
+                        {
+                            name: "image",
+                            title: "Main Image",
+                            type: "image",
+                            options: { hotspot: true },
+                            fields: [
+                                { name: "alt", title: "Alt text", type: "string", description: "For SEO & screen readers. Falls back to the project title if empty." },
+                            ],
+                        },
                         { name: "link", title: "Live Link", type: "url" },
                         { name: "githubLink", title: "GitHub Repo", type: "url" },
                         {
@@ -52,13 +60,21 @@ export default defineType({
                             name: "gallery",
                             title: "Image Gallery",
                             type: "array",
-                            of: [{ type: "image", options: { hotspot: true } }]
+                            of: [{
+                                type: "image",
+                                options: { hotspot: true },
+                                fields: [
+                                    { name: "alt", title: "Alt text", type: "string", description: "For SEO & screen readers." },
+                                ],
+                            }]
                         },
                         {
                             name: "description",
                             title: "Short Description",
                             type: "text",
-                            rows: 3
+                            rows: 3,
+                            description: "Used as the meta description in search/social results. Aim for 120–160 characters.",
+                            validation: (Rule) => Rule.required().max(200),
                         },
                         {
                             name: "isImpactDriven",

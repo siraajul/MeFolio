@@ -68,13 +68,6 @@ export default defineType({
             type: "file",
         }),
         defineField({
-            name: "ogImage",
-            title: "Open Graph Image (Social Share)",
-            type: "image",
-            description: "Recommended size: 1200x630px. Shown when sharing link on social media.",
-            options: { hotspot: true },
-        }),
-        defineField({
             name: "cvVideo",
             title: "Video CV URL",
             type: "url",

@@ -24,12 +24,22 @@ export default defineType({
             title: "Summary",
             type: "text",
             rows: 3,
+            description: "Used as the meta description in search/social results. Aim for 120–160 characters.",
+            validation: (Rule) => Rule.required().max(200),
         }),
         defineField({
             name: "image",
             title: "Featured Image",
             type: "image",
             options: { hotspot: true },
+            fields: [
+                {
+                    name: "alt",
+                    title: "Alt text",
+                    type: "string",
+                    description: "Describes the image for SEO & screen readers. Falls back to the post title if empty.",
+                },
+            ],
         }),
         defineField({
             name: "externalLink",

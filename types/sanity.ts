@@ -15,7 +15,6 @@ export interface SiteSettings extends SanityBody {
     brandDescription?: string;
     location?: string;
     socialLinks?: SocialLink[];
-    ogImageUrl?: string;
     cvVideo?: string;
     phoneNumber?: string;
     email?: string;

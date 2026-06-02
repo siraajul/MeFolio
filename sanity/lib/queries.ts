@@ -8,7 +8,6 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   location,
   resumeTagline,
   "profileImageUrl": profileImage.asset->url,
-  "ogImageUrl": ogImage.asset->url,
   socialLinks[]{platform, url},
   "resumeUrl": resumeFile.asset->url,
   cvVideo,

@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useMemo } from "react";
-import { Menu, X, ChevronDown, Github, Linkedin, Mail, FileText, Play } from "lucide-react";
-import { ParticleButton } from "@/components/shared/ParticleButton";
+import React, { useState, useEffect, useRef } from "react";
+import { X, ChevronDown, Github, Linkedin, Mail, FileText, Play } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import dynamic from "next/dynamic";
 const VideoPlayer = dynamic(() => import("@/components/shared/VideoPlayer"));
@@ -63,7 +62,13 @@ export default function Hero({
     <div 
       className="min-h-screen text-foreground transition-colors bg-[#FAFAFA] dark:bg-black text-[#1a1a1a] dark:text-white"
     >
-      <main className="relative min-h-screen flex flex-col justify-center items-center pt-40 pb-20" role="main">
+      <main id="main-content" tabIndex={-1} className="relative min-h-screen flex flex-col justify-center items-center pt-40 pb-20" role="main">
+        {/* Semantic H1 for SEO/accessibility. The visible name is animated via BlurText
+            (rendered as <p>), so this screen-reader-only heading gives the page a single,
+            keyword-rich H1 that crawlers and AI assistants can read. */}
+        <h1 className="sr-only">
+          {firstName} {lastName} — SQA Automation Engineer &amp; SDET (Software Development Engineer in Test)
+        </h1>
         {/* Centered Main Name */}
         <div className="relative w-full px-4 mb-12 sm:mb-16">
           <div className="relative text-center">

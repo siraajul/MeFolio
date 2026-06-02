@@ -1,7 +1,6 @@
 "use client";
 import { TimelineContent } from "@/components/ui/timeline-animation";
 import { ParticleButton } from "@/components/shared/ParticleButton";
-import { Zap } from "lucide-react";
 import { useRef } from "react";
 
 export default function About() {
@@ -43,7 +42,7 @@ export default function About() {
           {/* Right side - Content */}
           <div className="flex-1">
             <TimelineContent
-              as="h1"
+              as="h2"
               animationNum={0}
               timelineRef={heroRef}
               customVariants={revealVariants}

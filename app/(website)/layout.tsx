@@ -10,7 +10,8 @@ export const revalidate = 60;
 export async function generateMetadata(): Promise<Metadata> {
   const siteSettings = await client.fetch(siteSettingsQuery);
 
-  const tagline = siteSettings?.tagline || "SQA Automation Engineer & SDET — I help engineering teams ship faster without breaking production.";
+  // Normalize whitespace so messy CMS data (e.g. accidental double spaces) can't leak into meta tags.
+  const tagline = (siteSettings?.tagline || "SQA Automation Engineer & SDET — I help engineering teams ship faster without breaking production.").replace(/\s+/g, " ").trim();
 
   return {
     title: {
@@ -60,7 +61,7 @@ export default async function WebsiteLayout({
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://siraajul.com";
   const fullName = siteSettings?.firstName ? `${siteSettings.firstName} ${siteSettings.lastName}` : "Sirajul Islam";
-  const tagline = siteSettings?.tagline || "SQA Automation Engineer & SDET";
+  const tagline = (siteSettings?.tagline || "SQA Automation Engineer & SDET").replace(/\s+/g, " ").trim();
   const brandDescription = siteSettings?.brandDescription || "SQA Automation Engineer & SDET specializing in scalable test frameworks and quality assurance.";
   const profileImageUrl = siteSettings?.profileImageUrl;
 
@@ -107,6 +108,18 @@ export default async function WebsiteLayout({
         description: `Siraajul (${fullName}) — ${brandDescription}`,
         url: baseUrl,
         ...(profileImageUrl ? { image: profileImageUrl } : {}),
+        // Local-SEO signals — strengthen "SQA Engineer Bangladesh"-style queries using CMS data.
+        ...(siteSettings?.email ? { email: `mailto:${siteSettings.email}` } : {}),
+        ...(siteSettings?.phoneNumber ? { telephone: siteSettings.phoneNumber } : {}),
+        ...(siteSettings?.location
+          ? {
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: siteSettings.location.split(",")[0]?.trim(),
+                addressCountry: siteSettings.location.split(",").slice(-1)[0]?.trim(),
+              },
+            }
+          : {}),
         sameAs: socialLinks,
         knowsAbout: [
           "Software Quality Assurance",

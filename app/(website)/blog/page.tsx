@@ -1,13 +1,17 @@
 import { client } from "@/sanity/lib/client";
 import { postsQuery } from "@/sanity/lib/queries";
+import { Post } from "@/types/sanity";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "All Articles | Sirajul Islam",
+  title: "All Articles",
   description: "Browse all articles, tutorials, and insights on software quality assurance, test automation, Playwright, Cypress, and CI/CD engineering by Sirajul Islam.",
+  alternates: {
+    canonical: "/blog",
+  },
   openGraph: {
     title: "All Articles | Sirajul Islam",
     description: "Technical articles on Playwright, Cypress, Selenium, API testing, CI/CD and QA engineering.",
@@ -26,10 +30,10 @@ export const metadata: Metadata = {
 export const revalidate = 60;
 
 export default async function BlogArchivePage() {
-  const posts = await client.fetch(postsQuery);
+  const posts = await client.fetch<Post[]>(postsQuery);
 
   return (
-    <div className="min-h-screen bg-background text-foreground pb-20">
+    <main id="main-content" tabIndex={-1} className="min-h-screen bg-background text-foreground pb-20">
       {/* Header */}
       <div className="bg-background dark:bg-neutral-900 py-12 md:py-16 px-4 md:px-8 lg:px-12 border-b border-neutral-200 dark:border-neutral-800">
         <div className="max-w-7xl mx-auto flex flex-col gap-6">
@@ -54,7 +58,7 @@ export default async function BlogArchivePage() {
       {/* Grid */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-10 md:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
-          {posts.map((post: any) => (
+          {posts.map((post) => (
             <Link 
               href={`/blog/${post.slug}`} 
               key={post._id}
@@ -95,6 +99,6 @@ export default async function BlogArchivePage() {
             </div>
         )}
       </div>
-    </div>
+    </main>
   );
 }
