@@ -15,20 +15,20 @@ export default defineType({
                 {
                     type: "object",
                     fields: [
-                        {
+                        defineField({
                             name: "value",
                             title: "Value",
                             type: "string",
                             description: "e.g., 95%, 200+, 3x",
-                            validation: (Rule: any) => Rule.required(),
-                        },
-                        {
+                            validation: (Rule) => Rule.required(),
+                        }),
+                        defineField({
                             name: "label",
                             title: "Label",
                             type: "string",
                             description: "e.g., Test Coverage, Test Cases, Faster",
-                            validation: (Rule: any) => Rule.required(),
-                        },
+                            validation: (Rule) => Rule.required(),
+                        }),
                     ],
                     preview: {
                         select: { value: "value", label: "label" },
@@ -47,7 +47,7 @@ export default defineType({
             const count = metrics?.length || 0;
             return {
                 title: `📈 ${count} Metric${count !== 1 ? "s" : ""}`,
-                subtitle: metrics?.map((m: any) => `${m.value} ${m.label}`).join(" • ") || "",
+                subtitle: metrics?.map((m: { value?: string; label?: string }) => `${m.value} ${m.label}`).join(" • ") || "",
             };
         },
     },

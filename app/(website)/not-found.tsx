@@ -43,7 +43,6 @@ export default function NotFound({
   title = "Ups! Lost in space",
   description = "We couldn’t find the page you’re looking for. It might have been moved or deleted.",
   backText = "Go Back",
-  onBack,
 }: NotFoundProps) {
   return (
     <div className="flex flex-col justify-center items-center px-4 h-[88vh] bg-background">

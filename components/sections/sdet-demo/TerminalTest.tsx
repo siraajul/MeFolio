@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Terminal, Play, CheckCircle2, Clock } from "lucide-react";
+import { Terminal, Play, Clock } from "lucide-react";
 
 export function TerminalTest() {
   const [isRunning, setIsRunning] = useState(false);
@@ -81,7 +81,7 @@ export function TerminalTest() {
         {logs.length === 0 ? (
           <div className="h-full flex flex-col items-center justify-center text-neutral-600">
             <Terminal size={32} className="mb-2 opacity-50" />
-            <p>Click "Run Suite" to execute tests</p>
+            <p>Click &quot;Run Suite&quot; to execute tests</p>
           </div>
         ) : (
           <div className="flex flex-col gap-1.5">

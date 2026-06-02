@@ -23,6 +23,9 @@ export function ThemeToggleFab() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // Mount guard: the toggle can only reflect the real theme after hydration, so we flip
+    // `mounted` here. This is the canonical client-only pattern, hence the scoped disable.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
 
     // Read saved preference

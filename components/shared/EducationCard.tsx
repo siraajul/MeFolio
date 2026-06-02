@@ -19,7 +19,6 @@ interface EducationCardProps {
 export function EducationCard({
   universityName,
   degree,
-  period,
   location,
   description,
   logoUrl,

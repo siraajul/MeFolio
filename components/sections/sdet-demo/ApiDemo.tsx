@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Send, Database, Check, X, Code2 } from "lucide-react";
+import { Send, Database, Check, Code2 } from "lucide-react";
 
 export function ApiDemo() {
   const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");

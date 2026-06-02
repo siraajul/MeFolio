@@ -1,13 +1,6 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import {
-  NotepadTextDashed,
-  Twitter,
-  Linkedin,
-  Github,
-  Mail,
-} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface FooterLink {
@@ -34,7 +27,6 @@ interface FooterProps {
 
 export const Footer = ({
   brandName = "YourBrand",
-  brandDescription = "Your description here",
   socialLinks = [],
   navLinks = [],
   creatorName,

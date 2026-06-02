@@ -62,7 +62,7 @@ export function Globe({ className, config }: GlobeProps) {
 
   const activeConfig = config || (isDark ? GLOBE_CONFIG_DARK : GLOBE_CONFIG_LIGHT);
 
-  const onRender = useCallback((state: Record<string, any>) => {
+  const onRender = useCallback((state: Record<string, number>) => {
     phiRef.current += 0.005; 
     state.phi = phiRef.current;
     state.width = widthRef.current * 2;

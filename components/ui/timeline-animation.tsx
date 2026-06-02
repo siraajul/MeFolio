@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useInView, Variants } from "framer-motion";
-import React, { useRef } from "react";
+import { motion, useInView, Variants, HTMLMotionProps } from "framer-motion";
+import React, { useRef, useMemo } from "react";
 
 interface TimelineContentProps {
   children: React.ReactNode;
@@ -9,10 +9,7 @@ interface TimelineContentProps {
   className?: string;
   animationNum?: number;
   timelineRef?: React.RefObject<HTMLElement | null>;
-  customVariants?: {
-    visible: (i: number) => any;
-    hidden: any;
-  };
+  customVariants?: Variants;
 }
 
 export const TimelineContent = ({
@@ -42,10 +39,12 @@ export const TimelineContent = ({
 
   const variants = customVariants || defaultVariants;
 
-  // We explicitly type the motion component to any to allow dynamic 'as' prop usage with Framer Motion,
-  // though typically you'd use motion[Component] if it were a string like 'div'.
-  // However, for simplicity with creating dynamic motion components:
-  const MotionComponent = motion.create(Component as any);
+  // Memoize so the motion component isn't recreated every render (which would reset its
+  // state and trips react-hooks/static-components). `as` lets callers pick the element.
+  const MotionComponent = useMemo(
+    () => motion.create(Component as React.ComponentType) as React.ComponentType<HTMLMotionProps<"div">>,
+    [Component]
+  );
 
   return (
     <MotionComponent

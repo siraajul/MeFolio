@@ -21,26 +21,16 @@ interface NavBarProps {
   defaultActive?: string
 }
 
-export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBarProps) {
+export function AnimeNavBar({ items, defaultActive = "Home" }: NavBarProps) {
   const pathname = usePathname()
   const [mounted, setMounted] = useState(false)
   const [hoveredTab, setHoveredTab] = useState<string | null>(null)
   const [activeTab, setActiveTab] = useState<string>(defaultActive)
-  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
+    // Mount guard so the nav only animates/highlights after hydration.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true)
-  }, [])
-
-  useEffect(() => {
-    const handleResize = () => {
-      // Use 900px so iPad portrait (768px) gets icon-only layout
-      setIsMobile(window.innerWidth < 900)
-    }
-
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
   }, [])
 
   const isManualScroll = React.useRef(false)
@@ -101,7 +91,6 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
        observer.disconnect()
        if (timeoutRef.current) clearTimeout(timeoutRef.current)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mounted, items, pathname])
 
   const lenis = useLenis()

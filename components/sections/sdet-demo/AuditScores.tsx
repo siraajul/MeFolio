@@ -124,7 +124,7 @@ export function AuditScores() {
             Perfect Lighthouse Audits
           </h3>
           <p className="text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
-            As an SDET, I don't just write functional code. I enforce strict quality gates in my CI/CD pipelines to guarantee <strong>flawless performance, accessibility, and SEO</strong> before any code reaches production.
+            As an SDET, I don&apos;t just write functional code. I enforce strict quality gates in my CI/CD pipelines to guarantee <strong>flawless performance, accessibility, and SEO</strong> before any code reaches production.
           </p>
         </div>
 

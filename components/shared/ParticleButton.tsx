@@ -6,27 +6,29 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import type { ButtonProps } from "@/components/ui/button";
-import { MousePointerClick } from "lucide-react";
 
 interface ParticleButtonProps extends ButtonProps {
     onSuccess?: () => void;
     successDuration?: number;
 }
 
+// Fixed particle offsets, generated once at module load. Keeping Math.random out of render
+// keeps the component pure (the burst is identical every click, which is imperceptible).
+const PARTICLE_OFFSETS = Array.from({ length: 6 }, (_, i) => ({
+    x: (i % 2 ? 1 : -1) * (Math.random() * 50 + 20),
+    y: -Math.random() * 50 - 20,
+}));
+
 function SuccessParticles({
-    buttonRef,
+    centerX,
+    centerY,
 }: {
-    buttonRef: React.RefObject<HTMLButtonElement | null>;
+    centerX: number;
+    centerY: number;
 }) {
-    const rect = buttonRef.current?.getBoundingClientRect();
-    if (!rect) return null;
-
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-
     return (
         <AnimatePresence>
-            {[...Array(6)].map((_, i) => (
+            {PARTICLE_OFFSETS.map((offset, i) => (
                 <motion.div
                     key={i}
                     className="fixed w-1 h-1 bg-black dark:bg-white rounded-full pointer-events-none z-50"
@@ -38,8 +40,8 @@ function SuccessParticles({
                     }}
                     animate={{
                         scale: [0, 1, 0],
-                        x: [0, (i % 2 ? 1 : -1) * (Math.random() * 50 + 20)],
-                        y: [0, -Math.random() * 50 - 20],
+                        x: [0, offset.x],
+                        y: [0, offset.y],
                     }}
                     transition={{
                         duration: 0.6,
@@ -61,9 +63,16 @@ function ParticleButton({
     ...props
 }: ParticleButtonProps) {
     const [showParticles, setShowParticles] = useState(false);
+    const [center, setCenter] = useState({ x: 0, y: 0 });
     const buttonRef = useRef<HTMLButtonElement>(null);
 
     const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        // Read the button's position here (event handler), not during render, then position
+        // the particle burst from its center.
+        const rect = buttonRef.current?.getBoundingClientRect();
+        if (rect) {
+            setCenter({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
+        }
         setShowParticles(true);
 
         setTimeout(() => {
@@ -76,7 +85,7 @@ function ParticleButton({
 
     return (
         <>
-            {showParticles && <SuccessParticles buttonRef={buttonRef} />}
+            {showParticles && <SuccessParticles centerX={center.x} centerY={center.y} />}
             <Button
                 ref={buttonRef}
                 onClick={handleClick}
