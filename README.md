@@ -39,7 +39,8 @@ graph TD
 ### 👨‍💻 For Developers
 *   **Modern Stack**: Next.js 16 (App Router), TypeScript, Tailwind CSS v4.
 *   **Clean Architecture**: Modular components with strict TypeScript types.
-*   **Performance**: ISR caching, AVIF/WebP image optimization, staged data fetching, and dynamic imports.
+*   **Performance**: ISR caching, AVIF/WebP image optimization, staged data fetching, and CDN preconnect.
+*   **SEO & GEO Ready**: Fully server-rendered, per-page canonicals, rich JSON-LD (Person, BlogPosting/CreativeWork, BreadcrumbList), dynamic sitemap, and a `robots.txt` that explicitly welcomes AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended).
 *   **AI-Readable**: `llms.txt` support so AI assistants can read your portfolio when a link is shared.
 *   **Testing**: E2E testing with Playwright included.
 
@@ -55,6 +56,7 @@ graph TD
 *   **Interactive UI**: Smooth animations with Framer Motion and Lenis scrolling.
 *   **Dark Mode**: System-preference aware theme switching.
 *   **Responsive**: Optimised for Mobile (5"), Tablet, and Desktop.
+*   **Accessible**: Respects `prefers-reduced-motion` (animations + smooth-scroll disabled), skip-to-content link, visible keyboard focus, and semantic landmarks.
 
 ---
 
@@ -145,7 +147,8 @@ npm run dev
 *   **ISR (Incremental Static Regeneration)**: Blog and project pages are pre-rendered at build time and cached on Vercel's CDN. Content refreshes automatically every 60 seconds — no cold render on link share.
 *   **Staged Data Fetching**: Above-fold (Hero) data is fetched first to unblock initial paint. Below-fold sections load in parallel.
 *   **Image Optimization**: AVIF/WebP served automatically via Next.js image CDN. Sanity images use `auto=format&q=80` for ~40% smaller files.
-*   **Dynamic Imports**: All below-fold sections lazy-loaded via `next/dynamic` to minimize initial JS bundle.
+*   **CDN Preconnect**: Preconnects to the Sanity image CDN so the LCP image starts downloading sooner.
+*   **Reduced Motion**: Animations and Lenis smooth-scroll are skipped for users who prefer reduced motion — less work on capable and assistive setups.
 
 ---
 
