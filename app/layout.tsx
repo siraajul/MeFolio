@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Fira_Code, Antic } from "next/font/google";
 import Script from "next/script";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SentryProvider } from "@/components/providers/SentryProvider";
 
 const geistSans = Geist({
@@ -139,6 +140,7 @@ export default function RootLayout({
         <SentryProvider>
           {children}
         </SentryProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
